@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bscmfcssf3j4i"]
+
+[ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_pybca"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Ground" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(125, 5)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("1_pybca")

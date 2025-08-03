@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=4 uid="uid://duog210vigman"]
+
+[ext_resource type="Script" uid="uid://cwtxjs1fxujj7" path="res://scripts/arrow.gd" id="1_umosx"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wyax8"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGQAAAAUAAAC4AAAAUklGRrAAAABXRUJQVlA4TKMAAAAvGAABEMegoI0kZe6emQS8h/ev67WobSSp2beYzMWUQ//VECJFkSQ1cxl4oiB5wL8YhAgIivwfLQDvXsDqknFlQgGHKu2+jB2+/M97yff3mOU2AIt6ouaeCziWyLqybmINwGDQSJKiu4VjZv9WHyVE9F9h2jZMdntKyqU28ck2544+dENETCilRGIi1LaflQOAUqCUgotKKVDgXD+/o4+/79YaAA==")
+size_override = Vector2(25, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23jat"]
+size = Vector2(13.5, 2.5)
+
+[node name="arrow" type="RigidBody2D"]
+gravity_scale = 0.116
+contact_monitor = true
+script = ExtResource("1_umosx")
+damage = 60
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.536, 0.481)
+texture = SubResource("PortableCompressedTexture2D_wyax8")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://assets/map/arrow.aseprite",
+"source_uid": 3127494071193523780
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d6f448abc09fc1b17c4c6ce09a3f176d"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_23jat")
+debug_color = Color(0.811975, 0.37986, 0.418769, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

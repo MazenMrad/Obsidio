@@ -1,0 +1,284 @@
+[gd_scene load_steps=31 format=3 uid="uid://b3pk1n4s0d2p0"]
+
+[ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://crp43mcsgbovg" path="res://scenes/characters/player.tscn" id="3_sugp2"]
+[ext_resource type="Shader" uid="uid://cd5gpmogd64xm" path="res://scenes/shaders/wobble.gdshader" id="4_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://25yv3tiijqo5" path="res://scenes/characters/enemy.tscn" id="4_jyhfs"]
+[ext_resource type="Shader" uid="uid://bn6hyb6tsrno6" path="res://scenes/shaders/foliage.gdshader" id="4_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://c3xdcp3nxm60p" path="res://assets/map/props/walls/wall1.tscn" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bhsaicnqwmdm5" path="res://assets/map/props/trees/tree1.png" id="5_tefeu"]
+[ext_resource type="Texture2D" uid="uid://c0x4dupgfvxlm" path="res://assets/map/props/trees/tree2.png" id="5_tipki"]
+[ext_resource type="Texture2D" uid="uid://b6u4caag5t274" path="res://assets/map/props/trees/tree3.png" id="6_85g3d"]
+[ext_resource type="Shader" uid="uid://d7520grkh1mw" path="res://scenes/shaders/water.gdshader" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://cv06a6mqkus1g" path="res://assets/map/props/trees/grass.png" id="7_choun"]
+[ext_resource type="Texture2D" uid="uid://c5wlf6v50dlk8" path="res://assets/map/props/trees/bg.png" id="9_ya4ey"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
+noise_type = 3
+frequency = 0.043
+fractal_octaves = 10
+fractal_lacunarity = 3.265
+fractal_weighted_strength = 0.53
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jkv2x"]
+noise = SubResource("FastNoiseLite_eb6dy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
+shader = ExtResource("6_tefeu")
+shader_parameter/offSet = 0.0
+shader_parameter/YDistortion = 1.0
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_jkv2x")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.35
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 1.5
+shader_parameter/WDFreq = 0.55
+shader_parameter/WDSize = 0.95
+shader_parameter/WDSpeed = 2.5
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
+shader = ExtResource("4_eb6dy")
+shader_parameter/r = 5.0
+shader_parameter/offset = 2.001
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jbj1t"]
+
+[sub_resource type="PackedScene" id="PackedScene_trceg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ya4ey"]
+frequency = 0.032
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eb6dy"]
+noise = SubResource("FastNoiseLite_ya4ey")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = true
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_eb6dy")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ya4ey"]
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trceg"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ya4ey")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_trceg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8y0u"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_trceg")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8y0u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkv2x"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_a8y0u")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jbj1t"]
+width = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_muem4"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jbj1t")
+shader_parameter/amplitude = 0.08
+shader_parameter/time_scale = 0.21
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 0.3
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(610, -365)
+scale = Vector2(2.795, 2.795)
+
+[node name="Enemy spawner" type="Node2D" parent="."]
+light_mask = 7
+position = Vector2(-122.719, 85.5098)
+script = ExtResource("1_eb6dy")
+enemy = ExtResource("4_jyhfs")
+
+[node name="Timer" type="Timer" parent="Enemy spawner"]
+wait_time = 12.577
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ya4ey")
+offset_left = -217.889
+offset_top = 99.8211
+offset_right = 238.111
+offset_bottom = 130.821
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-135.599, 45.4383)
+zoom = Vector2(2.475, 2.095)
+
+[node name="player" parent="." instance=ExtResource("3_sugp2")]
+material = SubResource("ShaderMaterial_dp3eg")
+position = Vector2(-203.936, 91.5921)
+scale = Vector2(0.585, 0.585)
+
+[node name="enemy" parent="." node_paths=PackedStringArray("wall") instance=ExtResource("4_jyhfs")]
+material = SubResource("ShaderMaterial_jbj1t")
+position = Vector2(57.2451, 83.7209)
+spawn_on_death = SubResource("PackedScene_trceg")
+wall = NodePath("../wall1")
+
+[node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(-182.469, 84.4365)
+scale = Vector2(0.445312, 0.402344)
+
+[node name="trees" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_eb6dy")
+position = Vector2(-76.5653, 50.4472)
+scale = Vector2(0.58, 0.58)
+
+[node name="Tree1" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_trceg")
+texture = ExtResource("5_tefeu")
+flip_h = true
+
+[node name="Tree2" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_a8y0u")
+position = Vector2(300, -5.17241)
+texture = ExtResource("5_tefeu")
+
+[node name="Tree3" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(118.966, 20.6897)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree10" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(194.828, 18.9655)
+texture = ExtResource("5_tipki")
+
+[node name="Tree11" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(70.6897, 15.5172)
+texture = ExtResource("5_tipki")
+
+[node name="Tree12" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-162.069, 15.5172)
+texture = ExtResource("5_tipki")
+
+[node name="Tree4" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-98.2759, 15.5172)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree5" type="Sprite2D" parent="trees"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(394.828, 12.069)
+texture = ExtResource("5_tipki")
+
+[node name="Tree6" type="Sprite2D" parent="trees"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(132.759, -10.3448)
+texture = ExtResource("6_85g3d")
+
+[node name="Tree7" type="Sprite2D" parent="trees"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(405.172, -10.3448)
+texture = ExtResource("6_85g3d")
+
+[node name="Tree8" type="Sprite2D" parent="trees"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(200, -6.89655)
+texture = ExtResource("6_85g3d")
+
+[node name="Tree9" type="Sprite2D" parent="trees"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-155.172, -8.62069)
+texture = ExtResource("6_85g3d")
+
+[node name="Grass" type="Sprite2D" parent="trees"]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_muem4")
+position = Vector2(68.9655, 34.4828)
+scale = Vector2(0.741379, 0.741379)
+texture = ExtResource("7_choun")
+
+[node name="Bg" type="Sprite2D" parent="trees"]
+z_index = -4
+texture_filter = 1
+position = Vector2(150.197, -11.3533)
+scale = Vector2(1.064, 1.064)
+texture = ExtResource("9_ya4ey")
+
+[node name="Ground" type="Sprite2D" parent="trees"]
+z_index = -1
+texture_filter = 1
+position = Vector2(182.759, 75.8621)
+scale = Vector2(0.836207, 0.836207)
+texture = ExtResource("1_o5qli")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -192.129
+offset_top = 65.4741
+offset_right = -148.129
+offset_bottom = 88.4741
+theme_override_font_sizes/font_size = 8
+text = "WALL"
+
+[connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
