@@ -15,16 +15,19 @@
 [ext_resource type="Texture2D" uid="uid://c5wlf6v50dlk8" path="res://assets/map/props/trees/bg.png" id="9_ya4ey"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
-noise_type = 3
-frequency = 0.043
+noise_type = 2
+frequency = 0.0678
+fractal_type = 3
 fractal_octaves = 10
-fractal_lacunarity = 3.265
-fractal_weighted_strength = 0.53
+fractal_weighted_strength = 1.0
+fractal_ping_pong_strength = 2.97
+cellular_distance_function = 1
 domain_warp_enabled = true
 domain_warp_type = 1
 domain_warp_fractal_octaves = 10
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jkv2x"]
+seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_eb6dy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
@@ -120,7 +123,7 @@ shader_parameter/rotation_strength = 0.3
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(610, -365)
+position = Vector2(594, -332)
 scale = Vector2(2.795, 2.795)
 
 [node name="Enemy spawner" type="Node2D" parent="."]
@@ -135,14 +138,22 @@ autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -217.889
-offset_top = 99.8211
-offset_right = 238.111
-offset_bottom = 130.821
+offset_left = 273.345
+offset_top = 152.415
+offset_right = 1132.35
+offset_bottom = 333.415
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ya4ey")
+offset_left = -620.394
+offset_top = 98.7478
+offset_right = 238.606
+offset_bottom = 279.748
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-135.599, 45.4383)
-zoom = Vector2(2.475, 2.095)
+position = Vector2(-218.605, 42.2182)
+zoom = Vector2(0.88, 0.88)
 
 [node name="player" parent="." instance=ExtResource("3_sugp2")]
 material = SubResource("ShaderMaterial_dp3eg")
@@ -156,12 +167,19 @@ spawn_on_death = SubResource("PackedScene_trceg")
 wall = NodePath("../wall1")
 
 [node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
-position = Vector2(-182.469, 84.4365)
+position = Vector2(-98.0322, 85.5098)
 scale = Vector2(0.445312, 0.402344)
+
+[node name="wall2" parent="." instance=ExtResource("5_tbgi4")]
+position = Vector2(-265.116, 85.1521)
+scale = Vector2(0.445312, 0.402344)
+
+[node name="Wall" parent="wall2" index="0"]
+flip_h = true
 
 [node name="trees" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_eb6dy")
-position = Vector2(-76.5653, 50.4472)
+position = Vector2(29.3381, 49.3739)
 scale = Vector2(0.58, 0.58)
 
 [node name="Tree1" type="Sprite2D" parent="trees"]
@@ -250,35 +268,148 @@ material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(-155.172, -8.62069)
 texture = ExtResource("6_85g3d")
 
-[node name="Grass" type="Sprite2D" parent="trees"]
+[node name="trees2" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_eb6dy")
+position = Vector2(-545.259, 52.9517)
+scale = Vector2(0.58, 0.58)
+
+[node name="Tree1" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_trceg")
+position = Vector2(13.1721, -1.4054)
+texture = ExtResource("5_tefeu")
+flip_h = true
+
+[node name="Tree2" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_a8y0u")
+position = Vector2(313.172, -6.57781)
+texture = ExtResource("5_tefeu")
+flip_h = true
+
+[node name="Tree3" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(132.138, 19.2843)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree10" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(208, 17.5601)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree11" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(83.8618, 14.1118)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree12" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-148.897, 14.1118)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree4" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-85.1038, 14.1118)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree5" type="Sprite2D" parent="trees2"]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(408, 10.6636)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree6" type="Sprite2D" parent="trees2"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(145.931, -11.7502)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Tree7" type="Sprite2D" parent="trees2"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(418.344, -11.7502)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Tree8" type="Sprite2D" parent="trees2"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(213.172, -8.30195)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Tree9" type="Sprite2D" parent="trees2"]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-142, -10.0261)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Grass" type="Sprite2D" parent="."]
 z_index = -3
 texture_filter = 1
 material = SubResource("ShaderMaterial_muem4")
-position = Vector2(68.9655, 34.4828)
-scale = Vector2(0.741379, 0.741379)
+position = Vector2(19.678, 80.8587)
+scale = Vector2(0.26158, 0.26158)
 texture = ExtResource("7_choun")
 
-[node name="Bg" type="Sprite2D" parent="trees"]
+[node name="Grass2" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_muem4")
+position = Vector2(-404.293, 76.9231)
+scale = Vector2(0.26158, 0.26158)
+texture = ExtResource("7_choun")
+flip_h = true
+
+[node name="Bg" type="Sprite2D" parent="."]
 z_index = -4
 texture_filter = 1
-position = Vector2(150.197, -11.3533)
-scale = Vector2(1.064, 1.064)
+position = Vector2(-185.331, -17.8891)
+scale = Vector2(0.585494, 0.61712)
 texture = ExtResource("9_ya4ey")
 
-[node name="Ground" type="Sprite2D" parent="trees"]
+[node name="Ground" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
-position = Vector2(182.759, 75.8621)
-scale = Vector2(0.836207, 0.836207)
+position = Vector2(-190.34, 94.4544)
+scale = Vector2(0.485, 0.485)
 texture = ExtResource("1_o5qli")
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
-offset_left = -192.129
-offset_top = 65.4741
-offset_right = -148.129
-offset_bottom = 88.4741
+offset_left = -191.413
+offset_top = 62.6118
+offset_right = -147.413
+offset_bottom = 85.6118
+scale = Vector2(0.871199, 1)
 theme_override_font_sizes/font_size = 8
 text = "WALL"
 
 [connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
+
+[editable path="wall2"]

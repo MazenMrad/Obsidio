@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3xdcp3nxm60p"]
 
 [ext_resource type="Script" uid="uid://5ftjbu53xik0" path="res://scripts/wall.gd" id="1_orj7f"]
-[ext_resource type="Texture2D" uid="uid://b2xw73nln4j1b" path="res://assets/map/props/walls/wall1.png" id="2_gtigl"]
+[ext_resource type="Texture2D" uid="uid://8pgxrfhe57s7" path="res://assets/map/wall.png" id="2_gtigl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73fws"]
-height = 46.1539
+height = 38.4615
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_id02q"]
-radius = 7.69231
-height = 46.1538
+radius = 7.6923
+height = 38.4615
 
 [node name="wall" type="StaticBody2D"]
 texture_filter = 1
@@ -35,6 +35,11 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "869ff8a812503c79c8ecf5c4c94e6591"
 
+[node name="Wall" type="Sprite2D" parent="."]
+position = Vector2(0, 3.84615)
+scale = Vector2(0.71, 0.71)
+texture = ExtResource("2_gtigl")
+
 [node name="wallarea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 7
@@ -43,9 +48,6 @@ collision_mask = 7
 position = Vector2(-3.84615, 0)
 shape = SubResource("CapsuleShape2D_73fws")
 debug_color = Color(0.815619, 0.37329, 0.436052, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_gtigl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.84615, 0)
