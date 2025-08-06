@@ -81,6 +81,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2liu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2liu"]
@@ -93,7 +101,7 @@ height = 23.6842
 
 [node name="enemy" type="CharacterBody2D"]
 scale = Vector2(0.76, 0.76)
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("1_h2liu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -101,7 +109,7 @@ texture_filter = 1
 position = Vector2(-2, 0)
 scale = Vector2(0.555, 0.555)
 sprite_frames = SubResource("SpriteFrames_r80ma")
-frame_progress = 0.762916
+animation = &"idle"
 flip_h = true
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {
@@ -127,11 +135,13 @@ metadata/_aseprite_wizard_source_file_hash_ = "cc1f0ba53460145ab8e3a48d91e43ffc"
 shape = SubResource("CapsuleShape2D_h2liu")
 debug_color = Color(0.712277, 0.394929, 0.729381, 0.42)
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 6
+[node name="enemy1" type="Area2D" parent="."]
+collision_mask = 14
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy1"]
 shape = SubResource("CapsuleShape2D_ird33")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="enemy1" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="enemy1" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="enemy1" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="enemy1" to="." method="_on_area_2d_body_exited"]

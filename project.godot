@@ -19,6 +19,7 @@ run/size/viewport_height=1080
 [display]
 
 window/size/borderless=true
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

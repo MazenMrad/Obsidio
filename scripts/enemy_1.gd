@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var spawn_on_death: PackedScene
 @export var spawn_count: int = 2
 @export var wall: StaticBody2D
-
+signal wall_dmg
 
 var hp=100
 var original_y: float
@@ -45,39 +45,34 @@ func _physics_process(delta):
 		move_and_slide()
 	if hp<=0:
 		queue_free()
-
+############################### ARROW HIT #############################
 func _on_area_2d_body_entered(body: Node2D) -> void:
 		# Connect this to an Area2D that detects when to stop
 	if body.has_method("shoot"):
 		print("got shot")
 		hp=hp-20
 		print(hp)
-	else:
-		print("played")
-		$AnimatedSprite2D.play("default")
-		velocity.x=0
 	pass 
 
 func take_damage(damage_amount):
 	hp=hp-20
 	pass
 
+#####
+#func _on_area_2d_body_exited(body: Node2D) -> void:
+	#velocity.x = -move_speed
+	#pass # Replace with function body.
+
 ############################### WALL DETECTION ##################################
-#still doesnt work for some fcking reason
-func _on_area_entered(area):
-	print("area")
-	if area.name == "Area2D":
-		
-		if wall:
-			wall.enemy_entered()
-
-func _on_area_exited(area):
-	if area.name == "WallArea":
-		if wall:
-			wall.enemy_left()
 
 
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.has_method("get_current_frame"):
-		velocity.x = -move_speed
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	$AnimatedSprite2D.play("default")
+	velocity.x=0
+	pass # Replace with function body.
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	velocity.x = -move_speed
+	$AnimatedSprite2D.play("idle")
 	pass # Replace with function body.

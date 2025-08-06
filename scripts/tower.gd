@@ -1,4 +1,3 @@
-# wall.gd
 extends StaticBody2D
 
 @export var max_hp: int = 100
@@ -7,8 +6,10 @@ var enemy_touching=false
 var current_hp: int = 100
 var enemy_nearby: bool = false
 var damage_timer: float = 0
-
+var number_enemies: int =0
 func _ready():
+	var death_gui=$"../death"
+	death_gui.hide()
 	current_hp = max_hp
 
 func _process(delta):
@@ -22,34 +23,25 @@ func _process(delta):
 
 func take_damage(damage: int):
 	if current_hp<=0:
-		destroy_wall()
+		destroy_tower()
 	else:
-		current_hp -= damage
+		current_hp -= damage+number_enemies
 		print("Wall HP: ", current_hp)
 
-func destroy_wall():
-	print("Wall destroyed!")
+func destroy_tower():
+	print("tower destroyed!")
 	queue_free() 
+	$"../death".show()
 
-func _on_area_2d_body_entered(body) -> void:
-	print("test")
-	if body.is_in_group("enemies"):
-		print("entered")
-		enemy_touching = true
-		damage_timer = 0
-		take_damage(damage_per_second)
-	pass # Replace with function body.
-
-
-func _on_wallarea_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name=="enemy1":
+		number_enemies+=1
 		enemy_nearby=true
 		take_damage(damage_per_second)
 		print("lmmao")
 	pass # Replace with function body.
 
-
-func _on_wallarea_area_exited(area: Area2D) -> void:
+func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.name=="enemy1":
 		enemy_nearby=false
 	pass # Replace with function body.

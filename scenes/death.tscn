@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdvaqqtwajgse"]
+
+[ext_resource type="Shader" uid="uid://dnvvydy7wqv7l" path="res://scenes/shaders/text.gdshader" id="1_w8wr1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q1r8t"]
+shader = ExtResource("1_w8wr1")
+shader_parameter/jitter_strength = 2.0
+shader_parameter/jitter_speed = 8.0
+shader_parameter/jitter_frequency = 12.0
+shader_parameter/separate_xy = true
+shader_parameter/time_offset = 0.0
+shader_parameter/enable_rotation = true
+shader_parameter/rotation_strength = 5.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/rotation_frequency = 4.0
+shader_parameter/enable_scaling = true
+shader_parameter/scale_strength = 0.1
+shader_parameter/scale_speed = 0.831
+shader_parameter/scale_frequency = 0.1
+shader_parameter/base_scale = 0.983
+shader_parameter/text_color = Color(1, 1, 1, 1)
+shader_parameter/use_custom_color = false
+shader_parameter/shake_intensity = 0.41
+shader_parameter/enable_pixelation = true
+shader_parameter/pixel_size = 1.0
+shader_parameter/adaptive_pixels = true
+shader_parameter/enable_outline = true
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/chromatic_aberration = false
+shader_parameter/aberration_strength = 5.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_left = 119.0
+offset_top = 135.0
+offset_right = 250.0
+offset_bottom = 173.065
+theme_override_colors/icon_hover_pressed_color = Color(0.370364, 0.370364, 0.370364, 1)
+theme_override_colors/icon_hover_color = Color(0.458405, 0.458405, 0.458405, 1)
+theme_override_font_sizes/font_size = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Button"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 41.0
+
+[node name="Label" type="Label" parent="Button/CenterContainer"]
+layout_mode = 2
+text = "RESTART"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(2.595, 0)
+layout_mode = 1
+offset_left = -2.0
+offset_top = 3.0
+offset_right = 147.095
+offset_bottom = 77.565
+scale = Vector2(2.46, 2.46)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/AspectRatioContainer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q1r8t")
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "You ded"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+z_index = -1
+layout_mode = 2
+color = Color(0.416754, 5.71553e-07, 1.44392e-07, 0.262745)

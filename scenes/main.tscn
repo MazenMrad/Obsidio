@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b3pk1n4s0d2p0"]
+[gd_scene load_steps=35 format=3 uid="uid://b3pk1n4s0d2p0"]
 
 [ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
@@ -13,6 +13,8 @@
 [ext_resource type="Shader" uid="uid://d7520grkh1mw" path="res://scenes/shaders/water.gdshader" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://cv06a6mqkus1g" path="res://assets/map/props/trees/grass.png" id="7_choun"]
 [ext_resource type="Texture2D" uid="uid://c5wlf6v50dlk8" path="res://assets/map/props/trees/bg.png" id="9_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://cdvaqqtwajgse" path="res://scenes/death.tscn" id="13_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
 noise_type = 2
@@ -122,13 +124,19 @@ shader_parameter/noise_scale = 0.001
 shader_parameter/rotation_strength = 0.3
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
+line_spacing = 4.785
+font_size = 11
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(594, -332)
 scale = Vector2(2.795, 2.795)
 
 [node name="Enemy spawner" type="Node2D" parent="."]
 light_mask = 7
-position = Vector2(-122.719, 85.5098)
+position = Vector2(-34.347, 85.5098)
 script = ExtResource("1_eb6dy")
 enemy = ExtResource("4_jyhfs")
 
@@ -152,12 +160,11 @@ offset_right = 238.606
 offset_bottom = 279.748
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-218.605, 42.2182)
-zoom = Vector2(0.88, 0.88)
+position = Vector2(-183.184, 44.7227)
 
 [node name="player" parent="." instance=ExtResource("3_sugp2")]
 material = SubResource("ShaderMaterial_dp3eg")
-position = Vector2(-203.936, 91.5921)
+position = Vector2(-220.036, 5.36672)
 scale = Vector2(0.585, 0.585)
 
 [node name="enemy" parent="." node_paths=PackedStringArray("wall") instance=ExtResource("4_jyhfs")]
@@ -373,8 +380,16 @@ flip_h = true
 z_index = -3
 texture_filter = 1
 material = SubResource("ShaderMaterial_muem4")
-position = Vector2(19.678, 80.8587)
+position = Vector2(19.678, 77.6386)
 scale = Vector2(0.26158, 0.26158)
+texture = ExtResource("7_choun")
+
+[node name="Grass3" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_muem4")
+position = Vector2(-195.349, 77.9964)
+scale = Vector2(0.196842, 0.26158)
 texture = ExtResource("7_choun")
 
 [node name="Grass2" type="Sprite2D" parent="."]
@@ -393,23 +408,61 @@ position = Vector2(-185.331, -17.8891)
 scale = Vector2(0.585494, 0.61712)
 texture = ExtResource("9_ya4ey")
 
+[node name="death" parent="." instance=ExtResource("13_jkv2x")]
+visible = false
+z_index = 3
+offset_left = -388.909
+offset_top = -74.4186
+offset_right = -388.909
+offset_bottom = -74.4186
+
+[node name="Button" parent="death" index="0"]
+offset_left = 138.104
+offset_top = 156.708
+offset_right = 228.344
+offset_bottom = 186.393
+
+[node name="CenterContainer" parent="death/Button" index="0"]
+offset_left = 12.1646
+offset_top = -4.29338
+offset_right = 79.1646
+offset_bottom = 35.7066
+
+[node name="Label" parent="death/Button/CenterContainer" index="0"]
+horizontal_alignment = 1
+
+[node name="MarginContainer" parent="death" index="1"]
+offset_left = -3.0
+offset_top = 2.0
+offset_right = 169.0
+offset_bottom = 98.0
+
+[node name="Label" parent="death/MarginContainer/AspectRatioContainer" index="0"]
+horizontal_alignment = 1
+
 [node name="Ground" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
-position = Vector2(-190.34, 94.4544)
+position = Vector2(-190.34, 93.7388)
 scale = Vector2(0.485, 0.485)
 texture = ExtResource("1_o5qli")
 
+[node name="tower" parent="." instance=ExtResource("14_a8y0u")]
+material = SubResource("ShaderMaterial_0ld40")
+position = Vector2(-229.696, 93.0233)
+
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
-offset_left = -191.413
-offset_top = 62.6118
-offset_right = -147.413
-offset_bottom = 85.6118
+offset_left = -133.095
+offset_top = 57.2451
+offset_right = -73.0948
+offset_bottom = 73.2451
 scale = Vector2(0.871199, 1)
-theme_override_font_sizes/font_size = 8
-text = "WALL"
+theme_override_font_sizes/font_size = 5
+text = "testing shit"
+label_settings = SubResource("LabelSettings_jkv2x")
 
 [connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
 
 [editable path="wall2"]
+[editable path="death"]
