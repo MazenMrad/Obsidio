@@ -27,6 +27,7 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.take_damage(damage)
 		_start_fade_out()
+		queue_free()
 
 func _start_fade_out():
 	var tw = create_tween()

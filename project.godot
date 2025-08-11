@@ -22,7 +22,6 @@ global_var="*res://scripts/global_var.gd"
 
 [display]
 
-window/size/borderless=true
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

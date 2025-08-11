@@ -1,10 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://b3pk1n4s0d2p0"]
+[gd_scene load_steps=34 format=3 uid="uid://b3pk1n4s0d2p0"]
 
 [ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://crp43mcsgbovg" path="res://scenes/characters/player.tscn" id="3_sugp2"]
 [ext_resource type="Shader" uid="uid://cd5gpmogd64xm" path="res://scenes/shaders/wobble.gdshader" id="4_eb6dy"]
-[ext_resource type="PackedScene" uid="uid://25yv3tiijqo5" path="res://scenes/characters/enemy.tscn" id="4_jyhfs"]
 [ext_resource type="Shader" uid="uid://bn6hyb6tsrno6" path="res://scenes/shaders/foliage.gdshader" id="4_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c3xdcp3nxm60p" path="res://assets/map/props/walls/wall1.tscn" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bhsaicnqwmdm5" path="res://assets/map/props/trees/tree1.png" id="5_tefeu"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cdvaqqtwajgse" path="res://scenes/death.tscn" id="13_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
 [ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="14_jbj1t"]
+[ext_resource type="AudioStream" uid="uid://bvjqxgwh5fg7h" path="res://music/ambience.mp3" id="17_muem4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
 noise_type = 2
@@ -54,8 +54,6 @@ shader_parameter/backGroundDirY = 0.01
 shader = ExtResource("4_eb6dy")
 shader_parameter/r = 5.0
 shader_parameter/offset = 2.001
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jbj1t"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ya4ey"]
 frequency = 0.032
@@ -135,12 +133,11 @@ scale = Vector2(2.795, 2.795)
 
 [node name="Enemy spawner" type="Node2D" parent="."]
 light_mask = 7
-position = Vector2(-34.347, 83.0054)
+position = Vector2(-22.1825, 83.0054)
 script = ExtResource("1_eb6dy")
-enemy = ExtResource("4_jyhfs")
 
 [node name="Timer" type="Timer" parent="Enemy spawner"]
-wait_time = 12.577
+wait_time = 4.561
 autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -163,14 +160,8 @@ position = Vector2(-183.184, 44.7227)
 
 [node name="player" parent="." instance=ExtResource("3_sugp2")]
 material = SubResource("ShaderMaterial_dp3eg")
-position = Vector2(-220.751, 1.43114)
+position = Vector2(-217.889, 1.78891)
 scale = Vector2(0.585, 0.585)
-
-[node name="enemy" parent="." node_paths=PackedStringArray("wall") instance=ExtResource("4_jyhfs")]
-visible = false
-material = SubResource("ShaderMaterial_jbj1t")
-position = Vector2(-2.14669, 83.7209)
-wall = NodePath("../wall1")
 
 [node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(-98.0322, 85.5098)
@@ -438,11 +429,6 @@ theme_override_font_sizes/font_size = 16
 text = "Restart
 "
 
-[node name="Label" parent="death" index="3"]
-offset_left = 0.000258446
-offset_top = 3.22004
-offset_bottom = 26.22
-
 [node name="Ground" type="Sprite2D" parent="."]
 z_index = -1
 texture_filter = 1
@@ -465,6 +451,9 @@ theme_override_font_sizes/font_size = 5
 text = "testing shit"
 label_settings = SubResource("LabelSettings_jkv2x")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_muem4")
+
 [node name="coin_label" type="Label" parent="."]
 offset_left = -387.478
 offset_top = -70.483
@@ -473,6 +462,12 @@ offset_bottom = -47.483
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "Gold :"
+
+[node name="spawn_text" type="Label" parent="."]
+offset_left = -243.292
+offset_top = -52.2361
+offset_right = -203.292
+offset_bottom = -29.2361
 
 [connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
 

@@ -5,7 +5,6 @@ extends CharacterBody2D
 @export var wobble_intensity: float = 1.5
 @export var wobble_speed: float = 3.0
 @onready var sprite = $AnimatedSprite2D
-@export var spawn_count: int = 2
 @export var wall: StaticBody2D
 
 var hp=100
@@ -15,11 +14,12 @@ var is_moving: bool = true
 signal died
 
 func die():
-	print("Enemy node: ", name)
-	print("Enemy position: ", position)
-	print("Enemy global_position: ", global_position)
-	print("sprite global_position: ", sprite.global_position)
-	print("Is enemy in tree? ", is_inside_tree())
+#	debug
+	#print("Enemy node: ", name)
+	#print("Enemy position: ", position)
+	#print("Enemy global_position: ", global_position)
+	#print("sprite global_position: ", sprite.global_position)
+	#print("Is enemy in tree? ", is_inside_tree())
 	spawn_coin()
 	queue_free()
 
@@ -55,11 +55,10 @@ func _physics_process(delta):
 ############################### ARROW HIT #############################
 func _on_area_2d_body_entered(body: Node2D) -> void:
 		# Connect this to an Area2D that detects when to stop
-	hp=hp-20
-	if body.has_method("shoot"):
-		print("arrows")
-		hp=hp-20
-		print(hp)
+	#if body.has_method("shoot"):
+		#print("arrows")
+		#hp=hp-20
+		#print(hp)
 	pass 
 
 #####
@@ -75,6 +74,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
  
 func take_damage(dmg):
+	hit_flash()
 	hp-=dmg
 
 @warning_ignore("unused_parameter")
@@ -82,3 +82,5 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	velocity.x = -move_speed
 	$AnimatedSprite2D.play("run")
 	pass # Replace with function body.
+func hit_flash():
+	$AnimationPlayer.play("hit flash")
