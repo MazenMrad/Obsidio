@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=4 uid="uid://c1bhdvhoj1gt1"]
+
+[ext_resource type="Script" uid="uid://cg7wvr564cl1m" path="res://scripts/coin.gd" id="1_xxn87"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_qoco0"]
+_data = PackedByteArray("AAADAAUAAAABAAAAEAAAABAAAAC+AAAAUklGRrYAAABXRUJQVlA4TKoAAAAvD8ADEF+gpJEkZt+/x4dPK202CCZphP1/8shM2zYus/InUgL7JyAo8n+0AFPBTSbrFz13CAn4F3BbW3vayGHGBUQDxJ7AR+er5AmSDZIqezDXZK7COJ6WiOj/HNicd1uMdwXg9DgcJZWkkBJKwoUCtA8XGtrX/sXzHyEwGqcYDNN0v/z8d4RmiM07FnFzRIBnDaWQMYFEjhwqBD5yJp5+VI0AadGk/5+UAQ==")
+size_override = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxn87"]
+atlas = SubResource("PortableCompressedTexture2D_qoco0")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxxfr"]
+atlas = SubResource("PortableCompressedTexture2D_qoco0")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8n3v"]
+atlas = SubResource("PortableCompressedTexture2D_qoco0")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7734d"]
+atlas = SubResource("PortableCompressedTexture2D_qoco0")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yr5yf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxn87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxxfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8n3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7734d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qoco0"]
+radius = 2.0
+
+[node name="coin" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_xxn87")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.512, 0.512)
+sprite_frames = SubResource("SpriteFrames_yr5yf")
+autoplay = "default"
+frame_progress = 0.783463
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": true,
+"layer_section": true,
+"output_section": true,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/map/props/Coin.aseprite",
+"source_uid": 3610829798906797067
+}
+metadata/_aseprite_wizard_source_file_hash_ = "81b4efc892f9baad18338bbbafffe997"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qoco0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

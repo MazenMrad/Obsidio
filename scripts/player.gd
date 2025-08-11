@@ -7,8 +7,9 @@ var current_aim_direction = "front"
 var is_dragging = false
 var drag_start_pos = Vector2.ZERO
 var max_drag_distance = 100  #CHANGE THIS TO DETERMINE DRAG DISTANCE THE EXPORT METHOD HAS SOME ISSUES
+
 func _ready():
-	$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_animated_sprite_2d_animation_finished"))
+	#$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_animated_sprite_2d_animation_finished"))
 	print("Animation signal connected")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -23,7 +24,7 @@ func _process(delta):
 	#if is_dragging and $AnimatedSprite2D.animation=="hold arrow" and $AnimatedSprite2D.frame==9:
 		#update_drag()
 	handle_drag_shooting()
-
+#############THE ANIMATION DISPLAY IS STILL BUGGED STILL SHT#######
 func handle_drag_shooting():
 	# Start dragging
 	if Input.is_action_pressed("MOUSE_BUTTON_LEFT") and not is_dragging:
@@ -44,7 +45,7 @@ func start_drag():
 	is_dragging = true
 	print(to_mouse)
 	# Check mouse position relative to player
-	if to_mouse.y <= -70:  # Mouse is above player
+	if to_mouse.y <= -100:  # Mouse is above player
 		$AnimatedSprite2D.play("up arrow fire", false)
 		print("Aiming up")
 	else:  # Mouse is at or below player level
@@ -67,7 +68,6 @@ func update_drag():
 	else:  # Mouse is at player level or below
 		$AnimatedSprite2D.play("hold arrow idle")
 
-
 func release_drag():
 	is_dragging = false
 	$AnimatedSprite2D.play("loose", true)
@@ -82,7 +82,6 @@ func release_drag():
 		drag_vector = drag_vector.normalized() * max_drag_distance
 	
 	shoot_arrow(drag_vector)
-
 func shoot_arrow(drag_force):
 	var arrow = arrow_scene.instantiate()
 	arrow.global_position = shoot_point.global_position

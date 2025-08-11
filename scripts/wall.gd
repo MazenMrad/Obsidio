@@ -28,13 +28,10 @@ func take_damage(damage: int):
 		print("Wall HP: ", current_hp)
 
 func destroy_wall():
-	print("Wall destroyed!")
 	queue_free() 
 
 func _on_area_2d_body_entered(body) -> void:
-	print("test")
 	if body.is_in_group("enemies"):
-		print("entered")
 		enemy_touching = true
 		damage_timer = 0
 		take_damage(damage_per_second)
@@ -45,7 +42,6 @@ func _on_wallarea_area_entered(area: Area2D) -> void:
 	if area.name=="enemy1":
 		enemy_nearby=true
 		take_damage(damage_per_second)
-		print("lmmao")
 	pass # Replace with function body.
 
 

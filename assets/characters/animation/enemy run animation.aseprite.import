@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dxcis0o2fmebc"
+path="res://.godot/imported/enemy run animation.aseprite-5ba1b181e02990715bf3449f26c6d14d.res"
+
+[deps]
+
+source_file="res://assets/characters/animation/enemy run animation.aseprite"
+dest_files=["res://.godot/imported/enemy run animation.aseprite-5ba1b181e02990715bf3449f26c6d14d.res"]
+
+[params]
+

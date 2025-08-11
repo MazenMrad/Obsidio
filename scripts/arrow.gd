@@ -1,30 +1,44 @@
-
 extends RigidBody2D
-# arrow.gd
+
+@onready var trail = $Line2D
 
 @export var damage = 20
 @export var speed = 500
-var direction = Vector2.RIGHT
+@export var drag = 0.02
+
+# Called when launched
+func shoot(dir, speed_multiplier = 1.0):
+	linear_velocity = dir * speed * speed_multiplier
+
+# Align arrow with movement direction
+func _integrate_forces(state):
+	if linear_velocity.length() > 10:
+		rotation = linear_velocity.angle()
 
 func _process(delta):
-	position += direction * speed * delta
+	# Update Line2D to show trail behind arrow
+	trail.points = PackedVector2Array([
+		Vector2(0, 0),
+		Vector2(-20, 0)
+	])
 
-func shoot(dir, power):
-	direction = dir		
-	# Set initial position and direction from player
-
-func _on_area_2d_body_entered(body) -> void:
-	#print("=== ARROW HIT DEBUG ===")
-	#print("Hit object: ", body.name)
-	#print("Hit object type: ", body.get_class())
-	#print("Is in enemies group: ", body.is_in_group("enemies"))
-	#print("Has take_damage: ", body.has_method("take_damage"))
-	
-	if body.is_in_group("enemies") and body.has_method("take_damage"):
-		print("Applying damage...")
+# On hit
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("enemies"):
 		body.take_damage(damage)
-		queue_free()
-	  # Destroy arrow on hit
-	else:
-		print("false")
-	pass # Replace with function body.
+		_start_fade_out()
+
+func _start_fade_out():
+	var tw = create_tween()
+
+	# Fade color from yellow-orange to transparent red
+	tw.tween_property(trail, "modulate", Color(1.0, 0.0, 0.0, 0.0), 1.5).set_trans(Tween.TRANS_LINEAR)
+	
+
+
+	# Optional: shrink trail width
+	tw.tween_property(trail, "width", 0.0, 1.5)
+
+	# Destroy arrow after fade
+	await tw.finished
+	queue_free()

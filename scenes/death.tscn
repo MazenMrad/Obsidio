@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdvaqqtwajgse"]
+[gd_scene load_steps=5 format=3 uid="uid://cdvaqqtwajgse"]
 
+[ext_resource type="Script" uid="uid://qydao3imaehl" path="res://scripts/death_GUI.gd" id="1_tjai8"]
 [ext_resource type="Shader" uid="uid://dnvvydy7wqv7l" path="res://scenes/shaders/text.gdshader" id="1_w8wr1"]
+[ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="3_tjai8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q1r8t"]
 shader = ExtResource("1_w8wr1")
@@ -37,48 +39,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tjai8")
 
-[node name="Button" type="Button" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-offset_left = 119.0
-offset_top = 135.0
-offset_right = 250.0
-offset_bottom = 173.065
+offset_right = 155.21
+offset_bottom = 85.21
+mouse_filter = 2
+color = Color(0.416754, 5.71553e-07, 1.44392e-07, 0.262745)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 26.0
+offset_right = 120.0
+offset_bottom = 58.0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q1r8t")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 23
+text = "You ded"
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 2
+offset_left = 61.0
+offset_top = 74.0
+offset_right = 104.805
+offset_bottom = 83.84
 theme_override_colors/icon_hover_pressed_color = Color(0.370364, 0.370364, 0.370364, 1)
 theme_override_colors/icon_hover_color = Color(0.458405, 0.458405, 0.458405, 1)
 theme_override_font_sizes/font_size = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="Button"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 1.0
-offset_right = 99.0
-offset_bottom = 41.0
-
-[node name="Label" type="Label" parent="Button/CenterContainer"]
-layout_mode = 2
-text = "RESTART"
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(2.595, 0)
-layout_mode = 1
-offset_left = -2.0
-offset_top = 3.0
-offset_right = 147.095
-offset_bottom = 77.565
-scale = Vector2(2.46, 2.46)
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/AspectRatioContainer"]
-texture_filter = 1
-material = SubResource("ShaderMaterial_q1r8t")
-layout_mode = 2
-theme_override_font_sizes/font_size = 23
-text = "You ded"
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
-z_index = -1
-layout_mode = 2
-color = Color(0.416754, 5.71553e-07, 1.44392e-07, 0.262745)
+[connection signal="button_up" from="Restart" to="." method="_on_restart_button_up"]
+[connection signal="pressed" from="Restart" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

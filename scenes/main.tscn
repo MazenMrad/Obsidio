@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c5wlf6v50dlk8" path="res://assets/map/props/trees/bg.png" id="9_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cdvaqqtwajgse" path="res://scenes/death.tscn" id="13_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
+[ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="14_jbj1t"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
 noise_type = 2
@@ -55,8 +56,6 @@ shader_parameter/r = 5.0
 shader_parameter/offset = 2.001
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbj1t"]
-
-[sub_resource type="PackedScene" id="PackedScene_trceg"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ya4ey"]
 frequency = 0.032
@@ -136,7 +135,7 @@ scale = Vector2(2.795, 2.795)
 
 [node name="Enemy spawner" type="Node2D" parent="."]
 light_mask = 7
-position = Vector2(-34.347, 85.5098)
+position = Vector2(-34.347, 83.0054)
 script = ExtResource("1_eb6dy")
 enemy = ExtResource("4_jyhfs")
 
@@ -146,31 +145,31 @@ autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = 273.345
-offset_top = 152.415
-offset_right = 1132.35
-offset_bottom = 333.415
+offset_left = -616.1
+offset_top = 99.1055
+offset_right = 242.905
+offset_bottom = 280.106
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -620.394
-offset_top = 98.7478
-offset_right = 238.606
-offset_bottom = 279.748
+offset_left = -659.392
+offset_top = 333.453
+offset_right = 199.608
+offset_bottom = 514.453
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-183.184, 44.7227)
 
 [node name="player" parent="." instance=ExtResource("3_sugp2")]
 material = SubResource("ShaderMaterial_dp3eg")
-position = Vector2(-220.036, 5.36672)
+position = Vector2(-220.751, 1.43114)
 scale = Vector2(0.585, 0.585)
 
 [node name="enemy" parent="." node_paths=PackedStringArray("wall") instance=ExtResource("4_jyhfs")]
+visible = false
 material = SubResource("ShaderMaterial_jbj1t")
-position = Vector2(57.2451, 83.7209)
-spawn_on_death = SubResource("PackedScene_trceg")
+position = Vector2(-2.14669, 83.7209)
 wall = NodePath("../wall1")
 
 [node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
@@ -416,29 +415,33 @@ offset_top = -74.4186
 offset_right = -388.909
 offset_bottom = -74.4186
 
-[node name="Button" parent="death" index="0"]
-offset_left = 138.104
-offset_top = 156.708
-offset_right = 228.344
-offset_bottom = 186.393
+[node name="ColorRect" parent="death" index="0"]
+offset_right = 410.43
+offset_bottom = 250.0
 
-[node name="CenterContainer" parent="death/Button" index="0"]
-offset_left = 12.1646
-offset_top = -4.29338
-offset_right = 79.1646
-offset_bottom = 35.7066
+[node name="CenterContainer" parent="death" index="1"]
+offset_left = -1.07308
+offset_top = -16.1002
+offset_right = 409.357
+offset_bottom = 233.9
 
-[node name="Label" parent="death/Button/CenterContainer" index="0"]
-horizontal_alignment = 1
+[node name="Label" parent="death/CenterContainer" index="0"]
+text = "You died"
 
-[node name="MarginContainer" parent="death" index="1"]
-offset_left = -3.0
-offset_top = 2.0
-offset_right = 169.0
-offset_bottom = 98.0
+[node name="Restart" parent="death" index="2"]
+offset_left = 171.02
+offset_top = 154.562
+offset_right = 222.02
+offset_bottom = 179.562
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "Restart
+"
 
-[node name="Label" parent="death/MarginContainer/AspectRatioContainer" index="0"]
-horizontal_alignment = 1
+[node name="Label" parent="death" index="3"]
+offset_left = 0.000258446
+offset_top = 3.22004
+offset_bottom = 26.22
 
 [node name="Ground" type="Sprite2D" parent="."]
 z_index = -1
@@ -461,6 +464,15 @@ scale = Vector2(0.871199, 1)
 theme_override_font_sizes/font_size = 5
 text = "testing shit"
 label_settings = SubResource("LabelSettings_jkv2x")
+
+[node name="coin_label" type="Label" parent="."]
+offset_left = -387.478
+offset_top = -70.483
+offset_right = -347.478
+offset_bottom = -47.483
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "Gold :"
 
 [connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
 
