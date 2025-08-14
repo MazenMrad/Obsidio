@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://duog210vigman"]
+[gd_scene load_steps=9 format=4 uid="uid://duog210vigman"]
 
 [ext_resource type="Script" uid="uid://cwtxjs1fxujj7" path="res://scripts/arrow.gd" id="1_umosx"]
 [ext_resource type="Shader" uid="uid://dgotot0pby2u0" path="res://scenes/shaders/trail.gdshader" id="2_23jat"]
@@ -6,37 +6,6 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_umosx"]
 friction = 0.1
 bounce = 0.1
-
-[sub_resource type="Curve" id="Curve_umosx"]
-_limits = [0.0, 1.0, 0.463235, 301.37]
-_data = [Vector2(0.463235, 0.494382), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_umosx"]
-width = 4096
-curve_x = SubResource("Curve_umosx")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_23jat"]
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(0.46, -0.09, 0)
-emission_shape_scale = Vector3(0.415, 1, 1)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 434.73
-emission_ring_radius = 2.75
-emission_ring_inner_radius = 0.0
-emission_ring_cone_angle = 90.0
-direction = Vector3(-1, 0, 0)
-spread = 8.89
-initial_velocity_max = 6.99
-directional_velocity_min = -720.0
-directional_velocity_max = -323.59
-directional_velocity_curve = SubResource("CurveXYZTexture_umosx")
-gravity = Vector3(2.23, 100.745, 0)
-damping_min = 3.448
-damping_max = 5.747
-scale_min = 0.0
-scale_max = 3.59
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wyax8"]
 _data = PackedByteArray("AAADAAUAAAABAAAAGQAAAAUAAAC4AAAAUklGRrAAAABXRUJQVlA4TKMAAAAvGAABEMegoI0kZe6emQS8h/ev67WobSSp2beYzMWUQ//VECJFkSQ1cxl4oiB5wL8YhAgIivwfLQDvXsDqknFlQgGHKu2+jB2+/M97yff3mOU2AIt6ouaeCziWyLqybmINwGDQSJKiu4VjZv9WHyVE9F9h2jZMdntKyqU28ck2544+dENETCilRGIi1LaflQOAUqCUgotKKVDgXD+/o4+/79YaAA==")
@@ -47,7 +16,7 @@ shader = ExtResource("2_23jat")
 shader_parameter/time = 0.765
 shader_parameter/flow_speed = 4.57
 shader_parameter/color_center = Color(1, 0.6, 0, 1)
-shader_parameter/color_tail = Color(0.664722, 0.865115, 1, 0)
+shader_parameter/color_tail = Color(1, 1, 1, 0)
 
 [sub_resource type="Curve" id="Curve_23jat"]
 _limits = [0.235955, 1.0, 0.335106, 1.0]
@@ -55,24 +24,11 @@ _data = [Vector2(0.335106, 0.235955), 0.0, 0.0, 0, 0, Vector2(0.961097, 1), 0.0,
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_q8ifc"]
-colors = PackedColorArray(0.314201, 0.501747, 0.499058, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.00666666, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23jat"]
-size = Vector2(13.5, 2.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q8ifc"]
-shader = ExtResource("2_23jat")
-shader_parameter/time = 0.74
-shader_parameter/flow_speed = 2.775
-shader_parameter/color_center = Color(0.947913, 0.567662, 0, 1)
-shader_parameter/color_tail = Color(0.390402, 0.768317, 1, 0)
-
-[sub_resource type="Gradient" id="Gradient_umosx"]
-colors = PackedColorArray(0.601223, 0.601223, 0.601223, 1, 0.666569, 0.666569, 0.666569, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_23jat"]
-gradient = SubResource("Gradient_umosx")
-width = 31
+size = Vector2(25, 2.5)
 
 [node name="arrow" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_umosx")
@@ -82,15 +38,6 @@ max_contacts_reported = 3
 script = ExtResource("1_umosx")
 damage = 60
 speed = 820
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
-position = Vector2(-10, 0)
-amount = 9
-lifetime = 0.14
-trail_enabled = true
-trail_lifetime = 2.62
-process_material = SubResource("ParticleProcessMaterial_23jat")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -119,11 +66,10 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "d6f448abc09fc1b17c4c6ce09a3f176d"
 
 [node name="Line2D" type="Line2D" parent="."]
-visible = false
 top_level = true
 material = SubResource("ShaderMaterial_23jat")
-position = Vector2(-14, -8)
-points = PackedVector2Array(1, 0, 11, 0, 21, 0)
+position = Vector2(-37, 0)
+points = PackedVector2Array(1, 0, 11, 0, 16.4105, 0, 21, 0)
 width = 2.525
 width_curve = SubResource("Curve_23jat")
 default_color = Color(1, 1, 0.996078, 1)
@@ -139,14 +85,8 @@ antialiased = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.25, 0)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_23jat")
 debug_color = Color(0.811975, 0.37986, 0.418769, 0.42)
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-modulate = Color(0.244776, 0.244776, 0.244776, 1)
-material = SubResource("ShaderMaterial_q8ifc")
-position = Vector2(-29, 0)
-texture = SubResource("GradientTexture1D_23jat")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

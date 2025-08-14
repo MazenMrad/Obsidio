@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://11blxp4akn8e"]
+
+[ext_resource type="Script" uid="uid://5ftjbu53xik0" path="res://scripts/wall.gd" id="1_q613b"]
+[ext_resource type="Texture2D" uid="uid://0m6ejyo312kc" path="res://assets/map/wall4.png" id="2_q613b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgf42"]
+size = Vector2(53.8462, 53.8462)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0rtn"]
+size = Vector2(52.3077, 52.3077)
+
+[node name="wall4" type="StaticBody2D"]
+texture_filter = 1
+scale = Vector2(0.26, 0.26)
+collision_layer = 8
+script = ExtResource("1_q613b")
+max_hp = 195
+damage_per_second = 14
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "res://assets/map/props/walls/wall1.aseprite",
+"source_uid": 1472352070899928372
+}
+metadata/_aseprite_wizard_source_file_hash_ = "869ff8a812503c79c8ecf5c4c94e6591"
+
+[node name="Wall" type="Sprite2D" parent="."]
+position = Vector2(0, 3.84615)
+scale = Vector2(1.52, 1.52)
+texture = ExtResource("2_q613b")
+
+[node name="wallarea" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallarea"]
+position = Vector2(3.84615, 7.69231)
+shape = SubResource("RectangleShape2D_hgf42")
+debug_color = Color(0.815619, 0.37329, 0.436052, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.61538, 8.46154)
+shape = SubResource("RectangleShape2D_x0rtn")
+
+[connection signal="area_entered" from="wallarea" to="." method="_on_wallarea_area_entered"]
+[connection signal="area_exited" from="wallarea" to="." method="_on_wallarea_area_exited"]
+[connection signal="body_entered" from="wallarea" to="." method="_on_area_2d_body_entered"]

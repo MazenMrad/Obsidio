@@ -20,6 +20,7 @@ func die():
 	#print("Enemy global_position: ", global_position)
 	#print("sprite global_position: ", sprite.global_position)
 	#print("Is enemy in tree? ", is_inside_tree())
+	emit_signal("died")  # Emit the died signal
 	spawn_coin()
 	queue_free()
 

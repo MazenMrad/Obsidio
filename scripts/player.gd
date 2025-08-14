@@ -1,6 +1,8 @@
 extends CharacterBody2D
 @onready var arrow_scene = preload("res://scenes/arrow.tscn")
-@onready var shoot_point: Marker2D = $Marker2D
+@onready var shoot_point: Marker2D = $arrowspawn
+@onready var trajectory_line: Line2D = $TrajectoryLine
+
 var hp=100
 # Player.gd
 var current_aim_direction = "front" 
@@ -8,9 +10,15 @@ var is_dragging = false
 var drag_start_pos = Vector2.ZERO
 var max_drag_distance = 100  #CHANGE THIS TO DETERMINE DRAG DISTANCE THE EXPORT METHOD HAS SOME ISSUES
 
+# Trajectory prediction settings
+@export var trajectory_points: int = 20
+@export var trajectory_step_time: float = 0.1
+@export var trajectory_gravity: float = 980.0
+
 func _ready():
 	#$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_animated_sprite_2d_animation_finished"))
 	print("Animation signal connected")
+	trajectory_line.visible = false
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	# This function is automatically called when animation finishes
@@ -24,6 +32,7 @@ func _process(delta):
 	#if is_dragging and $AnimatedSprite2D.animation=="hold arrow" and $AnimatedSprite2D.frame==9:
 		#update_drag()
 	handle_drag_shooting()
+
 #############THE ANIMATION DISPLAY IS STILL BUGGED STILL SHT#######
 func handle_drag_shooting():
 	# Start dragging
@@ -53,6 +62,7 @@ func start_drag():
 		print("Aiming forward")
 	
 	drag_start_pos = get_global_mouse_position()
+	trajectory_line.visible = true
 
 func update_drag():
 	if not is_dragging:
@@ -67,9 +77,48 @@ func update_drag():
 		current_progress = $AnimatedSprite2D.frame
 	else:  # Mouse is at player level or below
 		$AnimatedSprite2D.play("hold arrow idle")
+	
+	# Update trajectory prediction
+	update_trajectory()
+
+func update_trajectory():
+	var drag_end_pos = get_global_mouse_position()
+	var drag_vector = drag_start_pos - drag_end_pos
+	
+	# Limit drag distance
+	if drag_vector.length() > max_drag_distance:
+		drag_vector = drag_vector.normalized() * max_drag_distance
+	
+	var direction = drag_vector.normalized()
+	var power = drag_vector.length() / max_drag_distance
+	
+	# Calculate initial velocity using arrow's speed
+	var arrow_speed = 820  # Default arrow speed from arrow scene
+	var initial_velocity = direction * arrow_speed * power
+	
+	# Predict trajectory points using LOCAL coordinates
+	var trajectory_points_array = PackedVector2Array()
+	var current_pos = shoot_point.position  # Use local position instead of global
+	var current_vel = initial_velocity
+	
+	for i in range(trajectory_points):
+		trajectory_points_array.append(current_pos)
+		
+		# Apply gravity
+		current_vel.y += trajectory_gravity * trajectory_step_time
+		
+		# Update position
+		current_pos += current_vel * trajectory_step_time
+	
+	trajectory_line.points = trajectory_points_array
+	
+	# Update line color based on power
+	var alpha = lerp(0.3, 1.0, power)
+	trajectory_line.modulate = Color(1, 1, 0, alpha)
 
 func release_drag():
 	is_dragging = false
+	trajectory_line.visible = false
 	$AnimatedSprite2D.play("loose", true)
 	var drag_end_pos = get_global_mouse_position()
 	var drag_vector = drag_start_pos - drag_end_pos
@@ -82,6 +131,7 @@ func release_drag():
 		drag_vector = drag_vector.normalized() * max_drag_distance
 	
 	shoot_arrow(drag_vector)
+
 func shoot_arrow(drag_force):
 	var arrow = arrow_scene.instantiate()
 	arrow.global_position = shoot_point.global_position

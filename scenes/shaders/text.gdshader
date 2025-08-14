@@ -46,14 +46,14 @@ float random(vec2 st) {
 float noise(vec2 st) {
     vec2 i = floor(st);
     vec2 f = fract(st);
-    
+
     float a = random(i);
     float b = random(i + vec2(1.0, 0.0));
     float c = random(i + vec2(0.0, 1.0));
     float d = random(i + vec2(1.0, 1.0));
-    
+
     vec2 u = f * f * (3.0 - 2.0 * f);
-    
+
     return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
 }
 
@@ -66,11 +66,11 @@ mat2 rotate2D(float angle) {
 
 void vertex() {
     float time_adjusted = TIME * jitter_speed + time_offset;
-    
+
     // Calculate center of the vertex for rotation and scaling
     vec2 center = vec2(0.5, 0.5);
     vec2 vertex_pos = VERTEX;
-    
+
     // Apply dynamic scaling
     if (enable_scaling) {
         float scale_time = TIME * scale_speed + time_offset;
@@ -78,19 +78,19 @@ void vertex() {
         float scale_factor = base_scale + (scale_noise - 0.5) * scale_strength;
         vertex_pos = (vertex_pos - center) * scale_factor + center;
     }
-    
+
     // Apply dynamic rotation
     if (enable_rotation) {
         float rotation_time = TIME * rotation_speed + time_offset;
         float rotation_noise = noise(vec2(rotation_time * rotation_frequency, vertex_pos.y * 0.1));
         float rotation_factor = (rotation_noise - 0.5) * rotation_strength;
         float rotation_angle = rotation_factor * 0.017453; // Convert to radians
-        
+
         vec2 rotated_pos = vertex_pos - center;
         rotated_pos = rotate2D(rotation_angle) * rotated_pos;
         vertex_pos = rotated_pos + center;
     }
-    
+
     // Apply jitter effect
     vec2 jitter_offset;
     if (separate_xy) {
@@ -103,7 +103,7 @@ void vertex() {
         float jitter_value = noise(vec2(time_adjusted * jitter_frequency, length(vertex_pos) * 0.1)) - 0.5;
         jitter_offset = vec2(jitter_value) * jitter_strength;
     }
-    
+
     // Apply all transformations
     VERTEX = vertex_pos + jitter_offset * shake_intensity;
 }
@@ -113,26 +113,26 @@ varying float v_rotation_factor;
 
 void fragment() {
     vec2 uv = UV;
-    
+
     // Apply adaptive pixelation effect if enabled
     if (enable_pixelation) {
         vec2 texture_size = 1.0 / TEXTURE_PIXEL_SIZE;
-        
+
         // Calculate adaptive pixel size based on transformations
         float adaptive_pixel_size = pixel_size;
-        
+
         if (adaptive_pixels) {
             // Calculate current transformation factors for this fragment
             float current_scale_factor = base_scale;
             float current_rotation_factor = 0.0;
-            
+
             if (enable_scaling) {
                 float scale_time = TIME * scale_speed + time_offset;
                 float scale_noise = noise(vec2(scale_time * scale_frequency, uv.x * 10.0));
                 current_scale_factor = base_scale + (scale_noise - 0.5) * scale_strength;
                 adaptive_pixel_size *= current_scale_factor;
             }
-            
+
             if (enable_rotation) {
                 float rotation_time = TIME * rotation_speed + time_offset;
                 float rotation_noise = noise(vec2(rotation_time * rotation_frequency, uv.y * 10.0));
@@ -140,22 +140,22 @@ void fragment() {
                 adaptive_pixel_size *= (1.0 + current_rotation_factor * 0.02);
             }
         }
-        
+
         // Ensure minimum pixel size to avoid artifacts
         adaptive_pixel_size = max(adaptive_pixel_size, 1.0);
-        
+
         vec2 pixel_uv = floor(uv * texture_size / adaptive_pixel_size) * adaptive_pixel_size / texture_size;
         pixel_uv += (adaptive_pixel_size / texture_size) * 0.5; // Center the pixel
         uv = pixel_uv;
     }
-    
+
     vec4 base_color = texture(TEXTURE, uv);
-    
+
     // Create pixel art outline effect
     if (enable_outline && base_color.a > 0.1) {
         vec2 texture_size = 1.0 / TEXTURE_PIXEL_SIZE;
         float outline_step = outline_thickness / max(texture_size.x, texture_size.y);
-        
+
         // Sample surrounding pixels for outline
         float outline_alpha = 0.0;
         for (float x = -outline_step; x <= outline_step; x += outline_step) {
@@ -170,26 +170,26 @@ void fragment() {
                 outline_alpha = max(outline_alpha, sample_alpha);
             }
         }
-        
+
         // Apply outline where there's no text but outline should be
         if (base_color.a < 0.1 && outline_alpha > 0.1) {
             base_color = outline_color;
         }
     }
-    
+
     // Enhanced chromatic aberration effect with dynamic intensity
     if (chromatic_aberration && base_color.a > 0.1) {
         float time_adjusted = TIME * jitter_speed + time_offset;
         float aberration_intensity = noise(vec2(time_adjusted * 0.5)) * aberration_strength;
-        
+
         vec2 aberration_offset = vec2(
             noise(vec2(time_adjusted * jitter_frequency * 2.0, uv.x * 10.0)) - 0.5,
             noise(vec2(uv.y * 10.0, time_adjusted * jitter_frequency * 2.0 + 23.7)) - 0.5
         ) * aberration_intensity * 0.01;
-        
+
         vec2 r_uv = uv + aberration_offset;
         vec2 b_uv = uv - aberration_offset;
-        
+
         if (enable_pixelation) {
             vec2 texture_size = 1.0 / TEXTURE_PIXEL_SIZE;
             r_uv = floor(r_uv * texture_size / pixel_size) * pixel_size / texture_size;
@@ -197,14 +197,14 @@ void fragment() {
             b_uv = floor(b_uv * texture_size / pixel_size) * pixel_size / texture_size;
             b_uv += (pixel_size / texture_size) * 0.5;
         }
-        
+
         float r = texture(TEXTURE, r_uv).r;
         float g = base_color.g;
         float b = texture(TEXTURE, b_uv).b;
-        
+
         base_color.rgb = vec3(r, g, b);
     }
-    
+
     // Apply custom color if enabled
     if (use_custom_color) {
         COLOR = vec4(text_color.rgb, base_color.a * text_color.a);

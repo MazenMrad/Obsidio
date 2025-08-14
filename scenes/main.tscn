@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b3pk1n4s0d2p0"]
+[gd_scene load_steps=37 format=3 uid="uid://b3pk1n4s0d2p0"]
 
 [ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
@@ -15,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://cdvaqqtwajgse" path="res://scenes/death.tscn" id="13_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
 [ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="14_jbj1t"]
-[ext_resource type="AudioStream" uid="uid://bvjqxgwh5fg7h" path="res://music/ambience.mp3" id="17_muem4"]
+[ext_resource type="Shader" uid="uid://ba1j71pjqk6lv" path="res://scenes/shaders/flag.gdshader" id="17_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://d1nu0bf1m8twj" path="res://assets/map/props/flag.png" id="18_0ld40"]
+[ext_resource type="Script" uid="uid://cw3gtmc5fu34w" path="res://scripts/buttons.gd" id="19_0ld40"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
 noise_type = 2
@@ -127,6 +129,14 @@ shader_parameter/rotation_pivot = Vector2(0.5, 1)
 line_spacing = 4.785
 font_size = 11
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqmmt"]
+shader = ExtResource("17_dp3eg")
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 4.662
+shader_parameter/pole_side = 13
+shader_parameter/fixed_edge_range = 1.0
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(594, -332)
 scale = Vector2(2.795, 2.795)
@@ -142,21 +152,22 @@ autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -616.1
-offset_top = 99.1055
-offset_right = 242.905
-offset_bottom = 280.106
+offset_left = 245.438
+offset_top = 123.435
+offset_right = 1104.44
+offset_bottom = 304.435
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -659.392
-offset_top = 333.453
-offset_right = 199.608
-offset_bottom = 514.453
+offset_left = -631.127
+offset_top = 99.4633
+offset_right = 227.873
+offset_bottom = 280.463
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-183.184, 44.7227)
+zoom = Vector2(0.725, 0.725)
 
 [node name="player" parent="." instance=ExtResource("3_sugp2")]
 material = SubResource("ShaderMaterial_dp3eg")
@@ -164,15 +175,8 @@ position = Vector2(-217.889, 1.78891)
 scale = Vector2(0.585, 0.585)
 
 [node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
-position = Vector2(-98.0322, 85.5098)
+position = Vector2(-98.39, 83.0054)
 scale = Vector2(0.445312, 0.402344)
-
-[node name="wall2" parent="." instance=ExtResource("5_tbgi4")]
-position = Vector2(-265.116, 85.1521)
-scale = Vector2(0.445312, 0.402344)
-
-[node name="Wall" parent="wall2" index="0"]
-flip_h = true
 
 [node name="trees" type="Node2D" parent="."]
 material = SubResource("ShaderMaterial_eb6dy")
@@ -407,8 +411,10 @@ offset_right = -388.909
 offset_bottom = -74.4186
 
 [node name="ColorRect" parent="death" index="0"]
-offset_right = 410.43
-offset_bottom = 250.0
+offset_left = -137.0
+offset_top = -74.0
+offset_right = 523.0
+offset_bottom = 304.0
 
 [node name="CenterContainer" parent="death" index="1"]
 offset_left = -1.07308
@@ -452,13 +458,12 @@ text = "testing shit"
 label_settings = SubResource("LabelSettings_jkv2x")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_muem4")
 
 [node name="coin_label" type="Label" parent="."]
-offset_left = -387.478
-offset_top = -70.483
-offset_right = -347.478
-offset_bottom = -47.483
+offset_left = -466.905
+offset_top = -112.343
+offset_right = -426.905
+offset_bottom = -89.3435
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "Gold :"
@@ -468,8 +473,35 @@ offset_left = -243.292
 offset_top = -52.2361
 offset_right = -203.292
 offset_bottom = -29.2361
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "Wave 1 in 10s"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -385.331
+offset_top = -50.805
+offset_right = -345.331
+offset_bottom = -10.805
+script = ExtResource("19_0ld40")
+
+[node name="upgrade_wall" type="Button" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -81.0
+offset_top = -44.0
+offset_right = -62.0
+offset_bottom = -36.0
+
+[node name="Flag" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gqmmt")
+position = Vector2(-410.733, -105.546)
+rotation = -1.52837
+texture = ExtResource("18_0ld40")
 
 [connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
+[connection signal="pressed" from="Control/upgrade_wall" to="Control" method="_on_upgrade_wall_pressed"]
 
-[editable path="wall2"]
+[editable path="player"]
 [editable path="death"]

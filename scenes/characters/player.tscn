@@ -211,6 +211,8 @@ _data = {
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_3vyb7")
+trajectory_points = 10
+trajectory_gravity = 967.49
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -244,11 +246,21 @@ metadata/_aseprite_wizard_source_file_hash_ = "026e3ccadbcd67b342cb8cedf2662c4c"
 position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_3vyb7")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(22, -15)
+[node name="arrowspawn" type="Marker2D" parent="."]
+position = Vector2(20, -15)
 
 [node name="Line2D" type="Line2D" parent="."]
+position = Vector2(1, 13)
 points = PackedVector2Array(11, -28)
+
+[node name="TrajectoryLine" type="Line2D" parent="."]
+position = Vector2(-13, -1)
+width = 1.285
+default_color = Color(0.565022, 0.347025, 0.349322, 0.5)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

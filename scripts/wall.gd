@@ -21,13 +21,15 @@ func _process(delta):
 	
 
 func take_damage(damage: int):
-	if current_hp<=0:
+	if current_hp <= 0:
 		destroy_wall()
 	else:
 		current_hp -= damage
 		print("Wall HP: ", current_hp)
 
 func destroy_wall():
+	global_var.set_wall_destroyed()
+	print("Wall destroyed!")
 	queue_free() 
 
 func _on_area_2d_body_entered(body) -> void:

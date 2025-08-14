@@ -44,8 +44,10 @@ script = ExtResource("1_tjai8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-offset_right = 155.21
-offset_bottom = 85.21
+anchor_right = 0.28
+anchor_bottom = 0.26
+offset_right = 212.44
+offset_bottom = 176.52
 mouse_filter = 2
 color = Color(0.416754, 5.71553e-07, 1.44392e-07, 0.262745)
 
