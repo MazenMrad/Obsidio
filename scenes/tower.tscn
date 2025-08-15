@@ -1,7 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cak27vwe2rprj"]
+[gd_scene load_steps=8 format=3 uid="uid://cak27vwe2rprj"]
 
 [ext_resource type="Texture2D" uid="uid://b6r1gn5by8i6q" path="res://assets/map/props/tower.png" id="1_2x682"]
 [ext_resource type="Script" uid="uid://cirtbyps0hi6e" path="res://scripts/tower.gd" id="1_ay4al"]
+[ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="1_ktxwe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrbg1"]
+shader = ExtResource("1_ktxwe")
+shader_parameter/progress = 0.0
+shader_parameter/noiseForce = 0.2
+shader_parameter/burnColor = Color(0.926087, 0.653807, 0.566368, 1)
+shader_parameter/borderWidth = 0.0
+shader_parameter/direction = 180.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ay4al"]
 
@@ -12,6 +21,7 @@ size = Vector2(27.3292, 124.423)
 size = Vector2(22, 88)
 
 [node name="tower" type="StaticBody2D"]
+material = SubResource("ShaderMaterial_qrbg1")
 collision_layer = 8
 script = ExtResource("1_ay4al")
 damage_per_second = 25
@@ -28,12 +38,14 @@ collision_layer = 9
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tower"]
+visible = false
 position = Vector2(11, -47)
 scale = Vector2(0.805, 0.755487)
 shape = SubResource("RectangleShape2D_ay4al")
 debug_color = Color(0.731728, 0.436052, 0.492082, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(11, -45)
 shape = SubResource("RectangleShape2D_ktxwe")
 

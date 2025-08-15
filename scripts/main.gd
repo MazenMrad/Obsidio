@@ -1,6 +1,7 @@
 extends Node2D
 
-@export var enemy = preload("res://scenes/characters/enemy.tscn")  # Use preload
+@export var enemy = preload("res://scenes/characters/enemy.tscn")
+@export var enemy2 = preload("res://scenes/characters/enemy2.tscn")  # Use preload
 @onready var spawn_text: Label = $"../spawn_text"
 @onready var coin_label: Label = $"../coin_label"
 @onready var wave_timer: Timer = $Timer
@@ -37,10 +38,7 @@ func _process(delta):
 		if current_enemies == 0 and enemies_spawned_this_wave > 0:
 			complete_wave()
 
-# Called when Timer times out (break time ends)
-func _on_timer_timeout():
-	start_wave()
-
+#(break time ends)
 func start_break_time():
 	is_break_time = true
 	is_wave_active = false
@@ -61,14 +59,24 @@ func start_wave():
 	spawn_wave_enemies()
 
 func spawn_wave_enemies():
+	$enemy_spawn_audio.play()
 	for i in range(enemies_per_wave):
+		print("spawned enemy")
 		var ene = enemy.instantiate()
+		if get_tree().get_nodes_in_group("enemy1").size()>=3:
+			var ene2 = enemy2.instantiate()
+			get_parent().add_child(ene2)
+			ene2.position = Vector2(randf_range(-10,-60), 83.005)
+			enemies_spawned_this_wave += 1
+			ene2.connect("died", Callable(self, "_on_enemy_died"))
 		get_parent().add_child(ene)
 		ene.position = Vector2(randf_range(-10,-60), 83.005)
+		
 		enemies_spawned_this_wave += 1
 		
 		# Connect to enemy death signal
 		ene.connect("died", Callable(self, "_on_enemy_died"))
+		
 	
 	update_enemy_count()
 

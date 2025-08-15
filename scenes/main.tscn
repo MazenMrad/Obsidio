@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://b3pk1n4s0d2p0"]
+[gd_scene load_steps=41 format=3 uid="uid://b3pk1n4s0d2p0"]
 
 [ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
+[ext_resource type="AudioStream" uid="uid://dsxbffrpnraqe" path="res://music/spawn.wav" id="2_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://crp43mcsgbovg" path="res://scenes/characters/player.tscn" id="3_sugp2"]
 [ext_resource type="Shader" uid="uid://cd5gpmogd64xm" path="res://scenes/shaders/wobble.gdshader" id="4_eb6dy"]
 [ext_resource type="Shader" uid="uid://bn6hyb6tsrno6" path="res://scenes/shaders/foliage.gdshader" id="4_ya4ey"]
@@ -16,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
 [ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="14_jbj1t"]
 [ext_resource type="Shader" uid="uid://ba1j71pjqk6lv" path="res://scenes/shaders/flag.gdshader" id="17_dp3eg"]
+[ext_resource type="AudioStream" uid="uid://cdwyph304eqmp" path="res://music/ambience4.mp3" id="17_gqmmt"]
+[ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="17_yc10j"]
 [ext_resource type="Texture2D" uid="uid://d1nu0bf1m8twj" path="res://assets/map/props/flag.png" id="18_0ld40"]
 [ext_resource type="Script" uid="uid://cw3gtmc5fu34w" path="res://scripts/buttons.gd" id="19_0ld40"]
 
@@ -123,7 +126,16 @@ shader_parameter/noise_scale = 0.001
 shader_parameter/rotation_strength = 0.3
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(1768.99, 28.6884)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
+shader = ExtResource("17_yc10j")
+shader_parameter/progress = 0.0
+shader_parameter/noiseForce = 0.2
+shader_parameter/burnColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidth = 0.0
+shader_parameter/direction = 180.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
 line_spacing = 4.785
@@ -132,10 +144,10 @@ font_size = 11
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqmmt"]
 shader = ExtResource("17_dp3eg")
 shader_parameter/amplitude = 5.0
-shader_parameter/frequency = 10.0
-shader_parameter/speed = 4.662
-shader_parameter/pole_side = 13
-shader_parameter/fixed_edge_range = 1.0
+shader_parameter/frequency = 3.135
+shader_parameter/speed = 2.642
+shader_parameter/pole_side = 0
+shader_parameter/fixed_edge_range = 0.2
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(594, -332)
@@ -147,8 +159,11 @@ position = Vector2(-22.1825, 83.0054)
 script = ExtResource("1_eb6dy")
 
 [node name="Timer" type="Timer" parent="Enemy spawner"]
-wait_time = 4.561
+wait_time = 10.0
 autostart = true
+
+[node name="enemy_spawn_audio" type="AudioStreamPlayer2D" parent="Enemy spawner"]
+stream = ExtResource("2_gqmmt")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ya4ey")
@@ -442,6 +457,15 @@ position = Vector2(-190.34, 93.7388)
 scale = Vector2(0.485, 0.485)
 texture = ExtResource("1_o5qli")
 
+[node name="GroundCollision" type="StaticBody2D" parent="." groups=["ground"]]
+position = Vector2(-190.34, 93.7388)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollision"]
+position = Vector2(1.07347, 5.16805)
+scale = Vector2(0.485, 0.485)
+shape = SubResource("RectangleShape2D_ground")
+
 [node name="tower" parent="." instance=ExtResource("14_a8y0u")]
 material = SubResource("ShaderMaterial_0ld40")
 position = Vector2(-229.696, 93.0233)
@@ -458,6 +482,9 @@ text = "testing shit"
 label_settings = SubResource("LabelSettings_jkv2x")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_gqmmt")
+volume_db = -11.953
+autoplay = true
 
 [node name="coin_label" type="Label" parent="."]
 offset_left = -466.905
@@ -469,10 +496,10 @@ theme_override_font_sizes/font_size = 16
 text = "Gold :"
 
 [node name="spawn_text" type="Label" parent="."]
-offset_left = -243.292
-offset_top = -52.2361
-offset_right = -203.292
-offset_bottom = -29.2361
+offset_left = -255.814
+offset_top = -97.6744
+offset_right = -175.814
+offset_bottom = -74.6744
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "Wave 1 in 10s"
@@ -489,15 +516,18 @@ script = ExtResource("19_0ld40")
 [node name="upgrade_wall" type="Button" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -81.0
-offset_top = -44.0
-offset_right = -62.0
-offset_bottom = -36.0
+offset_left = -79.7853
+offset_top = -43.6494
+offset_right = -49.7853
+offset_bottom = -21.6494
+theme_override_fonts/font = ExtResource("14_jbj1t")
+text = "test"
 
 [node name="Flag" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gqmmt")
-position = Vector2(-410.733, -105.546)
-rotation = -1.52837
+position = Vector2(-218.962, 23.2558)
+rotation = 0.00637269
+scale = Vector2(0.483874, 0.47537)
 texture = ExtResource("18_0ld40")
 
 [connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]

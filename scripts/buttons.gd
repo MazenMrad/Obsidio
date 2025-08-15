@@ -8,8 +8,24 @@ const WALL_2 = preload("res://assets/map/props/walls/wall2.tscn")
 const WALL_3 = preload("res://assets/map/props/walls/wall3.tscn")
 const WALL_4 = preload("res://assets/map/props/walls/wall4.tscn")
 const WALL_5 = preload("res://assets/map/props/walls/wall5.tscn")
+
+
 var walls=[WALL_1,WALL_2,WALL_3,WALL_4,WALL_5]
 var current_wall_level = 0
+
+# Helper function to safely get build sound from current wall
+func get_build_sound():
+	if wall_1 != null:
+		return wall_1.get_node_or_null("build_sound")
+	elif WALL_2 != null:
+		return WALL_2.get_node_or_null("build_sound")
+	elif WALL_3 != null:
+		return WALL_3.get_node_or_null("build_sound")
+	elif WALL_4 != null:
+		return WALL_4.get_node_or_null("build_sound")
+	elif WALL_5 != null:
+		return WALL_5.get_node_or_null("build_sound")
+	return null
 
 func _ready() -> void:
 	$upgrade_wall.text="UPGRADE"
@@ -37,6 +53,7 @@ func update_button_text():
 		$upgrade_wall.text = "UPGRADE (Need 5 coins)"
 
 func _on_upgrade_wall_pressed() -> void:
+		
 	# Rebuild wall if it's destroyed
 	if not global_var.wall_1_standing and global_var.coins >= 1:
 		rebuild_wall()
@@ -58,12 +75,22 @@ func rebuild_wall():
 	get_parent().add_child(wall_instance)
 	wall_1 = wall_instance
 	
+	# Play build sound after creating the new wall
+	var build_sound = get_build_sound()
+	if build_sound != null:
+		build_sound.play()
+	
 	print("Wall rebuilt!")
 	update_button_text()
 
 func upgrade_wall_level():
 	global_var.coins -= 5
 	current_wall_level += 1
+	
+	# Play build sound BEFORE destroying the wall
+	var build_sound = get_build_sound()
+	if build_sound != null:
+		build_sound.play()
 	
 	# Remove current wall
 	if wall_1 != null:

@@ -1,6 +1,5 @@
 # wall.gd
 extends StaticBody2D
-
 @export var max_hp: int = 100
 @export var damage_per_second: int = 20
 var enemy_touching=false

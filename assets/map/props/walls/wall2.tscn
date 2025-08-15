@@ -1,21 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://0s63sae66o2s"]
+[gd_scene load_steps=6 format=3 uid="uid://mxavn8rv4upw"]
 
 [ext_resource type="Script" uid="uid://5ftjbu53xik0" path="res://scripts/wall.gd" id="1_m3vfd"]
-[ext_resource type="Texture2D" uid="uid://ctff861gcppf1" path="res://assets/map/wall3.png" id="2_m3vfd"]
+[ext_resource type="Texture2D" uid="uid://cwvrutrxswyph" path="res://assets/map/wall2.png" id="2_m3vfd"]
+[ext_resource type="AudioStream" uid="uid://crolftxhuwuw8" path="res://music/build_sound.wav" id="3_uxy3d"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxy3d"]
-size = Vector2(38.4615, 76.9231)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73fws"]
+radius = 15.3846
+height = 61.5385
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_syhwg"]
-size = Vector2(47.3077, 81.9231)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_id02q"]
+radius = 11.5385
+height = 53.8462
 
-[node name="wall3" type="StaticBody2D"]
+[node name="wall" type="StaticBody2D" groups=["walls"]]
 texture_filter = 1
 scale = Vector2(0.26, 0.26)
 collision_layer = 8
 script = ExtResource("1_m3vfd")
-max_hp = 223
-damage_per_second = 10
+max_hp = 140
+damage_per_second = 15
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -38,7 +41,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "869ff8a812503c79c8ecf5c4c94e6591"
 
 [node name="Wall" type="Sprite2D" parent="."]
 position = Vector2(0, 3.84615)
-scale = Vector2(1.995, 1.995)
+scale = Vector2(1.52, 1.52)
 texture = ExtResource("2_m3vfd")
 
 [node name="wallarea" type="Area2D" parent="."]
@@ -46,13 +49,16 @@ collision_layer = 9
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wallarea"]
-position = Vector2(7.69231, 3.84615)
-shape = SubResource("RectangleShape2D_uxy3d")
+position = Vector2(0, 7.69231)
+shape = SubResource("CapsuleShape2D_73fws")
 debug_color = Color(0.815619, 0.37329, 0.436052, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.42308, 1.34615)
-shape = SubResource("RectangleShape2D_syhwg")
+position = Vector2(0, 7.69231)
+shape = SubResource("CapsuleShape2D_id02q")
+
+[node name="build_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_uxy3d")
 
 [connection signal="area_entered" from="wallarea" to="." method="_on_wallarea_area_entered"]
 [connection signal="area_exited" from="wallarea" to="." method="_on_wallarea_area_exited"]

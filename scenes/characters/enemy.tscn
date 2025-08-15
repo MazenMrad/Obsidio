@@ -1,9 +1,11 @@
-[gd_scene load_steps=29 format=4 uid="uid://25yv3tiijqo5"]
+[gd_scene load_steps=31 format=4 uid="uid://25yv3tiijqo5"]
 
 [ext_resource type="Shader" uid="uid://bwug8s2ocwp2t" path="res://scenes/shaders/hit flash.gdshader" id="1_21x0f"]
 [ext_resource type="Script" uid="uid://7lp6gohsm3ph" path="res://scripts/enemy_1.gd" id="1_h2liu"]
 [ext_resource type="PackedScene" uid="uid://c1bhdvhoj1gt1" path="res://scenes/props/coin.tscn" id="2_f2e6v"]
 [ext_resource type="Texture2D" uid="uid://dprsarbko0ry3" path="res://assets/characters/animation/enemy run animation-Sheet.png" id="2_fulqv"]
+[ext_resource type="AudioStream" uid="uid://c6lt21p8txf72" path="res://music/hit_enemy.mp3" id="5_jgk6k"]
+[ext_resource type="AudioStream" uid="uid://cqg1j1d43fpde" path="res://music/enemy_got_hit.wav" id="6_3k4es"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21x0f"]
 resource_local_to_scene = true
@@ -211,9 +213,7 @@ material = SubResource("ShaderMaterial_21x0f")
 position = Vector2(-2, 0)
 scale = Vector2(0.555, 0.555)
 sprite_frames = SubResource("SpriteFrames_r80ma")
-animation = &"run"
 autoplay = "run"
-frame_progress = 0.859089
 flip_h = true
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {
@@ -251,6 +251,12 @@ shape = SubResource("CapsuleShape2D_ird33")
 libraries = {
 &"": SubResource("AnimationLibrary_x5khh")
 }
+
+[node name="wall_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jgk6k")
+
+[node name="enemy_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_3k4es")
 
 [connection signal="area_entered" from="enemy1" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="enemy1" to="." method="_on_area_2d_area_exited"]

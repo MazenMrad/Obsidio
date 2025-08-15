@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnfxp5fd5jpdn"]
+[gd_scene load_steps=6 format=3 uid="uid://dnfxp5fd5jpdn"]
 
 [ext_resource type="Script" uid="uid://5ftjbu53xik0" path="res://scripts/wall.gd" id="1_46ot6"]
 [ext_resource type="Texture2D" uid="uid://62vogkhj3brp" path="res://assets/map/wall5.png" id="2_46ot6"]
+[ext_resource type="AudioStream" uid="uid://crolftxhuwuw8" path="res://music/build_sound.wav" id="3_m7oqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgf42"]
 size = Vector2(34.6154, 61.5385)
@@ -9,12 +10,12 @@ size = Vector2(34.6154, 61.5385)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0rtn"]
 size = Vector2(34.6154, 57.6923)
 
-[node name="wall" type="StaticBody2D"]
+[node name="wall" type="StaticBody2D" groups=["walls"]]
 texture_filter = 1
 scale = Vector2(0.26, 0.26)
 collision_layer = 8
 script = ExtResource("1_46ot6")
-max_hp = 195
+max_hp = 255
 damage_per_second = 14
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
@@ -53,6 +54,9 @@ debug_color = Color(0.815619, 0.37329, 0.436052, 0.42)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.92308, 5.76923)
 shape = SubResource("RectangleShape2D_x0rtn")
+
+[node name="build_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_m7oqo")
 
 [connection signal="area_entered" from="wallarea" to="." method="_on_wallarea_area_entered"]
 [connection signal="area_exited" from="wallarea" to="." method="_on_wallarea_area_exited"]

@@ -9,6 +9,7 @@ var current_aim_direction = "front"
 var is_dragging = false
 var drag_start_pos = Vector2.ZERO
 var max_drag_distance = 100  #CHANGE THIS TO DETERMINE DRAG DISTANCE THE EXPORT METHOD HAS SOME ISSUES
+var is_initial_drag = false  # Track if this is the first frame of dragging
 
 # Trajectory prediction settings
 @export var trajectory_points: int = 20
@@ -19,6 +20,9 @@ func _ready():
 	#$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_animated_sprite_2d_animation_finished"))
 	print("Animation signal connected")
 	trajectory_line.visible = false
+	# Set trajectory line to use global coordinates
+	trajectory_line.top_level = true
+	trajectory_line.position = Vector2.ZERO
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	# This function is automatically called when animation finishes
@@ -52,17 +56,22 @@ func start_drag():
 	var to_mouse = mouse_pos - global_position
 	
 	is_dragging = true
-	print(to_mouse)
-	# Check mouse position relative to player
-	if to_mouse.y <= -100:  # Mouse is above player
+	is_initial_drag = true
+	print("Starting drag - Mouse offset: ", to_mouse)
+	
+	# Set initial aim direction based on mouse position
+	if to_mouse.y <= -110:  # Mouse is above player
+		current_aim_direction = "up"
 		$AnimatedSprite2D.play("up arrow fire", false)
 		print("Aiming up")
 	else:  # Mouse is at or below player level
+		current_aim_direction = "front"
 		$AnimatedSprite2D.play("hold arrow", false)
 		print("Aiming forward")
 	
 	drag_start_pos = get_global_mouse_position()
 	trajectory_line.visible = true
+	print("Drag started at: ", drag_start_pos)
 
 func update_drag():
 	if not is_dragging:
@@ -70,17 +79,28 @@ func update_drag():
 	
 	var mouse_pos = get_global_mouse_position()
 	var to_mouse = mouse_pos - global_position
-	var current_progress = $AnimatedSprite2D.frame
-	# Update animation based on mouse position while dragging
-	if to_mouse.y <= 10:  # Mouse is above player
-		$AnimatedSprite2D.play("up arrow fire idle")
-		current_progress = $AnimatedSprite2D.frame
-	else:  # Mouse is at player level or below
-		$AnimatedSprite2D.play("hold arrow idle")
+	
+	# Determine current aim direction
+	var new_aim_direction = "front"
+	if to_mouse.y <= -110:  # Mouse is above player
+		new_aim_direction = "up"
+	
+	# Handle direction changes
+	if new_aim_direction != current_aim_direction:
+		current_aim_direction = new_aim_direction
+		print("Direction changed to: ", current_aim_direction)
+		
+		if current_aim_direction == "up":
+			$AnimatedSprite2D.play("up arrow fire", false)
+		else:
+			$AnimatedSprite2D.play("hold arrow", false)
 	
 	# Update trajectory prediction
 	update_trajectory()
 
+
+
+#this is the trajectory prediction
 func update_trajectory():
 	var drag_end_pos = get_global_mouse_position()
 	var drag_vector = drag_start_pos - drag_end_pos
@@ -92,13 +112,15 @@ func update_trajectory():
 	var direction = drag_vector.normalized()
 	var power = drag_vector.length() / max_drag_distance
 	
+	print("Drag vector: ", drag_vector, " Power: ", power)
+	
 	# Calculate initial velocity using arrow's speed
 	var arrow_speed = 820  # Default arrow speed from arrow scene
 	var initial_velocity = direction * arrow_speed * power
 	
-	# Predict trajectory points using LOCAL coordinates
+	# Predict trajectory points using GLOBAL coordinates for the line
 	var trajectory_points_array = PackedVector2Array()
-	var current_pos = shoot_point.position  # Use local position instead of global
+	var current_pos = shoot_point.global_position  # Use global position for line
 	var current_vel = initial_velocity
 	
 	for i in range(trajectory_points):
@@ -117,11 +139,15 @@ func update_trajectory():
 	trajectory_line.modulate = Color(1, 1, 0, alpha)
 
 func release_drag():
+	$AudioStreamPlayer2D.play()
 	is_dragging = false
+	is_initial_drag = false
 	trajectory_line.visible = false
 	$AnimatedSprite2D.play("loose", true)
 	var drag_end_pos = get_global_mouse_position()
 	var drag_vector = drag_start_pos - drag_end_pos
+	
+	print("Releasing drag - Vector: ", drag_vector, " Length: ", drag_vector.length())
 	
 	await get_tree().create_timer(0.14).timeout
 	$AnimatedSprite2D.play("idle")

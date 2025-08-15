@@ -39,6 +39,8 @@ func get_current_frame():
 
 func _ready():
 	add_to_group("enemies")
+	add_to_group("enemy1")
+	
 	###DEBUG SHIT
 	#print("ENEMY READY: ", name, " added to enemies group")
 	#print("Group members: ", get_tree().get_nodes_in_group("enemies").size())
@@ -71,6 +73,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name=="wallarea" or area.name=="tower":
 		$AnimatedSprite2D.play("default")
+		$wall_hit.play()
 		velocity.x=0
 	pass # Replace with function body.
  
@@ -84,4 +87,5 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	$AnimatedSprite2D.play("run")
 	pass # Replace with function body.
 func hit_flash():
+	$enemy_hit.play()
 	$AnimationPlayer.play("hit flash")
