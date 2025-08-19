@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d3xwbrofaq8qa"
+path="res://.godot/imported/bow_ui.aseprite-d2ec8cff0c60b2ae3538c6b154cbf65c.res"
+
+[deps]
+
+source_file="res://assets/GUI/bow_ui.aseprite"
+dest_files=["res://.godot/imported/bow_ui.aseprite-d2ec8cff0c60b2ae3538c6b154cbf65c.res"]
+
+[params]
+

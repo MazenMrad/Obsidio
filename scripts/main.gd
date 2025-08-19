@@ -4,6 +4,7 @@ extends Node2D
 @export var enemy2 = preload("res://scenes/characters/enemy2.tscn")  # Use preload
 @onready var spawn_text: Label = $"../spawn_text"
 @onready var coin_label: Label = $"../coin_label"
+@onready var arrows_label: Label = $"../arrows"
 @onready var wave_timer: Timer = $Timer
 
 # Wave system variables
@@ -15,6 +16,7 @@ var is_wave_active: bool = false
 var break_time_remaining: float = 10.0
 var is_break_time: bool = false
 
+
 func _ready():
 	# Set up wave timer
 	wave_timer.wait_time = 10.0  # 10 second break between waves
@@ -22,7 +24,14 @@ func _ready():
 	start_break_time()
 
 func _process(delta):
-	coin_label.text = "Coins: " + str(global_var.coins)
+	coin_label.text =str(global_var.coins)
+	arrows_label.text =str(global_var.arrows)
+	
+	# Resupply arrows for 1 coin when pressing 'R'
+	if Input.is_action_just_pressed("ui_accept"): # Change to 'R' if you have a custom input, or use Input.is_key_pressed(KEY_R)
+		if global_var.coins > 0:
+			global_var.coins -= 1
+			global_var.arrows += 1
 	
 	# Update break time countdown
 	if is_break_time:
@@ -37,7 +46,8 @@ func _process(delta):
 		var current_enemies = get_tree().get_nodes_in_group("enemies").size()
 		if current_enemies == 0 and enemies_spawned_this_wave > 0:
 			complete_wave()
-
+	
+		
 #(break time ends)
 func start_break_time():
 	is_break_time = true
@@ -110,3 +120,6 @@ func update_enemy_count():
 	if is_wave_active:
 		var remaining = enemies_spawned_this_wave - enemies_killed_this_wave
 		spawn_text.text = "Wave " + str(current_wave) + " - Remaining: " + str(remaining)
+		
+
+	

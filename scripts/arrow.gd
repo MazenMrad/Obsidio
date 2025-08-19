@@ -65,6 +65,7 @@ func _process(_delta):
 # On hit
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemies"):
+		$enemy_hit.play()
 		body.take_damage(damage)
 		_start_fade_out()
 

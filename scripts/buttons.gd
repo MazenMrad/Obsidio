@@ -1,7 +1,9 @@
 extends Control
 var i=0
 @onready var upgrade_wall: Button = $upgrade_wall
+@onready var buy_arrow: Button = $buy_arrow
 @onready var wall_1: StaticBody2D = $"../wall1"
+var coin=load("res://scenes/props/coin.tscn")
 var wall_pos=Vector2(-98.39,83.005)
 const WALL_1 = preload("res://assets/map/props/walls/wall1.tscn")
 const WALL_2 = preload("res://assets/map/props/walls/wall2.tscn")
@@ -17,18 +19,11 @@ var current_wall_level = 0
 func get_build_sound():
 	if wall_1 != null:
 		return wall_1.get_node_or_null("build_sound")
-	elif WALL_2 != null:
-		return WALL_2.get_node_or_null("build_sound")
-	elif WALL_3 != null:
-		return WALL_3.get_node_or_null("build_sound")
-	elif WALL_4 != null:
-		return WALL_4.get_node_or_null("build_sound")
-	elif WALL_5 != null:
-		return WALL_5.get_node_or_null("build_sound")
 	return null
 
 func _ready() -> void:
 	$upgrade_wall.text="UPGRADE"
+	buy_arrow.text="Buy arrows"
 	update_button_text()
 
 func _process(delta):
@@ -53,7 +48,6 @@ func update_button_text():
 		$upgrade_wall.text = "UPGRADE (Need 5 coins)"
 
 func _on_upgrade_wall_pressed() -> void:
-		
 	# Rebuild wall if it's destroyed
 	if not global_var.wall_1_standing and global_var.coins >= 1:
 		rebuild_wall()
@@ -79,18 +73,11 @@ func rebuild_wall():
 	var build_sound = get_build_sound()
 	if build_sound != null:
 		build_sound.play()
-	
-	print("Wall rebuilt!")
 	update_button_text()
 
 func upgrade_wall_level():
 	global_var.coins -= 5
 	current_wall_level += 1
-	
-	# Play build sound BEFORE destroying the wall
-	var build_sound = get_build_sound()
-	if build_sound != null:
-		build_sound.play()
 	
 	# Remove current wall
 	if wall_1 != null:
@@ -104,6 +91,19 @@ func upgrade_wall_level():
 	get_parent().add_child(wall_instance)
 	wall_1 = wall_instance
 	
+	# Play build sound after creating the new wall
+	var build_sound = get_build_sound()
+	if build_sound != null:
+		build_sound.play()
 	print("Wall upgraded to level ", current_wall_level + 1)
 	update_button_text()
 	
+
+func _on_buy_arrow_pressed() -> void:
+	if global_var.coins>=1:
+		$buy_sound.play()
+		global_var.arrows+=1
+		global_var.coins-=1
+	else:
+		return
+	pass # Replace with function body.

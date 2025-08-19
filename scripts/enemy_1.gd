@@ -87,5 +87,4 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 	$AnimatedSprite2D.play("run")
 	pass # Replace with function body.
 func hit_flash():
-	$enemy_hit.play()
 	$AnimationPlayer.play("hit flash")

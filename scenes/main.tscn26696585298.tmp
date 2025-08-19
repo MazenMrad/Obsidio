@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b3pk1n4s0d2p0"]
+[gd_scene load_steps=44 format=3 uid="uid://b3pk1n4s0d2p0"]
 
 [ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://d1nu0bf1m8twj" path="res://assets/map/props/flag.png" id="18_0ld40"]
 [ext_resource type="Script" uid="uid://cw3gtmc5fu34w" path="res://scripts/buttons.gd" id="19_0ld40"]
 [ext_resource type="AudioStream" uid="uid://df700qoo3wep3" path="res://music/buy_sound.wav" id="20_y6deb"]
-[ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="21_og1vs"]
 [ext_resource type="Texture2D" uid="uid://b68480esw600y" path="res://assets/map/props/coin.png" id="22_jscy8"]
 [ext_resource type="Texture2D" uid="uid://bqjlc82ng0wrr" path="res://assets/map/props/arrow.png" id="23_pm3ni"]
 
@@ -171,10 +170,10 @@ stream = ExtResource("2_gqmmt")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = 30.7692
-offset_top = 312.343
-offset_right = 889.771
-offset_bottom = 493.343
+offset_left = 245.438
+offset_top = 123.435
+offset_right = 1104.44
+offset_bottom = 304.435
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 texture_filter = 1
@@ -192,6 +191,7 @@ zoom = Vector2(0.725, 0.725)
 material = SubResource("ShaderMaterial_dp3eg")
 position = Vector2(-217.889, 1.78891)
 scale = Vector2(0.585, 0.585)
+trajectory_step_time = null
 
 [node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(-98.39, 83.0054)
@@ -488,12 +488,13 @@ label_settings = SubResource("LabelSettings_jkv2x")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_gqmmt")
 volume_db = -11.953
+autoplay = true
 
 [node name="coin_label" type="Label" parent="."]
-offset_left = -441.0
-offset_top = -111.0
-offset_right = -426.0
-offset_bottom = -88.0
+offset_left = -441.145
+offset_top = -110.912
+offset_right = -401.145
+offset_bottom = -87.9128
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "5"
@@ -542,15 +543,6 @@ offset_bottom = 50.2648
 theme_override_fonts/font = ExtResource("14_jbj1t")
 text = "test"
 
-[node name="weapon_ui" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = -37.2093
-offset_top = -63.3274
-offset_right = 10.7907
-offset_bottom = -13.3274
-scale = Vector2(0.69, 0.69)
-texture = ExtResource("21_og1vs")
-
 [node name="Flag" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gqmmt")
 position = Vector2(-218.962, 23.2558)
@@ -560,10 +552,10 @@ texture = ExtResource("18_0ld40")
 
 [node name="arrows" type="Label" parent="."]
 texture_filter = 1
-offset_left = -441.0
-offset_top = -91.0
-offset_right = -426.0
-offset_bottom = -60.0
+offset_left = -441.145
+offset_top = -90.8766
+offset_right = -387.145
+offset_bottom = -41.8766
 theme_override_fonts/font = ExtResource("14_jbj1t")
 text = "3
 "

@@ -1,19 +1,16 @@
-[gd_scene load_steps=10 format=4 uid="uid://duog210vigman"]
+[gd_scene load_steps=10 format=3 uid="uid://bnqcw5gujr4hr"]
 
-[ext_resource type="Script" uid="uid://cwtxjs1fxujj7" path="res://scripts/arrow.gd" id="1_umosx"]
-[ext_resource type="Shader" uid="uid://dgotot0pby2u0" path="res://scenes/shaders/trail.gdshader" id="2_23jat"]
-[ext_resource type="AudioStream" uid="uid://cqg1j1d43fpde" path="res://music/enemy_got_hit.wav" id="3_q8ifc"]
+[ext_resource type="Script" uid="uid://cwtxjs1fxujj7" path="res://scripts/arrow.gd" id="1_ik6fu"]
+[ext_resource type="Shader" uid="uid://dgotot0pby2u0" path="res://scenes/shaders/trail.gdshader" id="2_872ht"]
+[ext_resource type="Texture2D" uid="uid://djpfrdhtacxnh" path="res://assets/map/props/rock.png" id="2_p2d0s"]
+[ext_resource type="AudioStream" uid="uid://cqg1j1d43fpde" path="res://music/enemy_got_hit.wav" id="3_p2d0s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_umosx"]
 friction = 0.1
 bounce = 0.1
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wyax8"]
-_data = PackedByteArray("AAADAAUAAAABAAAAGQAAAAUAAAC4AAAAUklGRrAAAABXRUJQVlA4TKMAAAAvGAABEMegoI0kZe6emQS8h/ev67WobSSp2beYzMWUQ//VECJFkSQ1cxl4oiB5wL8YhAgIivwfLQDvXsDqknFlQgGHKu2+jB2+/M97yff3mOU2AIt6ouaeCziWyLqybmINwGDQSJKiu4VjZv9WHyVE9F9h2jZMdntKyqU28ck2544+dENETCilRGIi1LaflQOAUqCUgotKKVDgXD+/o4+/79YaAA==")
-size_override = Vector2(25, 5)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23jat"]
-shader = ExtResource("2_23jat")
+shader = ExtResource("2_872ht")
 shader_parameter/time = 0.765
 shader_parameter/flow_speed = 4.57
 shader_parameter/color_center = Color(1, 0.6, 0, 1)
@@ -29,20 +26,20 @@ offsets = PackedFloat32Array(0, 0.00666666, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23jat"]
-size = Vector2(25, 2.5)
+size = Vector2(10, 8)
 
-[node name="arrow" type="RigidBody2D"]
+[node name="rock" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_umosx")
 sleeping = true
 contact_monitor = true
 max_contacts_reported = 3
-script = ExtResource("1_umosx")
-speed = 710
+script = ExtResource("1_ik6fu")
+speed = 450
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.261, 1.132)
-texture = SubResource("PortableCompressedTexture2D_wyax8")
+scale = Vector2(2.051, 1.841)
+texture = ExtResource("2_p2d0s")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {
 "source_uid": -1
@@ -68,7 +65,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "d6f448abc09fc1b17c4c6ce09a3f176d"
 [node name="Line2D" type="Line2D" parent="."]
 top_level = true
 material = SubResource("ShaderMaterial_23jat")
-position = Vector2(-37, 0)
+position = Vector2(-25, 0)
 points = PackedVector2Array(1, 0, 11, 0, 16.4105, 0, 21, 0)
 width = 2.525
 width_curve = SubResource("Curve_23jat")
@@ -85,11 +82,11 @@ antialiased = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 0)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_23jat")
 debug_color = Color(0.811975, 0.37986, 0.418769, 0.42)
 
 [node name="enemy_hit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_q8ifc")
+stream = ExtResource("3_p2d0s")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
