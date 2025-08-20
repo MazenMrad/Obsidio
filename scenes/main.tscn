@@ -544,11 +544,11 @@ text = "test"
 
 [node name="weapon_ui" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = -37.2093
-offset_top = -63.3274
-offset_right = 10.7907
-offset_bottom = -13.3274
-scale = Vector2(0.69, 0.69)
+offset_left = 454.383
+offset_top = -59.7495
+offset_right = 502.383
+offset_bottom = -9.74955
+scale = Vector2(0.425, 0.425)
 texture = ExtResource("21_og1vs")
 
 [node name="Flag" type="Sprite2D" parent="."]

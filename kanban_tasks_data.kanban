@@ -1,0 +1,132 @@
+{
+	"categories": [
+		{
+			"uuid": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "e642c732-7d4d-4d16-9f82-910bf2c77ce2",
+			"title": "Todo",
+			"tasks": [
+				"18035145-bc53-46d5-be7d-77bd626d395f",
+				"cde036e8-50be-468e-bf78-aac680bdfb0e",
+				"781e5dee-4d78-4e5a-a704-a1c819907e56",
+				"f0989ce8-452d-408d-b86e-50f95158a1d6",
+				"f4b16e41-2b9a-4079-9446-66fa8f3fbd4d",
+				"e5650bdf-7c5b-451e-a867-11106ac3ff30"
+			]
+		},
+		{
+			"uuid": "0b055069-cd24-4143-b22d-09bb44199b63",
+			"title": "Doing",
+			"tasks": [
+				"eae18356-ed02-43c1-a672-951f8ccea98b",
+				"a8deaca7-e1ee-430f-a18f-eaa4b6a3e58c"
+			]
+		},
+		{
+			"uuid": "5ae62bf6-9da4-48a0-8c8c-59ff0b9dce6c",
+			"title": "Done",
+			"tasks": [
+				"a4ef3bf5-0f17-4357-a3f0-6c0fed8d7741",
+				"25a4f957-c8db-4389-83ae-181bc6e49eff",
+				"eb3445ba-5005-49df-8734-7e250d6d31a6"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "cde036e8-50be-468e-bf78-aac680bdfb0e",
+			"title": "tower 1.0",
+			"description": "lvl 1 tower ( wood) - start - small\nlvl 2 tower ( wood) - 15 coin - small\nlvl 3 tower ( wood / cobbly) - 30 coin ( med)\nlvl 4 tower (  cobbly) - 50 coin ( med)\nlvl 5 tower ( solid stone) - 65 coin ( med)",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "eae18356-ed02-43c1-a672-951f8ccea98b",
+			"title": "Weapon 1.0",
+			"description": "spear\naxe\nknife\nrock\n\n",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "a4ef3bf5-0f17-4357-a3f0-6c0fed8d7741",
+			"title": "bugs related to animations during weapon throw",
+			"description": "",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "18035145-bc53-46d5-be7d-77bd626d395f",
+			"title": "Node map",
+			"description": "similiar to randy technology discovery map , it should have all weapon types and you buying them\n ",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "781e5dee-4d78-4e5a-a704-a1c819907e56",
+			"title": "Flags",
+			"description": "Collectible flags / buyable flags\n\nflags that you get by killing a lot of enemies:\n-20 enemy kills Flag of strength I (3% more dmg)\n-50 enemy kills  Flag of strength II ( 6 % more dmg)\n100 enemy kills Flag of strength III  ( 8% more dmg)\nFlags for sustaining dmg:\n-500 dmg taken Flag of the builder  (3% more health to walls)\n\nbuyable flags that you can buy gives bonuses\nThe smuggler flag   ( 15% enemies drop ammo)",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "25a4f957-c8db-4389-83ae-181bc6e49eff",
+			"title": "death screen",
+			"description": "",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "eb3445ba-5005-49df-8734-7e250d6d31a6",
+			"title": "sound effects",
+			"description": "",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "f0989ce8-452d-408d-b86e-50f95158a1d6",
+			"title": "new weapon sound effects",
+			"description": "title",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "f4b16e41-2b9a-4079-9446-66fa8f3fbd4d",
+			"title": "GUi remake ",
+			"description": "not sure what kind of GUI im going for this is mainly vague",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "e5650bdf-7c5b-451e-a867-11106ac3ff30",
+			"title": "New task",
+			"description": "",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		},
+		{
+			"uuid": "a8deaca7-e1ee-430f-a18f-eaa4b6a3e58c",
+			"title": "GUI for weapons + coding them in",
+			"description": "",
+			"category": "9f5f36dc-565b-4f7d-a2c8-f4e5d004054d",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"e642c732-7d4d-4d16-9f82-910bf2c77ce2"
+			],
+			[
+				"0b055069-cd24-4143-b22d-09bb44199b63"
+			],
+			[
+				"5ae62bf6-9da4-48a0-8c8c-59ff0b9dce6c"
+			]
+		]
+	}
+}

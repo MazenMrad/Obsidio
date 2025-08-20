@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddmx0gvpdmab3"]
+
+[ext_resource type="Script" uid="uid://c3fhvgqdn26ho" path="res://scripts/upgrade_map.gd" id="1_nlkxo"]
+[ext_resource type="Texture2D" uid="uid://hqmhv063xr0l" path="res://assets/GUI/axe_ui.png" id="2_bqggy"]
+[ext_resource type="Texture2D" uid="uid://dc2233gra5fej" path="res://assets/GUI/spear_ui.png" id="3_ip4pc"]
+[ext_resource type="Texture2D" uid="uid://bd4oyj538m33e" path="res://assets/GUI/rock_ui.png" id="4_tdpk7"]
+[ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="5_xx7xu"]
+[ext_resource type="Texture2D" uid="uid://ct3pbmt23lcnv" path="res://assets/GUI/knife_ui.png" id="6_govu1"]
+
+[node name="upgrade_map" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nlkxo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 1173.0
+offset_bottom = 669.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.482353)
+
+[node name="axe" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.031
+offset_left = 269.0
+offset_top = 356.0
+offset_right = 276.68
+offset_bottom = 385.912
+texture = ExtResource("2_bqggy")
+
+[node name="spear" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.031
+offset_left = 374.0
+offset_top = 295.0
+offset_right = 381.68
+offset_bottom = 324.912
+texture = ExtResource("3_ip4pc")
+
+[node name="rock" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.031
+offset_left = 376.0
+offset_top = 553.0
+offset_right = 383.68
+offset_bottom = 582.912
+texture = ExtResource("4_tdpk7")
+
+[node name="bow" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.031
+offset_left = 374.0
+offset_top = 481.0
+offset_right = 381.68
+offset_bottom = 510.912
+texture = ExtResource("5_xx7xu")
+
+[node name="knife" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.031
+offset_left = 490.0
+offset_top = 362.0
+offset_right = 497.68
+offset_bottom = 391.912
+texture = ExtResource("6_govu1")
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(358.329, 383.878)
+scale = Vector2(0.872892, 0.989737)
+points = PackedVector2Array(45.4477, 201.187, 39.7196, 124.399, -70.6071, 6.10812, 42.3214, -54.5405, 174.902, -2.90802, 39.7196, 123.388)
