@@ -77,6 +77,22 @@ theme_override_colors/icon_hover_pressed_color = Color(0.370364, 0.370364, 0.370
 theme_override_colors/icon_hover_color = Color(0.458405, 0.458405, 0.458405, 1)
 theme_override_font_sizes/font_size = 1
 
+[node name="wave" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 49.0
+offset_right = 96.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("3_tjai8")
+
+[node name="enemy" type="Label" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 49.0
+offset_right = 96.0
+offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("3_tjai8")
+
 [connection signal="button_up" from="Restart" to="." method="_on_restart_button_up"]
 [connection signal="pressed" from="Restart" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

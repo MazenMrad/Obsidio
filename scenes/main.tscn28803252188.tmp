@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b3pk1n4s0d2p0"]
+[gd_scene load_steps=45 format=3 uid="uid://b3pk1n4s0d2p0"]
 
 [ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cdvaqqtwajgse" path="res://scenes/death.tscn" id="13_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
 [ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="14_jbj1t"]
-[ext_resource type="AudioStream" uid="uid://ds2q6b75520mt" path="res://music/lost.wav" id="15_vxglm"]
 [ext_resource type="Shader" uid="uid://ba1j71pjqk6lv" path="res://scenes/shaders/flag.gdshader" id="17_dp3eg"]
 [ext_resource type="AudioStream" uid="uid://cdwyph304eqmp" path="res://music/ambience4.mp3" id="17_gqmmt"]
 [ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="17_yc10j"]
@@ -24,15 +23,8 @@
 [ext_resource type="Script" uid="uid://cw3gtmc5fu34w" path="res://scripts/buttons.gd" id="19_0ld40"]
 [ext_resource type="AudioStream" uid="uid://df700qoo3wep3" path="res://music/buy_sound.wav" id="20_y6deb"]
 [ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="21_og1vs"]
-[ext_resource type="AudioStream" uid="uid://bmouybkpna1g2" path="res://music/equip.mp3" id="22_2wyq8"]
 [ext_resource type="Texture2D" uid="uid://b68480esw600y" path="res://assets/map/props/coin.png" id="22_jscy8"]
 [ext_resource type="Texture2D" uid="uid://bqjlc82ng0wrr" path="res://assets/map/props/arrow.png" id="23_pm3ni"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vxglm"]
-frequency = 0.0049
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2f3dj"]
-noise = SubResource("FastNoiseLite_vxglm")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
 noise_type = 2
@@ -55,7 +47,6 @@ shader = ExtResource("6_tefeu")
 shader_parameter/offSet = 0.0
 shader_parameter/YDistortion = 1.0
 shader_parameter/waterNoise = SubResource("NoiseTexture2D_jkv2x")
-shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_2f3dj")
 shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
 shader_parameter/colorCorection = 0.35
 shader_parameter/distortionForce = 0.01
@@ -150,6 +141,10 @@ shader_parameter/burnColor = Color(0, 0, 0, 1)
 shader_parameter/borderWidth = 0.0
 shader_parameter/direction = 180.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_jkv2x"]
+line_spacing = 4.785
+font_size = 11
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqmmt"]
 shader = ExtResource("17_dp3eg")
 shader_parameter/amplitude = 5.0
@@ -197,6 +192,7 @@ zoom = Vector2(0.725, 0.725)
 material = SubResource("ShaderMaterial_dp3eg")
 position = Vector2(-217.889, 1.78891)
 scale = Vector2(0.585, 0.585)
+trajectory_step_time = null
 
 [node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(-98.39, 83.0054)
@@ -450,31 +446,14 @@ offset_bottom = 233.9
 text = "You died"
 
 [node name="Restart" parent="death" index="2"]
-offset_left = 176.029
-offset_top = 177.818
-offset_right = 227.029
-offset_bottom = 202.818
+offset_left = 171.02
+offset_top = 154.562
+offset_right = 222.02
+offset_bottom = 179.562
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "Restart
 "
-
-[node name="wave" parent="death" index="3"]
-offset_left = 156.0
-offset_top = 123.0
-offset_right = 281.0
-offset_bottom = 146.0
-theme_override_font_sizes/font_size = 16
-
-[node name="enemy" parent="death" index="4"]
-offset_left = 156.351
-offset_top = 135.599
-offset_right = 256.351
-offset_bottom = 158.599
-theme_override_font_sizes/font_size = 16
-
-[node name="lost" type="AudioStreamPlayer2D" parent="death"]
-stream = ExtResource("15_vxglm")
 
 [node name="Ground" type="Sprite2D" parent="."]
 z_index = -1
@@ -496,10 +475,20 @@ shape = SubResource("RectangleShape2D_ground")
 material = SubResource("ShaderMaterial_0ld40")
 position = Vector2(-229.696, 93.0233)
 
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -133.095
+offset_top = 57.2451
+offset_right = -73.0948
+offset_bottom = 73.2451
+scale = Vector2(0.871199, 1)
+theme_override_font_sizes/font_size = 5
+text = "testing shit"
+label_settings = SubResource("LabelSettings_jkv2x")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_gqmmt")
 volume_db = -11.953
-autoplay = true
 
 [node name="coin_label" type="Label" parent="."]
 offset_left = -441.0
@@ -539,13 +528,12 @@ theme_override_fonts/font = ExtResource("14_jbj1t")
 text = "upgrade"
 
 [node name="repair" type="Button" parent="Control"]
-visible = false
 texture_filter = 1
 layout_mode = 0
-offset_left = -78.7119
-offset_top = 53.3095
-offset_right = -32.7119
-offset_bottom = 75.3095
+offset_left = -74.7763
+offset_top = 49.7317
+offset_right = -28.7763
+offset_bottom = 71.7317
 theme_override_fonts/font = ExtResource("14_jbj1t")
 text = "repair
 "
@@ -559,24 +547,21 @@ stream = ExtResource("20_y6deb")
 [node name="buy_arrow" type="Button" parent="Control"]
 texture_filter = 1
 layout_mode = 0
-offset_left = -79.7853
-offset_top = 22.1825
-offset_right = -6.78524
-offset_bottom = 44.1825
+offset_left = -79.4275
+offset_top = 18.6046
+offset_right = -6.42751
+offset_bottom = 40.6047
 theme_override_fonts/font = ExtResource("14_jbj1t")
 text = "buy_arrow"
 
 [node name="weapon_ui" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = -31.127
-offset_top = -61.5385
-offset_right = 16.873
-offset_bottom = -11.5385
-scale = Vector2(0.79, 0.79)
+offset_left = 454.383
+offset_top = -59.7495
+offset_right = 502.383
+offset_bottom = -9.74955
+scale = Vector2(0.425, 0.425)
 texture = ExtResource("21_og1vs")
-
-[node name="equip" type="AudioStreamPlayer2D" parent="Control"]
-stream = ExtResource("22_2wyq8")
 
 [node name="Flag" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gqmmt")

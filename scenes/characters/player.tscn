@@ -267,7 +267,7 @@ texture_filter = 1
 position = Vector2(0, -9)
 scale = Vector2(0.646, 0.658)
 sprite_frames = SubResource("SpriteFrames_a2luo")
-animation = &"throw"
+animation = &"hold arrow idle"
 autoplay = "idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": true,

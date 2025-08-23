@@ -39,13 +39,13 @@ func reset_wall_system():
 
 func update_button_text():
 	if not global_var.wall_1_standing:
-		$upgrade_wall.text = "REBUILD WALL (1 coin)"
+		$upgrade_wall.text = "REBUILD WALL 1 coin"
 	elif current_wall_level >= walls.size() - 1:
 		$upgrade_wall.text = "WALL MAXED OUT"
 	elif global_var.coins >= 5:
-		$upgrade_wall.text = "UPGRADE WALL (5 coins)"
+		$upgrade_wall.text = "UPGRADE WALL 5 coins"
 	else:
-		$upgrade_wall.text = "UPGRADE (Need 5 coins)"
+		$upgrade_wall.text = "UPGRADE Need 5 coins"
 
 func _on_upgrade_wall_pressed() -> void:
 	# Rebuild wall if it's destroyed

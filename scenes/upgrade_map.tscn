@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddmx0gvpdmab3"]
+[gd_scene load_steps=8 format=3 uid="uid://ddmx0gvpdmab3"]
 
 [ext_resource type="Script" uid="uid://c3fhvgqdn26ho" path="res://scripts/upgrade_map.gd" id="1_nlkxo"]
 [ext_resource type="Texture2D" uid="uid://hqmhv063xr0l" path="res://assets/GUI/axe_ui.png" id="2_bqggy"]
+[ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="2_ip4pc"]
 [ext_resource type="Texture2D" uid="uid://dc2233gra5fej" path="res://assets/GUI/spear_ui.png" id="3_ip4pc"]
 [ext_resource type="Texture2D" uid="uid://bd4oyj538m33e" path="res://assets/GUI/rock_ui.png" id="4_tdpk7"]
 [ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="5_xx7xu"]
@@ -18,13 +19,61 @@ script = ExtResource("1_nlkxo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 1173.0
-offset_bottom = 669.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.482353)
+
+[node name="spear" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 362.0
+offset_top = 257.0
+offset_right = 410.0
+offset_bottom = 307.0
+texture = ExtResource("3_ip4pc")
+
+[node name="grey_layer" type="ColorRect" parent="spear"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="highlight" type="ColorRect" parent="spear"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.25)
+
+[node name="price_label" type="Label" parent="spear"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -1.0
+offset_right = 26.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 16
+text = "Price: 20"
+horizontal_alignment = 1
 
 [node name="axe" type="TextureRect" parent="."]
 layout_mode = 1
@@ -37,16 +86,44 @@ offset_right = 276.68
 offset_bottom = 385.912
 texture = ExtResource("2_bqggy")
 
-[node name="spear" type="TextureRect" parent="."]
+[node name="grey_layer" type="ColorRect" parent="axe"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.035
-anchor_bottom = 0.031
-offset_left = 374.0
-offset_top = 295.0
-offset_right = 381.68
-offset_bottom = 324.912
-texture = ExtResource("3_ip4pc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="highlight" type="ColorRect" parent="axe"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.25)
+
+[node name="price_label" type="Label" parent="axe"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = 1.0
+offset_right = 28.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 16
+text = "Price: 15"
+horizontal_alignment = 1
 
 [node name="rock" type="TextureRect" parent="."]
 layout_mode = 1
@@ -59,16 +136,94 @@ offset_right = 383.68
 offset_bottom = 582.912
 texture = ExtResource("4_tdpk7")
 
+[node name="grey_layer" type="ColorRect" parent="rock"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="highlight" type="ColorRect" parent="rock"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.25)
+
+[node name="price_label" type="Label" parent="rock"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -1.0
+offset_right = 26.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 16
+text = "Free"
+horizontal_alignment = 1
+
 [node name="bow" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.035
 anchor_bottom = 0.031
-offset_left = 374.0
-offset_top = 481.0
-offset_right = 381.68
-offset_bottom = 510.912
+offset_left = 379.0
+offset_top = 477.0
+offset_right = 386.68
+offset_bottom = 506.912
 texture = ExtResource("5_xx7xu")
+
+[node name="grey_layer" type="ColorRect" parent="bow"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="highlight" type="ColorRect" parent="bow"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.25)
+
+[node name="price_label" type="Label" parent="bow"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -2.0
+offset_right = 21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 16
+text = "Free"
+horizontal_alignment = 1
 
 [node name="knife" type="TextureRect" parent="."]
 layout_mode = 1
@@ -81,8 +236,53 @@ offset_right = 497.68
 offset_bottom = 391.912
 texture = ExtResource("6_govu1")
 
-[node name="Line2D" type="Line2D" parent="."]
-z_index = -1
-position = Vector2(358.329, 383.878)
-scale = Vector2(0.872892, 0.989737)
-points = PackedVector2Array(45.4477, 201.187, 39.7196, 124.399, -70.6071, 6.10812, 42.3214, -54.5405, 174.902, -2.90802, 39.7196, 123.388)
+[node name="grey_layer" type="ColorRect" parent="knife"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.498039)
+
+[node name="highlight" type="ColorRect" parent="knife"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 0.25)
+
+[node name="price_label" type="Label" parent="knife"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -2.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 16
+text = "Price: 10"
+horizontal_alignment = 1
+
+[node name="purchase_sound" type="AudioStreamPlayer" parent="."]
+
+[node name="coin_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 31
+text = "Coins: 0"

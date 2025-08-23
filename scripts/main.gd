@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var enemy = preload("res://scenes/characters/enemy.tscn")
-@export var enemy2 = preload("res://scenes/characters/enemy2.tscn")  # Use preload
+@export var enemy2 = preload("res://scenes/characters/enemy2.tscn")
 @onready var spawn_text: Label = $"../spawn_text"
 @onready var coin_label: Label = $"../coin_label"
 @onready var arrows_label: Label = $"../arrows"
@@ -18,7 +18,6 @@ var is_break_time: bool = false
 
 
 func _ready():
-	# Set up wave timer
 	wave_timer.wait_time = 10.0  # 10 second break between waves
 	wave_timer.one_shot = true
 	start_break_time()
@@ -26,7 +25,6 @@ func _ready():
 func _process(delta):
 	coin_label.text =str(global_var.coins)
 	arrows_label.text =str(global_var.arrows)
-	
 	# Resupply arrows for 1 coin when pressing 'R'
 	if Input.is_action_just_pressed("ui_accept"): # Change to 'R' if you have a custom input, or use Input.is_key_pressed(KEY_R)
 		if global_var.coins > 0:
@@ -46,7 +44,6 @@ func _process(delta):
 		var current_enemies = get_tree().get_nodes_in_group("enemies").size()
 		if current_enemies == 0 and enemies_spawned_this_wave > 0:
 			complete_wave()
-	
 		
 #(break time ends)
 func start_break_time():
@@ -61,10 +58,8 @@ func start_wave():
 	is_wave_active = true
 	enemies_spawned_this_wave = 0
 	enemies_killed_this_wave = 0
-	
 	spawn_text.text = "Wave " + str(current_wave) + " - Enemies: " + str(enemies_per_wave)
 	print("Wave ", current_wave, " started with ", enemies_per_wave, " enemies")
-	
 	# Spawn all enemies for this wave
 	spawn_wave_enemies()
 
@@ -81,9 +76,7 @@ func spawn_wave_enemies():
 			ene2.connect("died", Callable(self, "_on_enemy_died"))
 		get_parent().add_child(ene)
 		ene.position = Vector2(randf_range(-10,-60), 83.005)
-		
 		enemies_spawned_this_wave += 1
-		
 		# Connect to enemy death signal
 		ene.connect("died", Callable(self, "_on_enemy_died"))
 		
@@ -93,8 +86,11 @@ func spawn_wave_enemies():
 func complete_wave():
 	is_wave_active = false
 	enemies_killed_this_wave = enemies_spawned_this_wave
-	
 	print("Wave ", current_wave, " completed! Killed: ", enemies_killed_this_wave, "/", enemies_spawned_this_wave)
+	
+	# Increment total waves survived
+	global_var.waves += 1
+	
 	
 	# Prepare for next wave
 	current_wave += 1
@@ -105,21 +101,22 @@ func complete_wave():
 
 func _on_enemy_died():
 	enemies_killed_this_wave += 1
-	update_enemy_count()
+	global_var.enemy_killed += 1  # Increment total kills by 1
+	print("Total enemies killed: ", global_var.enemy_killed)
 	
+	update_enemy_count()
 	# Update wave progress
 	if is_wave_active:
 		var remaining = enemies_spawned_this_wave - enemies_killed_this_wave
-		spawn_text.text = "Wave " + str(current_wave) + " - Remaining: " + str(remaining)
+		print(global_var.waves)
+		$"../death/wave".text = "Waves Survived " + str(global_var.waves)
+		$"../death/enemy".text = "Total Kills " + str(global_var.enemy_killed) 
 
 func update_enemy_count():
 	var enemy_count = get_tree().get_nodes_in_group("enemies").size()
 	print("Enemies alive: ", enemy_count)
-	
 	# Update wave progress display
 	if is_wave_active:
 		var remaining = enemies_spawned_this_wave - enemies_killed_this_wave
 		spawn_text.text = "Wave " + str(current_wave) + " - Remaining: " + str(remaining)
 		
-
-	

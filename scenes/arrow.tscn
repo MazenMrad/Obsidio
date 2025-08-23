@@ -32,12 +32,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 size = Vector2(25, 2.5)
 
 [node name="arrow" type="RigidBody2D"]
+mass = 2.173
 physics_material_override = SubResource("PhysicsMaterial_umosx")
 sleeping = true
 contact_monitor = true
 max_contacts_reported = 3
 script = ExtResource("1_umosx")
-speed = 710
+damage = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

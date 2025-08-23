@@ -50,3 +50,17 @@ func _on_wallarea_area_exited(area: Area2D) -> void:
 	if area.name=="enemy1":
 		enemy_nearby=false
 	pass # Replace with function body.
+
+func _on_repair_pressed() -> void:
+	if current_hp>0:
+		if current_hp==max_hp:
+			print("attempted repair")
+			return
+		else:
+			print("repaired")
+			current_hp+=60
+			$build_sound.play()
+			if current_hp>max_hp:
+				current_hp=max_hp
+	else:
+		return

@@ -7,7 +7,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_umosx"]
 friction = 0.1
-bounce = 0.1
+bounce = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23jat"]
 shader = ExtResource("2_872ht")
@@ -29,12 +29,14 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 size = Vector2(10, 8)
 
 [node name="rock" type="RigidBody2D"]
+mass = 2.173
 physics_material_override = SubResource("PhysicsMaterial_umosx")
 sleeping = true
 contact_monitor = true
 max_contacts_reported = 3
 script = ExtResource("1_ik6fu")
-speed = 450
+damage = 17
+speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

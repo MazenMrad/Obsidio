@@ -3,7 +3,7 @@ extends RigidBody2D
 @onready var trail = $Line2D
 
 @export var damage = 20
-@export var speed = 500
+@export var speed = 300
 @export var drag = 0.02
 
 # Trail settings
@@ -68,6 +68,16 @@ func _on_area_2d_body_entered(body):
 		$enemy_hit.play()
 		body.take_damage(damage)
 		_start_fade_out()
+	elif body.is_in_group("ground"):
+		# Stop the arrow and make it a child of the ground
+		linear_velocity = Vector2.ZERO
+		sleeping = true
+		# Reparent the arrow to the ground
+		var old_parent = get_parent()
+		old_parent.remove_child(self)
+		body.add_child(self)
+		# Adjust position to be relative to the new parent
+		global_position = global_position
 
 func _start_fade_out():
 	_is_fading_out = true

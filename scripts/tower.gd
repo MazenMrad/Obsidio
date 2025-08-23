@@ -24,6 +24,7 @@ func _process(delta):
 func take_damage(damage: int):
 	if current_hp<=0:
 		destroy_tower()
+		$"../death/lost".play()
 	else:
 		current_hp -= damage+number_enemies
 		print("Wall HP: ", current_hp)
@@ -31,8 +32,9 @@ func take_damage(damage: int):
 func destroy_tower():
 	print("tower destroyed!")
 	queue_free() 
+	$"../player".queue_free()
 	$"../death".show()
-
+	$"../Flag".queue_free()
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name=="enemy1":
 		number_enemies+=1

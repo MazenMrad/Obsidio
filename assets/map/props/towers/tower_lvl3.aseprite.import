@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cqctodr6wwhi2"
+path="res://.godot/imported/tower_lvl3.aseprite-7fbed49e769a96713bffbd76cd09c2bf.res"
+
+[deps]
+
+source_file="res://assets/map/props/towers/tower_lvl3.aseprite"
+dest_files=["res://.godot/imported/tower_lvl3.aseprite-7fbed49e769a96713bffbd76cd09c2bf.res"]
+
+[params]
+
