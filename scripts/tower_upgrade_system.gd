@@ -1,5 +1,6 @@
-# Enhanced Tower with Upgrade System
+# tower_upgrade_system.gd
 extends StaticBody2D
+class_name TowerUpgradeSystem
 
 @export var max_hp: int = 200
 @export var damage_per_second: int = 15
@@ -7,11 +8,11 @@ extends StaticBody2D
 @export var max_upgrade_level: int = 4
 
 # Tower upgrade costs
-var upgrade_costs: Array[int] = [0, 50, 120, 200]
+var upgrade_costs: Array[int] = [0, 50, 120, 200] # Level 1 is free, then 50, 120, 200 coins
 
 # Tower stats per level
 var tower_stats: Array[Dictionary] = [
-	{},
+	{}, # Level 0 (unused)
 	{"hp": 200, "damage": 15, "texture": "res://assets/map/props/towers/tower.png"},
 	{"hp": 350, "damage": 25, "texture": "res://assets/map/props/towers/tower_lvl2.png"},
 	{"hp": 500, "damage": 40, "texture": "res://assets/map/props/towers/tower_lvl3.png"},
@@ -25,20 +26,21 @@ var damage_timer: float = 0
 var number_enemies: int = 0
 
 @onready var tower_sprite: Sprite2D = $Tower
+@onready var upgrade_ui: Control
+
+# Visual effects
+var hit_tween: Tween
+var upgrade_particles: Array[Sprite2D] = []
+
 func _ready():
-	var death_gui = $"../death"
+	var death_gui = $\"../death\"
 	death_gui.hide()
 	
 	# Initialize tower with level 1 stats
 	apply_upgrade_stats()
 	
-	# Connect upgrade button if it exists
-	if has_node("../Control/upgrade_tower"):
-		$"../Control/upgrade_tower".pressed.connect(_on_upgrade_tower_pressed)
-	
-	# Connect upgrade button if it exists
-	if has_node("../Control/upgrade_tower"):
-		$"../Control/upgrade_tower".pressed.connect(_on_upgrade_tower_pressed)
+	# Create upgrade UI
+	create_upgrade_ui()
 
 func apply_upgrade_stats():
 	if upgrade_level <= 0 or upgrade_level > max_upgrade_level:
@@ -55,7 +57,24 @@ func apply_upgrade_stats():
 	
 	print("Tower upgraded to level ", upgrade_level, " - HP: ", max_hp, " DPS: ", damage_per_second)
 
-func get_upgrade_text() -> String:
+func create_upgrade_ui():
+	# Create upgrade button in the existing UI
+	if get_tree().get_first_node_in_group("main_control"):
+		var main_control = get_tree().get_first_node_in_group("main_control")
+		
+		if not main_control.has_node("upgrade_tower"):
+			var upgrade_button = Button.new()
+			upgrade_button.name = "upgrade_tower"
+			upgrade_button.text = get_upgrade_button_text()
+			upgrade_button.position = Vector2(10, 150)
+			upgrade_button.size = Vector2(120, 30)
+			upgrade_button.pressed.connect(_on_upgrade_tower_pressed)
+			main_control.add_child(upgrade_button)
+			
+			# Store reference for easy access
+			upgrade_ui = upgrade_button
+
+func get_upgrade_button_text() -> String:
 	if upgrade_level >= max_upgrade_level:
 		return "MAX LEVEL"
 	
@@ -76,22 +95,24 @@ func _process(delta):
 			take_damage(damage_per_second)
 			damage_timer = 0
 	
-	# Update upgrade button text
-	if has_node("../Control/upgrade_tower"):
-		var upgrade_btn = $"../Control/upgrade_tower"
-		upgrade_btn.text = get_upgrade_text()
-		upgrade_btn.disabled = not can_upgrade()
+	# Update upgrade button
+	if upgrade_ui:
+		upgrade_ui.text = get_upgrade_button_text()
+		upgrade_ui.disabled = not can_upgrade()
 
 func take_damage(damage: int):
 	if current_hp <= 0:
 		destroy_tower()
-		$"../death/lost".play()
+		$\"../death/lost\".play()
 	else:
 		current_hp -= damage + number_enemies
 		print("Tower HP: ", current_hp)
+		
+		# Visual hit effect
 		trigger_hit_effect()
 
 func trigger_hit_effect():
+	# Flash effect
 	if hit_tween:
 		hit_tween.kill()
 	
@@ -101,12 +122,14 @@ func trigger_hit_effect():
 
 func destroy_tower():
 	print("tower destroyed!")
+	
+	# Destruction particles
 	create_destruction_particles()
 	
 	queue_free()
-	$"../player".queue_free()
-	$"../death".show()
-	$"../Flag".queue_free()
+	$\"../player\".queue_free()
+	$\"../death\".show()
+	$\"../Flag\".queue_free()
 
 func create_destruction_particles():
 	for i in range(20):
@@ -134,14 +157,18 @@ func _on_upgrade_tower_pressed():
 	global_var.coins -= cost
 	upgrade_level += 1
 	
+	# Apply new stats
 	apply_upgrade_stats()
+	
+	# Visual upgrade effect
 	create_upgrade_particles()
 	
-	# Play upgrade sound
+	# Play upgrade sound (reusing existing build sound)
 	if has_node("../wall1/build_sound"):
 		$"../wall1/build_sound".play()
 
 func create_upgrade_particles():
+	# Golden particles for upgrade effect
 	for i in range(10):
 		var particle = Sprite2D.new()
 		var coin_texture = preload("res://assets/map/props/coin.png")
@@ -172,20 +199,3 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		number_enemies = max(0, number_enemies - 1)
 		if number_enemies == 0:
 			enemy_nearby = false
-
-# Legacy dissolve shader functionality (keeping for compatibility)
-var rng = RandomNumberGenerator.new()
-
-func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		burnCard(rng.randf_range(0.0, 360.0))
-
-func burnCard(direction):
-	if material and material is ShaderMaterial:
-		var tween = create_tween()
-		material.set_shader_parameter("direction", 180.0)
-		tween.tween_method(update_progress, -1.5, 1.5, 1.0)
- 
-func update_progress(value: float):
-	if material:
-		material.set_shader_parameter("progress", value)
