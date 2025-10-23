@@ -94,5 +94,5 @@ offset_bottom = 72.0
 theme_override_fonts/font = ExtResource("3_tjai8")
 
 [connection signal="button_up" from="Restart" to="." method="_on_restart_button_up"]
-[connection signal="pressed" from="Restart" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_button_pressed"]
