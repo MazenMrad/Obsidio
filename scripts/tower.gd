@@ -23,8 +23,9 @@ var current_hp: int = 200
 var enemy_nearby: bool = false
 var damage_timer: float = 0
 var number_enemies: int = 0
-
 @onready var tower_sprite: Sprite2D = $Tower
+var hit_tween: Tween
+
 func _ready():
 	var death_gui = $"../death"
 	death_gui.hide()
@@ -34,11 +35,9 @@ func _ready():
 	
 	# Connect upgrade button if it exists
 	if has_node("../Control/upgrade_tower"):
-		$"../Control/upgrade_tower".pressed.connect(_on_upgrade_tower_pressed)
-	
-	# Connect upgrade button if it exists
-	if has_node("../Control/upgrade_tower"):
-		$"../Control/upgrade_tower".pressed.connect(_on_upgrade_tower_pressed)
+		var upgrade_btn = $"../Control/upgrade_tower"
+		if not upgrade_btn.pressed.is_connected(_on_upgrade_tower_pressed):
+			upgrade_btn.pressed.connect(_on_upgrade_tower_pressed)
 
 func apply_upgrade_stats():
 	if upgrade_level <= 0 or upgrade_level > max_upgrade_level:
@@ -182,7 +181,7 @@ func _input(event):
 
 func burnCard(direction):
 	if material and material is ShaderMaterial:
-		var tween = create_tween()
+func burnCard(_direction):
 		material.set_shader_parameter("direction", 180.0)
 		tween.tween_method(update_progress, -1.5, 1.5, 1.0)
  
