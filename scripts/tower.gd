@@ -175,16 +175,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 # Legacy dissolve shader functionality (keeping for compatibility)
 var rng = RandomNumberGenerator.new()
 
-func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		burnCard(rng.randf_range(0.0, 360.0))
 
-func burnCard(direction):
-	if material and material is ShaderMaterial:
-func burnCard(_direction):
-		material.set_shader_parameter("direction", 180.0)
-		tween.tween_method(update_progress, -1.5, 1.5, 1.0)
- 
 func update_progress(value: float):
 	if material:
 		material.set_shader_parameter("progress", value)
