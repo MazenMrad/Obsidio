@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://fwf2x7t0fqsj"
+
+[deps]
+
+files=["res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation"]
+
+source_file="res://_bmad/_config/tool-manifest.csv"
+dest_files=["res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation", "res://_bmad/_config/tool-manifest.en.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c4pa4hvdb72ow"
+
+[deps]
+
+files=["res://_bmad/tea/module-help.phase.translation", "res://_bmad/tea/module-help.name.translation", "res://_bmad/tea/module-help.code.translation", "res://_bmad/tea/module-help.sequence.translation", "res://_bmad/tea/module-help.workflow.translation", "res://_bmad/tea/module-help.command.translation", "res://_bmad/tea/module-help.required.translation", "res://_bmad/tea/module-help.agent.translation", "res://_bmad/tea/module-help.options.translation", "res://_bmad/tea/module-help.description.translation", "res://_bmad/tea/module-help.output.translation", "res://_bmad/tea/module-help.outputs.translation"]
+
+source_file="res://_bmad/tea/module-help.csv"
+dest_files=["res://_bmad/tea/module-help.phase.translation", "res://_bmad/tea/module-help.name.translation", "res://_bmad/tea/module-help.code.translation", "res://_bmad/tea/module-help.sequence.translation", "res://_bmad/tea/module-help.workflow.translation", "res://_bmad/tea/module-help.command.translation", "res://_bmad/tea/module-help.required.translation", "res://_bmad/tea/module-help.agent.translation", "res://_bmad/tea/module-help.options.translation", "res://_bmad/tea/module-help.description.translation", "res://_bmad/tea/module-help.output.translation", "res://_bmad/tea/module-help.outputs.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddmx0gvpdmab3"]
+[gd_scene format=3 uid="uid://ddmx0gvpdmab3"]
 
 [ext_resource type="Script" uid="uid://c3fhvgqdn26ho" path="res://scripts/upgrade_map.gd" id="1_nlkxo"]
 [ext_resource type="Texture2D" uid="uid://hqmhv063xr0l" path="res://assets/GUI/axe_ui.png" id="2_bqggy"]
@@ -8,7 +8,31 @@
 [ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="5_xx7xu"]
 [ext_resource type="Texture2D" uid="uid://ct3pbmt23lcnv" path="res://assets/GUI/knife_ui.png" id="6_govu1"]
 
-[node name="upgrade_map" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.08, 0.06, 0.04, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.45, 0.35, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close"]
+bg_color = Color(0.25, 0.18, 0.12, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.5, 0.4, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="upgrade_map" type="Control" unique_id=806189093]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,126 +41,97 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nlkxo")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
+[node name="Background" type="ColorRect" parent="." unique_id=1969246487]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.482353)
+color = Color(0, 0, 0, 0.7)
 
-[node name="spear" type="TextureRect" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=381205324]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -220.0
+offset_right = 320.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=1948521553]
 layout_mode = 2
-offset_left = 362.0
-offset_top = 257.0
-offset_right = 410.0
-offset_bottom = 307.0
-texture = ExtResource("3_ip4pc")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="grey_layer" type="ColorRect" parent="spear"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.498039)
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=818181076]
+layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="highlight" type="ColorRect" parent="spear"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 1, 0, 0.25)
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=214276176]
+layout_mode = 2
 
-[node name="price_label" type="Label" parent="spear"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -1.0
-offset_right = 26.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Title" type="Label" parent="Panel/Margin/VBox/Header" unique_id=512115441]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_ip4pc")
-theme_override_font_sizes/font_size = 16
-text = "Price: 20"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+text = "UPGRADES"
 
-[node name="axe" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.035
-anchor_bottom = 0.031
-offset_left = 269.0
-offset_top = 356.0
-offset_right = 276.68
-offset_bottom = 385.912
-texture = ExtResource("2_bqggy")
-
-[node name="grey_layer" type="ColorRect" parent="axe"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.498039)
-
-[node name="highlight" type="ColorRect" parent="axe"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 1, 0, 0.25)
-
-[node name="price_label" type="Label" parent="axe"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = 1.0
-offset_right = 28.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="CoinLabel" type="Label" parent="Panel/Margin/VBox/Header" unique_id=1208982091]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ip4pc")
-theme_override_font_sizes/font_size = 16
-text = "Price: 15"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 35
+text = "Coins: 30"
+horizontal_alignment = 2
 
-[node name="rock" type="TextureRect" parent="."]
+[node name="CloseBtn" type="Button" parent="Panel/Margin/VBox/Header" unique_id=2025933044]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_close")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_close")
+theme_override_styles/hover = SubResource("StyleBoxFlat_close")
+text = "X"
+
+[node name="Canvas" type="Control" parent="Panel/Margin/VBox" unique_id=976356871]
+custom_minimum_size = Vector2(620, 360)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+clip_contents = true
+
+[node name="LineCanvas" type="Control" parent="Panel/Margin/VBox/Canvas" unique_id=527731326]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.035
-anchor_bottom = 0.031
-offset_left = 376.0
-offset_top = 553.0
-offset_right = 383.68
-offset_bottom = 582.912
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+clip_contents = true
+
+[node name="WeaponContainer" type="Node2D" parent="Panel/Margin/VBox/Canvas" unique_id=857618623]
+
+[node name="rock_weapon" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer" unique_id=690949257]
+custom_minimum_size = Vector2(45, 45)
+offset_left = 10.0
+offset_top = 70.0
+offset_right = 55.0
+offset_bottom = 115.0
 texture = ExtResource("4_tdpk7")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="grey_layer" type="ColorRect" parent="rock"]
+[node name="grey_layer" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/rock_weapon" unique_id=2095207132]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,9 +139,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.498039)
+color = Color(0, 0, 0, 0.5)
 
-[node name="highlight" type="ColorRect" parent="rock"]
+[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/rock_weapon" unique_id=705760576]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -155,9 +150,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 1, 0, 0.25)
+color = Color(0.2, 0.8, 0.2, 0.5)
 
-[node name="price_label" type="Label" parent="rock"]
+[node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/rock_weapon" unique_id=1070291811]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -165,38 +160,49 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -25.0
-offset_top = -1.0
-offset_right = 26.0
-offset_bottom = 22.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_ip4pc")
-theme_override_font_sizes/font_size = 16
-text = "Free"
+theme_override_font_sizes/font_size = 32
+text = "Owned"
 horizontal_alignment = 1
 
-[node name="bow" type="TextureRect" parent="."]
+[node name="name" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/rock_weapon" unique_id=754686005]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.035
-anchor_bottom = 0.031
-offset_left = 379.0
-offset_top = 477.0
-offset_right = 386.68
-offset_bottom = 506.912
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -15.0
+offset_bottom = -2.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 28
+text = "Rock"
+horizontal_alignment = 1
+
+[node name="bow_weapon" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer" unique_id=2087047940]
+custom_minimum_size = Vector2(45, 45)
+offset_left = 80.0
+offset_top = 70.0
+offset_right = 125.0
+offset_bottom = 115.0
 texture = ExtResource("5_xx7xu")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="grey_layer" type="ColorRect" parent="bow"]
-visible = false
+[node name="grey_layer" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/bow_weapon" unique_id=983539267]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.498039)
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
 
-[node name="highlight" type="ColorRect" parent="bow"]
+[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/bow_weapon" unique_id=1802623589]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -205,38 +211,171 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 1, 0, 0.25)
+color = Color(0.2, 0.8, 0.2, 0.5)
 
-[node name="price_label" type="Label" parent="bow"]
+[node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/bow_weapon" unique_id=1125618916]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -19.0
-offset_top = -2.0
-offset_right = 21.0
-offset_bottom = 21.0
+offset_left = -25.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_ip4pc")
-theme_override_font_sizes/font_size = 16
-text = "Free"
+theme_override_font_sizes/font_size = 32
+text = "Owned"
 horizontal_alignment = 1
 
-[node name="knife" type="TextureRect" parent="."]
+[node name="name" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/bow_weapon" unique_id=983410087]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.035
-anchor_bottom = 0.031
-offset_left = 490.0
-offset_top = 362.0
-offset_right = 497.68
-offset_bottom = 391.912
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -15.0
+offset_bottom = -2.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 28
+text = "Bow"
+horizontal_alignment = 1
+
+[node name="spear_weapon" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer" unique_id=781113105]
+custom_minimum_size = Vector2(45, 45)
+offset_left = 150.0
+offset_top = 5.0
+offset_right = 195.0
+offset_bottom = 50.0
+texture = ExtResource("3_ip4pc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="grey_layer" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/spear_weapon" unique_id=284212262]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/spear_weapon" unique_id=1637047014]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.2, 0.8, 0.2, 0.5)
+
+[node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/spear_weapon" unique_id=129469212]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 32
+text = "20"
+horizontal_alignment = 1
+
+[node name="name" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/spear_weapon" unique_id=774340117]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -15.0
+offset_bottom = -2.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 28
+text = "Spear"
+horizontal_alignment = 1
+
+[node name="axe_weapon" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer" unique_id=767348092]
+custom_minimum_size = Vector2(45, 45)
+offset_left = 150.0
+offset_top = 70.0
+offset_right = 195.0
+offset_bottom = 115.0
+texture = ExtResource("2_bqggy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="grey_layer" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/axe_weapon" unique_id=1342417296]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/axe_weapon" unique_id=84460342]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.2, 0.8, 0.2, 0.5)
+
+[node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/axe_weapon" unique_id=1267453145]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 1
+
+[node name="name" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/axe_weapon" unique_id=708324674]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -15.0
+offset_bottom = -2.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 28
+text = "Axe"
+horizontal_alignment = 1
+
+[node name="knife_weapon" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer" unique_id=952080523]
+custom_minimum_size = Vector2(45, 45)
+offset_left = 150.0
+offset_top = 120.0
+offset_right = 195.0
+offset_bottom = 165.0
 texture = ExtResource("6_govu1")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="grey_layer" type="ColorRect" parent="knife"]
+[node name="grey_layer" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=77686485]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -244,9 +383,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.498039)
+color = Color(0, 0, 0, 0.5)
 
-[node name="highlight" type="ColorRect" parent="knife"]
+[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=589741443]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -255,34 +394,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 1, 0, 0.25)
+color = Color(0.2, 0.8, 0.2, 0.5)
 
-[node name="price_label" type="Label" parent="knife"]
+[node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=1773937898]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -22.0
-offset_top = -2.0
-offset_right = 23.0
-offset_bottom = 21.0
+offset_left = -25.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_ip4pc")
-theme_override_font_sizes/font_size = 16
-text = "Price: 10"
+theme_override_font_sizes/font_size = 32
+text = "15"
 horizontal_alignment = 1
 
-[node name="purchase_sound" type="AudioStreamPlayer" parent="."]
-
-[node name="coin_label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 120.0
-offset_bottom = 46.0
+[node name="name" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=398755400]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -15.0
+offset_bottom = -2.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ip4pc")
-theme_override_font_sizes/font_size = 31
-text = "Coins: 0"
+theme_override_font_sizes/font_size = 28
+text = "Knife"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="Panel/Margin/VBox" unique_id=446535630]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ip4pc")
+theme_override_font_sizes/font_size = 20
+text = "Drag • Hold green to buy"
+horizontal_alignment = 1
+
+[node name="purchase_sound" type="AudioStreamPlayer" parent="." unique_id=1495923483]
+bus = &"SFX"

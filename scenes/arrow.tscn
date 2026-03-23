@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://duog210vigman"]
+[gd_scene format=4 uid="uid://duog210vigman"]
 
 [ext_resource type="Script" uid="uid://cwtxjs1fxujj7" path="res://scripts/arrow.gd" id="1_umosx"]
 [ext_resource type="Shader" uid="uid://dgotot0pby2u0" path="res://scenes/shaders/trail.gdshader" id="2_23jat"]
@@ -29,9 +29,10 @@ offsets = PackedFloat32Array(0, 0.00666666, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23jat"]
-size = Vector2(25, 2.5)
+size = Vector2(13.767857, 2.5)
 
-[node name="arrow" type="RigidBody2D"]
+[node name="arrow" type="RigidBody2D" unique_id=1445242921]
+collision_mask = 2
 mass = 2.173
 physics_material_override = SubResource("PhysicsMaterial_umosx")
 sleeping = true
@@ -40,9 +41,9 @@ max_contacts_reported = 3
 script = ExtResource("1_umosx")
 damage = 30
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1196229900]
 texture_filter = 1
-scale = Vector2(1.261, 1.132)
+scale = Vector2(0.595, 0.595)
 texture = SubResource("PortableCompressedTexture2D_wyax8")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {
@@ -66,10 +67,10 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "d6f448abc09fc1b17c4c6ce09a3f176d"
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." unique_id=1193240171]
 top_level = true
 material = SubResource("ShaderMaterial_23jat")
-position = Vector2(-37, 0)
+position = Vector2(-30, 0)
 points = PackedVector2Array(1, 0, 11, 0, 16.4105, 0, 21, 0)
 width = 2.525
 width_curve = SubResource("Curve_23jat")
@@ -82,15 +83,22 @@ sharp_limit = 3.005
 round_precision = 32
 antialiased = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1900146332]
+position = Vector2(-0.1160717, 0)
+shape = SubResource("RectangleShape2D_23jat")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=381579023]
+scale = Vector2(0.595, 0.595)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=588497482]
+position = Vector2(5.0420165, 0)
+scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_23jat")
 debug_color = Color(0.811975, 0.37986, 0.418769, 0.42)
 
-[node name="enemy_hit" type="AudioStreamPlayer2D" parent="."]
+[node name="enemy_hit" type="AudioStreamPlayer2D" parent="." unique_id=570238888]
 stream = ExtResource("3_q8ifc")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

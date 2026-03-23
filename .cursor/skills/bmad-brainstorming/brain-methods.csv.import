@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://byi1qt214qj7d"
+
+[deps]
+
+files=["res://_bmad/core/skills/bmad-brainstorming/brain-methods.technique.translation", "res://_bmad/core/skills/bmad-brainstorming/brain-methods.description.translation"]
+
+source_file="res://_bmad/core/skills/bmad-brainstorming/brain-methods.csv"
+dest_files=["res://_bmad/core/skills/bmad-brainstorming/brain-methods.technique.translation", "res://_bmad/core/skills/bmad-brainstorming/brain-methods.description.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

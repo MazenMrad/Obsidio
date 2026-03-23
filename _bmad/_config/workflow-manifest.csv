@@ -1,0 +1,6 @@
+name,description,module,path,canonicalId
+"market-research","Conduct game market research on competition and players. Use when the user says ""create a market research report about [game idea]"".","gds","_bmad/gds/workflows/1-preproduction/research/workflow-market-research.md","gds-market-research"
+"technical-research","Conduct technical research on game technologies and architecture. Use when the user says ""create a technical research report on [game tech topic]"".","gds","_bmad/gds/workflows/1-preproduction/research/workflow-technical-research.md","gds-technical-research"
+"create-prd","(Optional) Create a PRD for use with external tools like bmad-assist. Uses the GDD as a base if available, otherwise creates from scratch. Use when the user says ""create a PRD"" or ""generate PRD from GDD""","gds","_bmad/gds/workflows/2-design/create-prd/workflow-create-prd.md","gds-create-prd"
+"edit-prd","Edit an existing PRD. Use when the user says ""edit this PRD"".","gds","_bmad/gds/workflows/2-design/create-prd/workflow-edit-prd.md","gds-edit-prd"
+"validate-prd","Validate a PRD against standards. Use when the user says ""validate this PRD"" or ""run PRD validation""","gds","_bmad/gds/workflows/2-design/create-prd/workflow-validate-prd.md","gds-validate-prd"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://25yv3tiijqo5"]
+[gd_scene format=4 uid="uid://25yv3tiijqo5"]
 
 [ext_resource type="Shader" uid="uid://bwug8s2ocwp2t" path="res://scenes/shaders/hit flash.gdshader" id="1_21x0f"]
 [ext_resource type="Script" uid="uid://7lp6gohsm3ph" path="res://scripts/enemy_1.gd" id="1_h2liu"]
@@ -201,13 +201,13 @@ _data = {
 &"hit flash": SubResource("Animation_jgk6k")
 }
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" unique_id=1898957269]
 scale = Vector2(0.76, 0.76)
 collision_mask = 12
 script = ExtResource("1_h2liu")
 coin_scene = ExtResource("2_f2e6v")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1900908203]
 texture_filter = 1
 material = SubResource("ShaderMaterial_21x0f")
 position = Vector2(-2, 0)
@@ -235,27 +235,26 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "cc1f0ba53460145ab8e3a48d91e43ffc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=836630049]
 visible = false
 shape = SubResource("CapsuleShape2D_h2liu")
 debug_color = Color(0.712277, 0.394929, 0.729381, 0.42)
 
-[node name="enemy1" type="Area2D" parent="."]
+[node name="enemy1" type="Area2D" parent="." unique_id=1538785320]
 visible = false
-collision_mask = 14
+collision_layer = 2
+collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy1" unique_id=1705652890]
 shape = SubResource("CapsuleShape2D_ird33")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_x5khh")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1478929304]
+libraries/ = SubResource("AnimationLibrary_x5khh")
 
-[node name="wall_hit" type="AudioStreamPlayer2D" parent="."]
+[node name="wall_hit" type="AudioStreamPlayer2D" parent="." unique_id=304701203]
 stream = ExtResource("5_jgk6k")
 
-[node name="enemy_hit" type="AudioStreamPlayer2D" parent="."]
+[node name="enemy_hit" type="AudioStreamPlayer2D" parent="." unique_id=1768533856]
 stream = ExtResource("6_3k4es")
 
 [connection signal="area_entered" from="enemy1" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dl8e84tlymrtn"
+
+[deps]
+
+files=["res://_bmad/bmm/teams/default-party.displayName.translation", "res://_bmad/bmm/teams/default-party.title.translation", "res://_bmad/bmm/teams/default-party.icon.translation", "res://_bmad/bmm/teams/default-party.role.translation", "res://_bmad/bmm/teams/default-party.identity.translation", "res://_bmad/bmm/teams/default-party.communicationStyle.translation", "res://_bmad/bmm/teams/default-party.principles.translation", "res://_bmad/bmm/teams/default-party.module.translation", "res://_bmad/bmm/teams/default-party.path.translation"]
+
+source_file="res://_bmad/bmm/teams/default-party.csv"
+dest_files=["res://_bmad/bmm/teams/default-party.displayName.translation", "res://_bmad/bmm/teams/default-party.title.translation", "res://_bmad/bmm/teams/default-party.icon.translation", "res://_bmad/bmm/teams/default-party.role.translation", "res://_bmad/bmm/teams/default-party.identity.translation", "res://_bmad/bmm/teams/default-party.communicationStyle.translation", "res://_bmad/bmm/teams/default-party.principles.translation", "res://_bmad/bmm/teams/default-party.module.translation", "res://_bmad/bmm/teams/default-party.path.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

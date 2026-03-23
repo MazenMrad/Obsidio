@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cukrbabk6j73d"]
+[gd_scene format=3 uid="uid://cukrbabk6j73d"]
 
 [ext_resource type="Script" uid="uid://7lp6gohsm3ph" path="res://scripts/enemy_1.gd" id="1_y821r"]
 [ext_resource type="PackedScene" uid="uid://c1bhdvhoj1gt1" path="res://scenes/props/coin.tscn" id="2_hvpr5"]
 [ext_resource type="Shader" uid="uid://bwug8s2ocwp2t" path="res://scenes/shaders/hit flash.gdshader" id="3_hpql6"]
-[ext_resource type="Texture2D" uid="uid://c4qtnatef3760" path="res://assets/characters/animation/enemy2.png" id="4_y821r"]
+[ext_resource type="Texture2D" uid="uid://ckf3b31fmlrv" path="res://assets/characters/animation/enemy3/The-armored-knight-reaches-across-his-body-to-draw-a-sword-f.png" id="4_3xn8e"]
+[ext_resource type="Texture2D" uid="uid://dlq2khhv3u32f" path="res://assets/characters/animation/enemy3/job-d005cc3a.png" id="4_aegf3"]
+[ext_resource type="Texture2D" uid="uid://b7v8kft2u1m0f" path="res://assets/characters/animation/enemy3/armored-knight-performs-a-heavy-running-cycle.png" id="5_3xn8e"]
 [ext_resource type="AudioStream" uid="uid://c6lt21p8txf72" path="res://music/hit_enemy.mp3" id="5_hvpr5"]
 [ext_resource type="AudioStream" uid="uid://cqg1j1d43fpde" path="res://music/enemy_got_hit.wav" id="6_hpql6"]
 
@@ -12,32 +14,150 @@ resource_local_to_scene = true
 shader = ExtResource("3_hpql6")
 shader_parameter/active = false
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjvur"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(0, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xunmf"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(53, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsqt3"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(106, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx75c"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(159, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vefo"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(212, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2slec"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(265, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_govqu"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(318, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svfkj"]
+atlas = ExtResource("4_3xn8e")
+region = Rect2(371, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loyb6"]
+atlas = ExtResource("4_aegf3")
+region = Rect2(0, 0, 22, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqnm4"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(0, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lqox"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(53, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15ksd"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(106, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6533"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(159, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itgpm"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(212, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kknqp"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(265, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6fts"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(318, 0, 53, 53)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whbyn"]
+atlas = ExtResource("5_3xn8e")
+region = Rect2(371, 0, 53, 53)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_r80ma"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_y821r")
+"texture": SubResource("AtlasTexture_vjvur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xunmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsqt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx75c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vefo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2slec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_govqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svfkj")
 }],
 "loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loyb6")
+}],
+"loop": false,
 "name": &"idle",
 "speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_y821r")
+"texture": SubResource("AtlasTexture_lqnm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lqox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15ksd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6533")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itgpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kknqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6fts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whbyn")
 }],
 "loop": true,
 "name": &"run",
-"speed": 12.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2liu"]
-radius = 5.0
-height = 22.0
+radius = 3.9473696
+height = 15.7894745
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ird33"]
-radius = 3.94737
-height = 23.6842
+radius = 5.263158
+height = 18.421053
 
 [sub_resource type="Animation" id="Animation_3k4es"]
 length = 0.001
@@ -77,20 +197,20 @@ _data = {
 &"hit flash": SubResource("Animation_jgk6k")
 }
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" unique_id=488556499]
 scale = Vector2(0.76, 0.76)
 collision_mask = 12
 script = ExtResource("1_y821r")
 coin_scene = ExtResource("2_hvpr5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1670366706]
 texture_filter = 1
 material = SubResource("ShaderMaterial_21x0f")
 position = Vector2(-2, 0)
 scale = Vector2(0.555, 0.555)
 sprite_frames = SubResource("SpriteFrames_r80ma")
 animation = &"run"
-autoplay = "idle"
+autoplay = "run"
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {
 "source": "res://assets/characters/animation/enemy 1.aseprite"
@@ -111,27 +231,26 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "cc1f0ba53460145ab8e3a48d91e43ffc"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=406488182]
 position = Vector2(-2.63158, -1.31579)
 shape = SubResource("CapsuleShape2D_h2liu")
 debug_color = Color(0.712277, 0.394929, 0.729381, 0.42)
 
-[node name="enemy1" type="Area2D" parent="."]
-collision_mask = 14
+[node name="enemy1" type="Area2D" parent="." unique_id=1770395327]
+collision_layer = 2
+collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy1"]
-position = Vector2(-2.63158, -1.31579)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy1" unique_id=2045696253]
+position = Vector2(-2.631579, 1.3157895)
 shape = SubResource("CapsuleShape2D_ird33")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_x5khh")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1890907947]
+libraries/ = SubResource("AnimationLibrary_x5khh")
 
-[node name="wall_hit" type="AudioStreamPlayer2D" parent="."]
+[node name="wall_hit" type="AudioStreamPlayer2D" parent="." unique_id=1036056119]
 stream = ExtResource("5_hvpr5")
 
-[node name="enemy_hit" type="AudioStreamPlayer2D" parent="."]
+[node name="enemy_hit" type="AudioStreamPlayer2D" parent="." unique_id=1793865145]
 stream = ExtResource("6_hpql6")
 
 [connection signal="area_entered" from="enemy1" to="." method="_on_area_2d_area_entered"]

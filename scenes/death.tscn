@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdvaqqtwajgse"]
+[gd_scene format=3 uid="uid://cdvaqqtwajgse"]
 
 [ext_resource type="Script" uid="uid://qydao3imaehl" path="res://scripts/death_GUI.gd" id="1_tjai8"]
 [ext_resource type="Shader" uid="uid://dnvvydy7wqv7l" path="res://scenes/shaders/text.gdshader" id="1_w8wr1"]
@@ -32,7 +32,7 @@ shader_parameter/outline_thickness = 1.0
 shader_parameter/chromatic_aberration = false
 shader_parameter/aberration_strength = 5.0
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1199817279]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,57 +42,90 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_tjai8")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 2
-anchor_right = 0.28
-anchor_bottom = 0.26
-offset_right = 212.44
-offset_bottom = 176.52
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1439064598]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-color = Color(0.416754, 5.71553e-07, 1.44392e-07, 0.262745)
+color = Color(0.05, 0.01, 0.01, 0.72)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1181528950]
 z_index = 1
-layout_mode = 0
-offset_left = 30.0
-offset_top = 26.0
-offset_right = 120.0
-offset_bottom = 58.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -124.0
+offset_right = -2.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="CenterContainer"]
+[node name="Label" type="Label" parent="CenterContainer" unique_id=995336035]
 texture_filter = 1
 material = SubResource("ShaderMaterial_q1r8t")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_tjai8")
-theme_override_font_sizes/font_size = 23
-text = "You ded"
+theme_override_font_sizes/font_size = 60
+text = "You died"
 
-[node name="Restart" type="Button" parent="."]
-layout_mode = 2
-offset_left = 61.0
-offset_top = 74.0
-offset_right = 104.805
-offset_bottom = 83.84
-theme_override_colors/icon_hover_pressed_color = Color(0.370364, 0.370364, 0.370364, 1)
+[node name="Restart" type="Button" parent="." unique_id=211962249]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 48.0
+offset_right = 80.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/icon_hover_color = Color(0.458405, 0.458405, 0.458405, 1)
-theme_override_font_sizes/font_size = 1
-
-[node name="wave" type="Label" parent="."]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 49.0
-offset_right = 96.0
-offset_bottom = 72.0
+theme_override_colors/icon_hover_pressed_color = Color(0.370364, 0.370364, 0.370364, 1)
 theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 18
+text = "Restart"
 
-[node name="enemy" type="Label" parent="."]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 49.0
-offset_right = 96.0
-offset_bottom = 72.0
+[node name="wave" type="Label" parent="." unique_id=431197125]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -24.0
+offset_right = 180.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="enemy" type="Label" parent="." unique_id=280328337]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = 8.0
+offset_right = 180.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
 
 [connection signal="button_up" from="Restart" to="." method="_on_restart_button_up"]
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

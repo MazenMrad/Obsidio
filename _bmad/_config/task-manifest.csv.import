@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c3w2p6vh6xsbl"
+
+[deps]
+
+files=["res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation"]
+
+source_file="res://_bmad/_config/task-manifest.csv"
+dest_files=["res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation", "res://_bmad/_config/task-manifest.en.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

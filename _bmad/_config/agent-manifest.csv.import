@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dmecqlog0e6aq"
+
+[deps]
+
+files=["res://_bmad/_config/agent-manifest.displayName.translation", "res://_bmad/_config/agent-manifest.title.translation", "res://_bmad/_config/agent-manifest.icon.translation", "res://_bmad/_config/agent-manifest.capabilities.translation", "res://_bmad/_config/agent-manifest.role.translation", "res://_bmad/_config/agent-manifest.identity.translation", "res://_bmad/_config/agent-manifest.communicationStyle.translation", "res://_bmad/_config/agent-manifest.principles.translation", "res://_bmad/_config/agent-manifest.module.translation", "res://_bmad/_config/agent-manifest.path.translation", "res://_bmad/_config/agent-manifest.canonicalId.translation"]
+
+source_file="res://_bmad/_config/agent-manifest.csv"
+dest_files=["res://_bmad/_config/agent-manifest.displayName.translation", "res://_bmad/_config/agent-manifest.title.translation", "res://_bmad/_config/agent-manifest.icon.translation", "res://_bmad/_config/agent-manifest.capabilities.translation", "res://_bmad/_config/agent-manifest.role.translation", "res://_bmad/_config/agent-manifest.identity.translation", "res://_bmad/_config/agent-manifest.communicationStyle.translation", "res://_bmad/_config/agent-manifest.principles.translation", "res://_bmad/_config/agent-manifest.module.translation", "res://_bmad/_config/agent-manifest.path.translation", "res://_bmad/_config/agent-manifest.canonicalId.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

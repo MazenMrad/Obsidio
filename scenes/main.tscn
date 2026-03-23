@@ -1,10 +1,9 @@
-[gd_scene load_steps=48 format=3 uid="uid://b3pk1n4s0d2p0"]
+[gd_scene format=3 uid="uid://b3pk1n4s0d2p0"]
 
 [ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
 [ext_resource type="AudioStream" uid="uid://dsxbffrpnraqe" path="res://music/spawn.wav" id="2_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://crp43mcsgbovg" path="res://scenes/characters/player.tscn" id="3_sugp2"]
-[ext_resource type="Shader" uid="uid://cd5gpmogd64xm" path="res://scenes/shaders/wobble.gdshader" id="4_eb6dy"]
 [ext_resource type="Shader" uid="uid://bn6hyb6tsrno6" path="res://scenes/shaders/foliage.gdshader" id="4_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://c3xdcp3nxm60p" path="res://assets/map/props/walls/wall1.tscn" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bhsaicnqwmdm5" path="res://assets/map/props/trees/tree1.png" id="5_tefeu"]
@@ -22,11 +21,22 @@
 [ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="17_yc10j"]
 [ext_resource type="Texture2D" uid="uid://d1nu0bf1m8twj" path="res://assets/map/props/flag.png" id="18_0ld40"]
 [ext_resource type="Script" uid="uid://cw3gtmc5fu34w" path="res://scripts/buttons.gd" id="19_0ld40"]
+[ext_resource type="Script" uid="uid://cxcmv7n6ole07" path="res://scripts/camera_zoom.gd" id="19_0n7gx"]
 [ext_resource type="AudioStream" uid="uid://df700qoo3wep3" path="res://music/buy_sound.wav" id="20_y6deb"]
 [ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="21_og1vs"]
+[ext_resource type="Texture2D" uid="uid://cnucu4ov72ryx" path="res://assets/GUI/ammocoinindicator.png" id="21_yq6so"]
 [ext_resource type="AudioStream" uid="uid://bmouybkpna1g2" path="res://music/equip.mp3" id="22_2wyq8"]
-[ext_resource type="Texture2D" uid="uid://b68480esw600y" path="res://assets/map/props/coin.png" id="22_jscy8"]
-[ext_resource type="Texture2D" uid="uid://bqjlc82ng0wrr" path="res://assets/map/props/arrow.png" id="23_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://bxr3dijk8fwam" path="res://assets/GUI/build_button.png" id="23_kmb1v"]
+[ext_resource type="Texture2D" uid="uid://c3ooa7ma8iehf" path="res://assets/GUI/options_button.png" id="24_5q0nq"]
+[ext_resource type="Texture2D" uid="uid://ck0wgri3x0wae" path="res://assets/GUI/repair_button.png" id="24_fuf3a"]
+[ext_resource type="Texture2D" uid="uid://cbla7vefjvf0m" path="res://assets/GUI/options_button_pressed2.png" id="25_dgi5k"]
+[ext_resource type="Texture2D" uid="uid://cxo11t4asrjw1" path="res://assets/GUI/ammo_button.png" id="25_pibwh"]
+[ext_resource type="Texture2D" uid="uid://6l1qj5hysrqr" path="res://assets/GUI/options_button_pressed.png" id="26_j8jky"]
+[ext_resource type="Texture2D" uid="uid://dc72yjfhklrxt" path="res://assets/GUI/home_button.png" id="27_kmb1v"]
+[ext_resource type="PackedScene" uid="uid://ddmx0gvpdmab3" path="res://scenes/upgrade_map.tscn" id="28_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://bxng4mmtfppil" path="res://assets/GUI/home_button_pressed.png" id="28_fuf3a"]
+[ext_resource type="Shader" uid="uid://cxhg88a15of7m" path="res://scenes/shaders/vignette.gdshader" id="29_yq6so"]
+[ext_resource type="PackedScene" uid="uid://dkwhjr7ubfsvy" path="res://scenes/effects/drip_effect.tscn" id="30_fv21b"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_vxglm"]
 frequency = 0.0049
@@ -67,11 +77,6 @@ shader_parameter/tiling = Vector2(1, 1)
 shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
 shader_parameter/backGroundDirX = 0.01
 shader_parameter/backGroundDirY = 0.01
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
-shader = ExtResource("4_eb6dy")
-shader_parameter/r = 5.0
-shader_parameter/offset = 2.001
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ya4ey"]
 frequency = 0.032
@@ -139,8 +144,10 @@ shader_parameter/noise_scale = 0.001
 shader_parameter/rotation_strength = 0.3
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tel4y"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
-size = Vector2(1768.99, 28.6884)
+size = Vector2(3041.484, 28.6884)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
 shader = ExtResource("17_yc10j")
@@ -158,72 +165,86 @@ shader_parameter/speed = 2.642
 shader_parameter/pole_side = 0
 shader_parameter/fixed_edge_range = 0.2
 
-[node name="Node2D" type="Node2D"]
-position = Vector2(594, -332)
-scale = Vector2(2.795, 2.795)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fv21b"]
+shader = ExtResource("29_yq6so")
+shader_parameter/active = true
+shader_parameter/invert_side = false
+shader_parameter/convex_mode = false
+shader_parameter/progress = 0.06500005058749991
+shader_parameter/softness = 0.250000011875
+shader_parameter/curvature = 0.8
+shader_parameter/intensity = 0.630000029925
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
 
-[node name="Enemy spawner" type="Node2D" parent="."]
-light_mask = 7
-position = Vector2(-22.1825, 83.0054)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yq6so"]
+shader = ExtResource("29_yq6so")
+shader_parameter/active = true
+shader_parameter/invert_side = true
+shader_parameter/convex_mode = false
+shader_parameter/progress = 0.21500005771249997
+shader_parameter/softness = 0.3450000163875
+shader_parameter/curvature = 0.810000038475
+shader_parameter/intensity = 0.210000009975
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" unique_id=1951375339]
+position = Vector2(355, 36)
+
+[node name="Enemy spawner" type="Node2D" parent="." unique_id=1981928786]
+position = Vector2(731, 307)
 script = ExtResource("1_eb6dy")
 
-[node name="Timer" type="Timer" parent="Enemy spawner"]
+[node name="Timer" type="Timer" parent="Enemy spawner" unique_id=126133196]
 wait_time = 10.0
 autostart = true
 
-[node name="enemy_spawn_audio" type="AudioStreamPlayer2D" parent="Enemy spawner"]
+[node name="enemy_spawn_audio" type="AudioStreamPlayer2D" parent="Enemy spawner" unique_id=14212206]
 stream = ExtResource("2_gqmmt")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_ya4ey")
-anchors_preset = -1
-offset_left = 30.7692
-offset_top = 312.343
-offset_right = 889.771
-offset_bottom = 493.343
+[node name="Player" parent="." unique_id=366091793 instance=ExtResource("3_sugp2")]
+unique_name_in_owner = true
+position = Vector2(45, 227)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1859044782]
+material = SubResource("ShaderMaterial_ya4ey")
+offset_left = 1227.0
+offset_top = -570.0
+offset_right = 2086.002
+offset_bottom = -389.0
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=118500080]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ya4ey")
-anchors_preset = -1
-offset_left = -631.127
-offset_top = 99.4633
-offset_right = 227.873
-offset_bottom = 280.463
+offset_left = -367.0
+offset_top = 323.66827
+offset_right = 1117.0
+offset_bottom = 620.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-183.184, 44.7227)
-zoom = Vector2(0.725, 0.725)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1357349262]
+position = Vector2(350, 268)
+zoom = Vector2(1.82, 1.82)
+script = ExtResource("19_0n7gx")
 
-[node name="player" parent="." instance=ExtResource("3_sugp2")]
-material = SubResource("ShaderMaterial_dp3eg")
-position = Vector2(-217.889, 1.78891)
-scale = Vector2(0.585, 0.585)
-
-[node name="wall1" parent="." instance=ExtResource("5_tbgi4")]
-position = Vector2(-98.39, 83.0054)
-scale = Vector2(0.445312, 0.402344)
-
-[node name="trees" type="Node2D" parent="."]
+[node name="trees" type="Node2D" parent="." unique_id=1737290262]
 material = SubResource("ShaderMaterial_eb6dy")
-position = Vector2(29.3381, 49.3739)
+position = Vector2(666, 272)
 scale = Vector2(0.58, 0.58)
 
-[node name="Tree1" type="Sprite2D" parent="trees"]
+[node name="Tree1" type="Sprite2D" parent="trees" unique_id=1478865120]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_trceg")
 texture = ExtResource("5_tefeu")
 flip_h = true
 
-[node name="Tree2" type="Sprite2D" parent="trees"]
+[node name="Tree2" type="Sprite2D" parent="trees" unique_id=981500763]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_a8y0u")
 position = Vector2(300, -5.17241)
 texture = ExtResource("5_tefeu")
 
-[node name="Tree3" type="Sprite2D" parent="trees"]
+[node name="Tree3" type="Sprite2D" parent="trees" unique_id=568699202]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -231,28 +252,28 @@ position = Vector2(118.966, 20.6897)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree10" type="Sprite2D" parent="trees"]
+[node name="Tree10" type="Sprite2D" parent="trees" unique_id=2029814547]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(194.828, 18.9655)
 texture = ExtResource("5_tipki")
 
-[node name="Tree11" type="Sprite2D" parent="trees"]
+[node name="Tree11" type="Sprite2D" parent="trees" unique_id=2136623112]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(70.6897, 15.5172)
 texture = ExtResource("5_tipki")
 
-[node name="Tree12" type="Sprite2D" parent="trees"]
+[node name="Tree12" type="Sprite2D" parent="trees" unique_id=1499353461]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(-162.069, 15.5172)
 texture = ExtResource("5_tipki")
 
-[node name="Tree4" type="Sprite2D" parent="trees"]
+[node name="Tree4" type="Sprite2D" parent="trees" unique_id=567385410]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -260,47 +281,47 @@ position = Vector2(-98.2759, 15.5172)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree5" type="Sprite2D" parent="trees"]
+[node name="Tree5" type="Sprite2D" parent="trees" unique_id=1159832111]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(394.828, 12.069)
 texture = ExtResource("5_tipki")
 
-[node name="Tree6" type="Sprite2D" parent="trees"]
+[node name="Tree6" type="Sprite2D" parent="trees" unique_id=1293413666]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(132.759, -10.3448)
 texture = ExtResource("6_85g3d")
 
-[node name="Tree7" type="Sprite2D" parent="trees"]
+[node name="Tree7" type="Sprite2D" parent="trees" unique_id=1353019944]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(405.172, -10.3448)
 texture = ExtResource("6_85g3d")
 
-[node name="Tree8" type="Sprite2D" parent="trees"]
+[node name="Tree8" type="Sprite2D" parent="trees" unique_id=1591095527]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(200, -6.89655)
 texture = ExtResource("6_85g3d")
 
-[node name="Tree9" type="Sprite2D" parent="trees"]
+[node name="Tree9" type="Sprite2D" parent="trees" unique_id=1302776537]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
 position = Vector2(-155.172, -8.62069)
 texture = ExtResource("6_85g3d")
 
-[node name="trees2" type="Node2D" parent="."]
+[node name="trees2" type="Node2D" parent="." unique_id=688773836]
 material = SubResource("ShaderMaterial_eb6dy")
-position = Vector2(-545.259, 52.9517)
+position = Vector2(-281.13196, 277.15665)
 scale = Vector2(0.58, 0.58)
 
-[node name="Tree1" type="Sprite2D" parent="trees2"]
+[node name="Tree1" type="Sprite2D" parent="trees2" unique_id=1912236067]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_trceg")
@@ -308,7 +329,7 @@ position = Vector2(13.1721, -1.4054)
 texture = ExtResource("5_tefeu")
 flip_h = true
 
-[node name="Tree2" type="Sprite2D" parent="trees2"]
+[node name="Tree2" type="Sprite2D" parent="trees2" unique_id=1323442750]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_a8y0u")
@@ -316,7 +337,7 @@ position = Vector2(313.172, -6.57781)
 texture = ExtResource("5_tefeu")
 flip_h = true
 
-[node name="Tree3" type="Sprite2D" parent="trees2"]
+[node name="Tree3" type="Sprite2D" parent="trees2" unique_id=1383621352]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -324,7 +345,7 @@ position = Vector2(132.138, 19.2843)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree10" type="Sprite2D" parent="trees2"]
+[node name="Tree10" type="Sprite2D" parent="trees2" unique_id=1013462835]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -332,7 +353,7 @@ position = Vector2(208, 17.5601)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree11" type="Sprite2D" parent="trees2"]
+[node name="Tree11" type="Sprite2D" parent="trees2" unique_id=1717575088]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -340,7 +361,7 @@ position = Vector2(83.8618, 14.1118)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree12" type="Sprite2D" parent="trees2"]
+[node name="Tree12" type="Sprite2D" parent="trees2" unique_id=292621642]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -348,7 +369,7 @@ position = Vector2(-148.897, 14.1118)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree4" type="Sprite2D" parent="trees2"]
+[node name="Tree4" type="Sprite2D" parent="trees2" unique_id=91495371]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -356,7 +377,7 @@ position = Vector2(-85.1038, 14.1118)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree5" type="Sprite2D" parent="trees2"]
+[node name="Tree5" type="Sprite2D" parent="trees2" unique_id=1855240901]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -364,7 +385,7 @@ position = Vector2(408, 10.6636)
 texture = ExtResource("5_tipki")
 flip_h = true
 
-[node name="Tree6" type="Sprite2D" parent="trees2"]
+[node name="Tree6" type="Sprite2D" parent="trees2" unique_id=1325651674]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -372,7 +393,7 @@ position = Vector2(145.931, -11.7502)
 texture = ExtResource("6_85g3d")
 flip_h = true
 
-[node name="Tree7" type="Sprite2D" parent="trees2"]
+[node name="Tree7" type="Sprite2D" parent="trees2" unique_id=158723579]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -380,7 +401,7 @@ position = Vector2(418.344, -11.7502)
 texture = ExtResource("6_85g3d")
 flip_h = true
 
-[node name="Tree8" type="Sprite2D" parent="trees2"]
+[node name="Tree8" type="Sprite2D" parent="trees2" unique_id=1001330351]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -388,7 +409,7 @@ position = Vector2(213.172, -8.30195)
 texture = ExtResource("6_85g3d")
 flip_h = true
 
-[node name="Tree9" type="Sprite2D" parent="trees2"]
+[node name="Tree9" type="Sprite2D" parent="trees2" unique_id=596951264]
 z_index = -1
 texture_filter = 1
 material = SubResource("ShaderMaterial_jkv2x")
@@ -396,243 +417,338 @@ position = Vector2(-142, -10.0261)
 texture = ExtResource("6_85g3d")
 flip_h = true
 
-[node name="Grass" type="Sprite2D" parent="."]
+[node name="Grass" type="Sprite2D" parent="." unique_id=30646498]
 z_index = -3
 texture_filter = 1
 material = SubResource("ShaderMaterial_muem4")
-position = Vector2(19.678, 77.6386)
+position = Vector2(283.80502, 301.84357)
 scale = Vector2(0.26158, 0.26158)
 texture = ExtResource("7_choun")
 
-[node name="Grass3" type="Sprite2D" parent="."]
+[node name="Grass3" type="Sprite2D" parent="." unique_id=564268079]
 z_index = -3
 texture_filter = 1
 material = SubResource("ShaderMaterial_muem4")
-position = Vector2(-195.349, 77.9964)
+position = Vector2(68.778015, 302.2013)
 scale = Vector2(0.196842, 0.26158)
 texture = ExtResource("7_choun")
 
-[node name="Grass2" type="Sprite2D" parent="."]
+[node name="Grass2" type="Sprite2D" parent="." unique_id=726262768]
 z_index = -3
 texture_filter = 1
 material = SubResource("ShaderMaterial_muem4")
-position = Vector2(-404.293, 76.9231)
+position = Vector2(-140.16599, 301.12805)
 scale = Vector2(0.26158, 0.26158)
 texture = ExtResource("7_choun")
 flip_h = true
 
-[node name="Bg" type="Sprite2D" parent="."]
+[node name="Bg" type="Sprite2D" parent="." unique_id=445800181]
 z_index = -4
 texture_filter = 1
-position = Vector2(-185.331, -17.8891)
-scale = Vector2(0.585494, 0.61712)
+material = SubResource("ShaderMaterial_tel4y")
+position = Vector2(382.99997, 141)
 texture = ExtResource("9_ya4ey")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "",
+"source_uid": -1
+}
+}
 
-[node name="death" parent="." instance=ExtResource("13_jkv2x")]
-visible = false
-z_index = 3
-anchors_preset = -1
-offset_left = -388.909
-offset_top = -74.4186
-offset_right = -388.909
-offset_bottom = -74.4186
-
-[node name="ColorRect" parent="death" index="0"]
-layout_mode = 0
-offset_left = -137.0
-offset_top = -74.0
-offset_right = 523.0
-offset_bottom = 304.0
-
-[node name="CenterContainer" parent="death" index="1"]
-offset_left = -1.07308
-offset_top = -16.1002
-offset_right = 409.357
-offset_bottom = 233.9
-
-[node name="Label" parent="death/CenterContainer" index="0"]
-text = "You died"
-
-[node name="Restart" parent="death" index="2"]
-layout_mode = 0
-offset_left = 176.029
-offset_top = 177.818
-offset_right = 227.029
-offset_bottom = 202.818
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 16
-text = "Restart
-"
-
-[node name="wave" parent="death" index="3"]
-offset_left = 156.0
-offset_top = 123.0
-offset_right = 281.0
-offset_bottom = 146.0
-theme_override_font_sizes/font_size = 16
-
-[node name="enemy" parent="death" index="4"]
-offset_left = 156.351
-offset_top = 135.599
-offset_right = 256.351
-offset_bottom = 158.599
-theme_override_font_sizes/font_size = 16
-
-[node name="lost" type="AudioStreamPlayer2D" parent="death"]
-stream = ExtResource("15_vxglm")
-
-[node name="Ground" type="Sprite2D" parent="."]
+[node name="Ground" type="Sprite2D" parent="." unique_id=1622378820]
 z_index = -1
 texture_filter = 1
-position = Vector2(-190.34, 93.7388)
-scale = Vector2(0.485, 0.485)
+position = Vector2(385.28104, 317.94373)
+scale = Vector2(0.8369707, 0.485)
 texture = ExtResource("1_o5qli")
 
-[node name="GroundCollision" type="StaticBody2D" parent="." groups=["ground"]]
-position = Vector2(-190.34, 93.7388)
+[node name="GroundCollision" type="StaticBody2D" parent="." unique_id=1398518556 groups=["ground"]]
+position = Vector2(73.78702, 317.94373)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollision"]
-position = Vector2(1.07347, 5.16805)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollision" unique_id=505645549]
+position = Vector2(309.65317, 5.1680603)
 scale = Vector2(0.485, 0.485)
 shape = SubResource("RectangleShape2D_ground")
 
-[node name="tower" parent="." instance=ExtResource("14_a8y0u")]
+[node name="tower" parent="." unique_id=170994177 instance=ExtResource("14_a8y0u")]
 material = SubResource("ShaderMaterial_0ld40")
-position = Vector2(-229.696, 93.0233)
+position = Vector2(34.431015, 317.22827)
 damage_per_second = 15
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2109370516]
 stream = ExtResource("17_gqmmt")
-volume_db = -11.953
+volume_db = -80.0
 autoplay = true
 
-[node name="coin_label" type="Label" parent="."]
-anchors_preset = -1
-offset_left = -441.0
-offset_top = -111.0
-offset_right = -426.0
-offset_bottom = -88.0
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 16
-text = "5"
-
-[node name="spawn_text" type="Label" parent="."]
-anchors_preset = -1
-offset_left = -255.814
-offset_top = -97.6744
-offset_right = -175.814
-offset_bottom = -74.6744
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 16
-text = "Wave 1 in 10s"
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-offset_left = -385.331
-offset_top = -50.805
-offset_right = -345.331
-offset_bottom = -10.805
-script = ExtResource("19_0ld40")
-
-[node name="upgrade_wall" type="Button" parent="Control"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -80.5008
-offset_top = -12.5224
-offset_right = -50.5008
-offset_bottom = 9.47764
-theme_override_fonts/font = ExtResource("14_jbj1t")
-text = "upgrade"
-
-[node name="repair" type="Button" parent="Control"]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = -78.7119
-offset_top = 53.3095
-offset_right = -32.7119
-offset_bottom = 75.3095
-theme_override_fonts/font = ExtResource("14_jbj1t")
-text = "repair
-"
-
-[node name="buy_sound" type="AudioStreamPlayer2D" parent="Control"]
-position = Vector2(-70.1934, -33.9034)
-rotation = -1.5744
-scale = Vector2(0.779408, 1.1381)
-stream = ExtResource("20_y6deb")
-
-[node name="buy_arrow" type="Button" parent="Control"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -79.7853
-offset_top = 22.1825
-offset_right = -6.78524
-offset_bottom = 44.1825
-theme_override_fonts/font = ExtResource("14_jbj1t")
-text = "buy_arrow"
-
-[node name="weapon_ui" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = -31.127
-offset_top = -61.5385
-offset_right = 16.873
-offset_bottom = -11.5385
-scale = Vector2(0.79, 0.79)
-texture = ExtResource("21_og1vs")
-
-[node name="equip" type="AudioStreamPlayer2D" parent="Control"]
-stream = ExtResource("22_2wyq8")
-
-[node name="upgrade_tower" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 190.0
-offset_right = 150.0
-offset_bottom = 220.0
-text = "Upgrade Tower"
-
-[node name="Flag" type="Sprite2D" parent="."]
+[node name="Flag" type="Sprite2D" parent="." unique_id=2126782280]
 material = SubResource("ShaderMaterial_gqmmt")
-position = Vector2(-218.962, 23.2558)
+position = Vector2(45.000015, 249)
 rotation = 0.00637269
 scale = Vector2(0.483874, 0.47537)
 texture = ExtResource("18_0ld40")
 
-[node name="arrows" type="Label" parent="."]
-texture_filter = 1
+[node name="Audio" type="Node" parent="." unique_id=1197022520]
+
+[node name="buy_sound" type="AudioStreamPlayer2D" parent="Audio" unique_id=603540235]
+stream = ExtResource("20_y6deb")
+
+[node name="equip" type="AudioStreamPlayer2D" parent="Audio" unique_id=261797673]
+stream = ExtResource("22_2wyq8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=516986949]
+
+[node name="SubViewportContainer" parent="CanvasLayer" unique_id=121716437 instance=ExtResource("30_fv21b")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+target_path = NodePath("../../Player")
+fall_speed = 0.028
+paint_interval = 8.38
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=332086757]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_right = -565.0
+offset_bottom = -418.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("19_0ld40")
+
+[node name="indicators" type="Control" parent="CanvasLayer/Control" unique_id=1936903638]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ammocoinindicator" type="TextureRect" parent="CanvasLayer/Control/indicators" unique_id=1995599561]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 1
 anchors_preset = -1
-offset_left = -441.0
-offset_top = -91.0
-offset_right = -426.0
-offset_bottom = -60.0
+anchor_left = 0.1
+anchor_top = 0.039
+anchor_right = 0.17400001
+anchor_bottom = 0.082
+offset_left = -36.0
+offset_top = 4.44
+offset_right = 208.71852
+offset_bottom = 75.72
+texture = ExtResource("21_yq6so")
+stretch_mode = 5
+
+[node name="spawn_text" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1418223253]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39200002
+anchor_top = 0.063
+anchor_right = 0.60800004
+anchor_bottom = 0.063
+offset_left = 808.32
+offset_top = 35.48
+offset_right = 889.68
+offset_bottom = 51.48
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
-text = "3
-"
+theme_override_font_sizes/font_size = 18
+text = "Wave 1 in 10s"
+horizontal_alignment = 1
 
-[node name="Coin" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-455.814, -104.83)
-scale = Vector2(1.655, 1.655)
-texture = ExtResource("22_jscy8")
+[node name="coin_label" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1581822160]
+layout_mode = 1
+offset_left = 37.0
+offset_top = 35.0
+offset_right = 46.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 24
+text = "5"
+vertical_alignment = 1
 
-[node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(-455.524, -84.7084)
-rotation = -1.5744
-scale = Vector2(0.779408, 1.1381)
-texture = ExtResource("23_pm3ni")
+[node name="arrows" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1764986526]
+layout_mode = 1
+offset_left = 152.0
+offset_top = 37.0
+offset_right = 161.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 24
+text = "3"
+vertical_alignment = 1
+
+[node name="actions" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=887766002]
+layout_mode = 1
+offset_left = -31.000004
+offset_top = 97.0
+offset_right = 189.0
+offset_bottom = 623.0
+scale = Vector2(0.33, 0.33)
+theme_override_constants/separation = 69
+
+[node name="upgrade_wall" type="TextureButton" parent="CanvasLayer/Control/actions" unique_id=358020678]
+custom_minimum_size = Vector2(18.825, 0)
+layout_mode = 2
+texture_normal = ExtResource("23_kmb1v")
+
+[node name="label" type="Label" parent="CanvasLayer/Control/actions/upgrade_wall" unique_id=716934201]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="repair" type="TextureButton" parent="CanvasLayer/Control/actions" unique_id=1236663339]
+layout_mode = 2
+texture_normal = ExtResource("24_fuf3a")
+
+[node name="label" type="Label" parent="CanvasLayer/Control/actions/repair" unique_id=534287131]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buy_arrow" type="TextureButton" parent="CanvasLayer/Control/actions" unique_id=1996930549]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+texture_normal = ExtResource("25_pibwh")
+
+[node name="label" type="Label" parent="CanvasLayer/Control/actions/buy_arrow" unique_id=693818006]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="open_upgrade_map" type="Button" parent="CanvasLayer/Control/actions" unique_id=92587886]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "Open Upgrades"
+
+[node name="upgrade_tower" type="Button" parent="CanvasLayer/Control/actions" unique_id=755998986]
+visible = false
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "Upgrade Tower"
+
+[node name="weapon_ui" type="TextureRect" parent="CanvasLayer/Control" unique_id=790043457]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 456.0
+offset_top = 39.0
+offset_right = 524.0
+offset_bottom = 107.0
+grow_horizontal = 0
+texture = ExtResource("21_og1vs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="options_button" type="TextureButton" parent="CanvasLayer/Control" unique_id=1140689839]
+layout_mode = 0
+offset_left = -53.0
+offset_top = 963.0
+offset_right = 11.0
+offset_bottom = 1027.0
+texture_normal = ExtResource("24_5q0nq")
+texture_pressed = ExtResource("25_dgi5k")
+texture_hover = ExtResource("26_j8jky")
+stretch_mode = 0
+
+[node name="home_buttons" type="TextureButton" parent="CanvasLayer/Control" unique_id=91763848]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 963.0
+offset_right = 82.0
+offset_bottom = 1027.0
+texture_normal = ExtResource("27_kmb1v")
+texture_pressed = ExtResource("28_fuf3a")
+stretch_mode = 0
+
+[node name="death" parent="CanvasLayer" unique_id=1861312617 instance=ExtResource("13_jkv2x")]
+visible = false
+
+[node name="lost" type="AudioStreamPlayer2D" parent="CanvasLayer/death" unique_id=618248033]
+stream = ExtResource("15_vxglm")
+
+[node name="upgrade_map" parent="CanvasLayer" unique_id=1064765267 instance=ExtResource("28_2f3dj")]
+visible = false
+
+[node name="vignette" type="ColorRect" parent="CanvasLayer" unique_id=701250391]
+visible = false
+material = SubResource("ShaderMaterial_fv21b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = -7.0
+offset_right = 34.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="vignette2" type="ColorRect" parent="CanvasLayer" unique_id=1446728549]
+material = SubResource("ShaderMaterial_yq6so")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_right = 6.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="wall" parent="." unique_id=1282492984 instance=ExtResource("5_tbgi4")]
+position = Vector2(237, 307)
 
 [connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
-[connection signal="mouse_entered" from="Control/upgrade_wall" to="player" method="_on_upgrade_wall_mouse_entered"]
-[connection signal="mouse_exited" from="Control/upgrade_wall" to="player" method="_on_upgrade_wall_mouse_exited"]
-[connection signal="pressed" from="Control/upgrade_wall" to="Control" method="_on_upgrade_wall_pressed"]
-[connection signal="mouse_entered" from="Control/repair" to="player" method="_on_upgrade_wall_mouse_entered"]
-[connection signal="mouse_exited" from="Control/repair" to="player" method="_on_upgrade_wall_mouse_exited"]
-[connection signal="pressed" from="Control/repair" to="wall1" method="_on_repair_pressed"]
-[connection signal="mouse_entered" from="Control/buy_arrow" to="player" method="_on_buy_arrow_mouse_entered"]
-[connection signal="mouse_exited" from="Control/buy_arrow" to="player" method="_on_buy_arrow_mouse_exited"]
-[connection signal="pressed" from="Control/buy_arrow" to="Control" method="_on_buy_arrow_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/actions/upgrade_wall" to="CanvasLayer/Control" method="_on_upgrade_wall_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/actions/repair" to="CanvasLayer/Control" method="_on_repair_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/actions/buy_arrow" to="CanvasLayer/Control" method="_on_buy_arrow_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/actions/open_upgrade_map" to="CanvasLayer/Control" method="_on_upgrades_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/actions/upgrade_tower" to="CanvasLayer/Control" method="_on_upgrade_tower_pressed"]
 
-[editable path="player"]
-[editable path="death"]
+[editable path="CanvasLayer/death"]

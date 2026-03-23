@@ -1,0 +1,713 @@
+[gd_scene format=3 uid="uid://b3pk1n4s0d2p0"]
+
+[ext_resource type="Script" uid="uid://cjlvljbngahm3" path="res://scripts/main.gd" id="1_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://b2faiiuw0feva" path="res://assets/map/Ground.png" id="1_o5qli"]
+[ext_resource type="AudioStream" uid="uid://dsxbffrpnraqe" path="res://music/spawn.wav" id="2_gqmmt"]
+[ext_resource type="PackedScene" uid="uid://crp43mcsgbovg" path="res://scenes/characters/player.tscn" id="3_sugp2"]
+[ext_resource type="Shader" uid="uid://cd5gpmogd64xm" path="res://scenes/shaders/wobble.gdshader" id="4_eb6dy"]
+[ext_resource type="Shader" uid="uid://bn6hyb6tsrno6" path="res://scenes/shaders/foliage.gdshader" id="4_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://c3xdcp3nxm60p" path="res://assets/map/props/walls/wall1.tscn" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bhsaicnqwmdm5" path="res://assets/map/props/trees/tree1.png" id="5_tefeu"]
+[ext_resource type="Texture2D" uid="uid://c0x4dupgfvxlm" path="res://assets/map/props/trees/tree2.png" id="5_tipki"]
+[ext_resource type="Texture2D" uid="uid://b6u4caag5t274" path="res://assets/map/props/trees/tree3.png" id="6_85g3d"]
+[ext_resource type="Shader" uid="uid://d7520grkh1mw" path="res://scenes/shaders/water.gdshader" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://cv06a6mqkus1g" path="res://assets/map/props/trees/grass.png" id="7_choun"]
+[ext_resource type="Texture2D" uid="uid://c5wlf6v50dlk8" path="res://assets/map/props/trees/bg.png" id="9_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://cdvaqqtwajgse" path="res://scenes/death.tscn" id="13_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
+[ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="14_jbj1t"]
+[ext_resource type="AudioStream" uid="uid://ds2q6b75520mt" path="res://music/lost.wav" id="15_vxglm"]
+[ext_resource type="Shader" uid="uid://ba1j71pjqk6lv" path="res://scenes/shaders/flag.gdshader" id="17_dp3eg"]
+[ext_resource type="AudioStream" uid="uid://cdwyph304eqmp" path="res://music/ambience4.mp3" id="17_gqmmt"]
+[ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="17_yc10j"]
+[ext_resource type="Texture2D" uid="uid://d1nu0bf1m8twj" path="res://assets/map/props/flag.png" id="18_0ld40"]
+[ext_resource type="Script" uid="uid://cw3gtmc5fu34w" path="res://scripts/buttons.gd" id="19_0ld40"]
+[ext_resource type="AudioStream" uid="uid://df700qoo3wep3" path="res://music/buy_sound.wav" id="20_y6deb"]
+[ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="21_og1vs"]
+[ext_resource type="AudioStream" uid="uid://bmouybkpna1g2" path="res://music/equip.mp3" id="22_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://b68480esw600y" path="res://assets/map/props/coin.png" id="22_jscy8"]
+[ext_resource type="Texture2D" uid="uid://bqjlc82ng0wrr" path="res://assets/map/props/arrow.png" id="23_pm3ni"]
+[ext_resource type="PackedScene" uid="uid://ddmx0gvpdmab3" path="res://scenes/upgrade_map.tscn" id="28_2f3dj"]
+[ext_resource type="Shader" uid="uid://cxhg88a15of7m" path="res://scenes/shaders/vignette.gdshader" id="29_yq6so"]
+[ext_resource type="PackedScene" uid="uid://dkwhjr7ubfsvy" path="res://scenes/effects/drip_effect.tscn" id="30_fv21b"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vxglm"]
+frequency = 0.0049
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2f3dj"]
+noise = SubResource("FastNoiseLite_vxglm")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
+noise_type = 2
+frequency = 0.0678
+fractal_type = 3
+fractal_octaves = 10
+fractal_weighted_strength = 1.0
+fractal_ping_pong_strength = 2.97
+cellular_distance_function = 1
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jkv2x"]
+noise = SubResource("FastNoiseLite_eb6dy")
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
+shader = ExtResource("6_tefeu")
+shader_parameter/offSet = 0.0
+shader_parameter/YDistortion = 1.0
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_jkv2x")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_2f3dj")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.35
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 1.5
+shader_parameter/WDFreq = 0.55
+shader_parameter/WDSize = 0.95
+shader_parameter/WDSpeed = 2.5
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
+shader = ExtResource("4_eb6dy")
+shader_parameter/r = 5.0
+shader_parameter/offset = 2.001
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ya4ey"]
+frequency = 0.032
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eb6dy"]
+noise = SubResource("FastNoiseLite_ya4ey")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = true
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_eb6dy")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ya4ey"]
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trceg"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ya4ey")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_trceg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8y0u"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_trceg")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8y0u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkv2x"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_a8y0u")
+shader_parameter/amplitude = 0.2
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jbj1t"]
+width = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_muem4"]
+shader = ExtResource("4_ya4ey")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_jbj1t")
+shader_parameter/amplitude = 0.08
+shader_parameter/time_scale = 0.21
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 0.3
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tel4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(1768.99, 28.6884)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
+shader = ExtResource("17_yc10j")
+shader_parameter/progress = 0.0
+shader_parameter/noiseForce = 0.2
+shader_parameter/burnColor = Color(0, 0, 0, 1)
+shader_parameter/borderWidth = 0.0
+shader_parameter/direction = 180.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqmmt"]
+shader = ExtResource("17_dp3eg")
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 3.135
+shader_parameter/speed = 2.642
+shader_parameter/pole_side = 0
+shader_parameter/fixed_edge_range = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fv21b"]
+shader = ExtResource("29_yq6so")
+shader_parameter/active = true
+shader_parameter/invert_side = false
+shader_parameter/convex_mode = false
+shader_parameter/progress = 0.06500005058749991
+shader_parameter/softness = 0.250000011875
+shader_parameter/curvature = 0.8
+shader_parameter/intensity = 0.630000029925
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yq6so"]
+shader = ExtResource("29_yq6so")
+shader_parameter/active = true
+shader_parameter/invert_side = true
+shader_parameter/convex_mode = false
+shader_parameter/progress = 0.21500005771249997
+shader_parameter/softness = 0.3450000163875
+shader_parameter/curvature = 0.810000038475
+shader_parameter/intensity = 0.210000009975
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" unique_id=1951375339]
+position = Vector2(594, -332)
+scale = Vector2(2.795, 2.795)
+
+[node name="Enemy spawner" type="Node2D" parent="." unique_id=1981928786]
+position = Vector2(-22.1825, 83.0054)
+script = ExtResource("1_eb6dy")
+
+[node name="Timer" type="Timer" parent="Enemy spawner" unique_id=126133196]
+wait_time = 10.0
+autostart = true
+
+[node name="enemy_spawn_audio" type="AudioStreamPlayer2D" parent="Enemy spawner" unique_id=14212206]
+stream = ExtResource("2_gqmmt")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1859044782]
+material = SubResource("ShaderMaterial_ya4ey")
+offset_left = 30.7692
+offset_top = 312.343
+offset_right = 889.771
+offset_bottom = 493.343
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=118500080]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ya4ey")
+offset_left = -631.127
+offset_top = 99.4633
+offset_right = 227.873
+offset_bottom = 280.463
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1357349262]
+position = Vector2(-183.184, 44.7227)
+zoom = Vector2(0.725, 0.725)
+
+[node name="%Player" parent="." unique_id=14838528 instance=ExtResource("3_sugp2")]
+material = SubResource("ShaderMaterial_dp3eg")
+position = Vector2(-217.889, 1.78891)
+scale = Vector2(0.585, 0.585)
+
+[node name="%wall1" parent="." unique_id=190898716 instance=ExtResource("5_tbgi4")]
+position = Vector2(-98.39, 83.0054)
+scale = Vector2(0.445312, 0.402344)
+
+[node name="trees" type="Node2D" parent="." unique_id=1737290262]
+material = SubResource("ShaderMaterial_eb6dy")
+position = Vector2(29.3381, 49.3739)
+scale = Vector2(0.58, 0.58)
+
+[node name="Tree1" type="Sprite2D" parent="trees" unique_id=1478865120]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_trceg")
+texture = ExtResource("5_tefeu")
+flip_h = true
+
+[node name="Tree2" type="Sprite2D" parent="trees" unique_id=981500763]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_a8y0u")
+position = Vector2(300, -5.17241)
+texture = ExtResource("5_tefeu")
+
+[node name="Tree3" type="Sprite2D" parent="trees" unique_id=568699202]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(118.966, 20.6897)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree10" type="Sprite2D" parent="trees" unique_id=2029814547]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(194.828, 18.9655)
+texture = ExtResource("5_tipki")
+
+[node name="Tree11" type="Sprite2D" parent="trees" unique_id=2136623112]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(70.6897, 15.5172)
+texture = ExtResource("5_tipki")
+
+[node name="Tree12" type="Sprite2D" parent="trees" unique_id=1499353461]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-162.069, 15.5172)
+texture = ExtResource("5_tipki")
+
+[node name="Tree4" type="Sprite2D" parent="trees" unique_id=567385410]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-98.2759, 15.5172)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree5" type="Sprite2D" parent="trees" unique_id=1159832111]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(394.828, 12.069)
+texture = ExtResource("5_tipki")
+
+[node name="Tree6" type="Sprite2D" parent="trees" unique_id=1293413666]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(132.759, -10.3448)
+texture = ExtResource("6_85g3d")
+
+[node name="Tree7" type="Sprite2D" parent="trees" unique_id=1353019944]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(405.172, -10.3448)
+texture = ExtResource("6_85g3d")
+
+[node name="Tree8" type="Sprite2D" parent="trees" unique_id=1591095527]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(200, -6.89655)
+texture = ExtResource("6_85g3d")
+
+[node name="Tree9" type="Sprite2D" parent="trees" unique_id=1302776537]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-155.172, -8.62069)
+texture = ExtResource("6_85g3d")
+
+[node name="trees2" type="Node2D" parent="." unique_id=688773836]
+material = SubResource("ShaderMaterial_eb6dy")
+position = Vector2(-545.259, 52.9517)
+scale = Vector2(0.58, 0.58)
+
+[node name="Tree1" type="Sprite2D" parent="trees2" unique_id=1912236067]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_trceg")
+position = Vector2(13.1721, -1.4054)
+texture = ExtResource("5_tefeu")
+flip_h = true
+
+[node name="Tree2" type="Sprite2D" parent="trees2" unique_id=1323442750]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_a8y0u")
+position = Vector2(313.172, -6.57781)
+texture = ExtResource("5_tefeu")
+flip_h = true
+
+[node name="Tree3" type="Sprite2D" parent="trees2" unique_id=1383621352]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(132.138, 19.2843)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree10" type="Sprite2D" parent="trees2" unique_id=1013462835]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(208, 17.5601)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree11" type="Sprite2D" parent="trees2" unique_id=1717575088]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(83.8618, 14.1118)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree12" type="Sprite2D" parent="trees2" unique_id=292621642]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-148.897, 14.1118)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree4" type="Sprite2D" parent="trees2" unique_id=91495371]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-85.1038, 14.1118)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree5" type="Sprite2D" parent="trees2" unique_id=1855240901]
+z_index = -2
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(408, 10.6636)
+texture = ExtResource("5_tipki")
+flip_h = true
+
+[node name="Tree6" type="Sprite2D" parent="trees2" unique_id=1325651674]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(145.931, -11.7502)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Tree7" type="Sprite2D" parent="trees2" unique_id=158723579]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(418.344, -11.7502)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Tree8" type="Sprite2D" parent="trees2" unique_id=1001330351]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(213.172, -8.30195)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Tree9" type="Sprite2D" parent="trees2" unique_id=596951264]
+z_index = -1
+texture_filter = 1
+material = SubResource("ShaderMaterial_jkv2x")
+position = Vector2(-142, -10.0261)
+texture = ExtResource("6_85g3d")
+flip_h = true
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=30646498]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_muem4")
+position = Vector2(19.678, 77.6386)
+scale = Vector2(0.26158, 0.26158)
+texture = ExtResource("7_choun")
+
+[node name="Grass3" type="Sprite2D" parent="." unique_id=564268079]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_muem4")
+position = Vector2(-195.349, 77.9964)
+scale = Vector2(0.196842, 0.26158)
+texture = ExtResource("7_choun")
+
+[node name="Grass2" type="Sprite2D" parent="." unique_id=726262768]
+z_index = -3
+texture_filter = 1
+material = SubResource("ShaderMaterial_muem4")
+position = Vector2(-404.293, 76.9231)
+scale = Vector2(0.26158, 0.26158)
+texture = ExtResource("7_choun")
+flip_h = true
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=445800181]
+z_index = -4
+texture_filter = 1
+material = SubResource("ShaderMaterial_tel4y")
+position = Vector2(-185.331, -17.8891)
+scale = Vector2(0.585494, 0.61712)
+texture = ExtResource("9_ya4ey")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"pending_changes": {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "",
+"source_uid": -1
+}
+}
+
+[node name="death" parent="." unique_id=1861312617 instance=ExtResource("13_jkv2x")]
+visible = false
+z_index = 3
+anchors_preset = -1
+offset_left = -388.909
+offset_top = -74.4186
+offset_right = -388.909
+offset_bottom = -74.4186
+
+[node name="ColorRect" parent="death" index="0"]
+layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -137.0
+offset_top = -74.0
+offset_right = 523.0
+offset_bottom = 304.0
+
+[node name="CenterContainer" parent="death" index="1"]
+offset_left = -1.07308
+offset_top = -16.1002
+offset_right = 409.357
+offset_bottom = 233.9
+
+[node name="Label" parent="death/CenterContainer" index="0"]
+text = "You died"
+
+[node name="Restart" parent="death" index="2"]
+layout_mode = 0
+offset_left = 176.029
+offset_top = 177.818
+offset_right = 227.029
+offset_bottom = 202.818
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "Restart"
+
+[node name="wave" parent="death" index="3"]
+offset_left = 156.0
+offset_top = 123.0
+offset_right = 281.0
+offset_bottom = 146.0
+theme_override_font_sizes/font_size = 16
+
+[node name="enemy" parent="death" index="4"]
+offset_left = 156.351
+offset_top = 135.599
+offset_right = 256.351
+offset_bottom = 158.599
+theme_override_font_sizes/font_size = 16
+
+[node name="lost" type="AudioStreamPlayer2D" parent="death" unique_id=618248033]
+stream = ExtResource("15_vxglm")
+
+[node name="Ground" type="Sprite2D" parent="." unique_id=1622378820]
+z_index = -1
+texture_filter = 1
+position = Vector2(-190.34, 93.7388)
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("1_o5qli")
+
+[node name="GroundCollision" type="StaticBody2D" parent="." unique_id=1398518556 groups=["ground"]]
+position = Vector2(-190.34, 93.7388)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollision" unique_id=505645549]
+position = Vector2(1.07347, 5.16805)
+scale = Vector2(0.485, 0.485)
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="tower" parent="." unique_id=170994177 instance=ExtResource("14_a8y0u")]
+material = SubResource("ShaderMaterial_0ld40")
+position = Vector2(-229.696, 93.0233)
+damage_per_second = 15
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2109370516]
+stream = ExtResource("17_gqmmt")
+volume_db = -80.0
+autoplay = true
+
+[node name="coin_label" type="Label" parent="Control" unique_id=1581822160]
+layout_mode = 0
+offset_left = -75.669
+offset_top = -60.195
+offset_right = -60.669
+offset_bottom = -37.195
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "5"
+
+[node name="Control" type="Control" parent="." unique_id=332086757]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -385.331
+offset_top = -50.805
+offset_right = -345.331
+offset_bottom = -10.805
+script = ExtResource("19_0ld40")
+
+[node name="upgrade_wall" type="Button" parent="Control" unique_id=841685353]
+texture_filter = 1
+layout_mode = 0
+offset_left = -80.5008
+offset_top = -12.5224
+offset_right = -50.5008
+offset_bottom = 9.47764
+theme_override_fonts/font = ExtResource("14_jbj1t")
+text = "upgrade"
+
+[node name="repair" type="Button" parent="Control" unique_id=1164050881]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -78.7119
+offset_top = 53.3095
+offset_right = -32.7119
+offset_bottom = 75.3095
+theme_override_fonts/font = ExtResource("14_jbj1t")
+text = "Repair"
+
+[node name="buy_sound" type="AudioStreamPlayer2D" parent="Control" unique_id=603540235]
+layout_mode = 0
+position = Vector2(-70.1934, -33.9034)
+rotation = -1.5744
+scale = Vector2(0.779408, 1.1381)
+stream = ExtResource("20_y6deb")
+
+[node name="buy_arrow" type="Button" parent="Control" unique_id=1842089042]
+texture_filter = 1
+layout_mode = 0
+offset_left = -79.7853
+offset_top = 22.1825
+offset_right = -6.78524
+offset_bottom = 44.1825
+theme_override_fonts/font = ExtResource("14_jbj1t")
+text = "buy_arrow"
+
+[node name="weapon_ui" type="TextureRect" parent="Control" unique_id=790043457]
+layout_mode = 0
+offset_left = -31.127
+offset_top = -61.5385
+offset_right = 16.873
+offset_bottom = -11.5385
+scale = Vector2(0.79, 0.79)
+texture = ExtResource("21_og1vs")
+
+[node name="equip" type="AudioStreamPlayer2D" parent="Control" unique_id=261797673]
+layout_mode = 0
+stream = ExtResource("22_2wyq8")
+
+[node name="spawn_text" type="Label" parent="Control" unique_id=1418223253]
+layout_mode = 0
+offset_left = 109.517
+offset_top = -46.8694
+offset_right = 189.517
+offset_bottom = -23.8694
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "Wave 1 in 10s"
+
+[node name="upgrade_tower" type="Button" parent="Control" unique_id=755998986]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 190.0
+offset_right = 150.0
+offset_bottom = 220.0
+text = "Upgrade Tower"
+
+[node name="Flag" type="Sprite2D" parent="." unique_id=2126782280]
+material = SubResource("ShaderMaterial_gqmmt")
+position = Vector2(-218.962, 23.2558)
+rotation = 0.00637269
+scale = Vector2(0.483874, 0.47537)
+texture = ExtResource("18_0ld40")
+
+[node name="arrows" type="Label" parent="Control" unique_id=1764986526]
+layout_mode = 0
+offset_left = -75.669
+offset_top = -40.195
+offset_right = -60.669
+offset_bottom = -9.195
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 16
+text = "3"
+
+[node name="Coin" type="Sprite2D" parent="Control" unique_id=1871880422]
+texture_filter = 1
+position = Vector2(-90.483, -53.83)
+scale = Vector2(1.655, 1.655)
+texture = ExtResource("22_jscy8")
+
+[node name="Arrow" type="Sprite2D" parent="Control" unique_id=1995599561]
+position = Vector2(-90.193, -33.7084)
+rotation = -1.5744
+scale = Vector2(0.779408, 1.1381)
+texture = ExtResource("23_pm3ni")
+
+[node name="upgrade_map" parent="." unique_id=1064765267 instance=ExtResource("28_2f3dj")]
+visible = false
+offset_left = -186.40428
+offset_top = -1.7889099
+offset_right = -186.40428
+offset_bottom = -1.7889099
+
+[node name="vignette" type="ColorRect" parent="." unique_id=701250391]
+material = SubResource("ShaderMaterial_fv21b")
+offset_left = -618.9624
+offset_top = -133.45259
+offset_right = 233.98932
+offset_bottom = 275.84973
+mouse_filter = 1
+
+[node name="vignette2" type="ColorRect" parent="." unique_id=1446728549]
+material = SubResource("ShaderMaterial_yq6so")
+offset_left = -621.82465
+offset_top = -137.03041
+offset_right = 237.92487
+offset_bottom = 280.8587
+mouse_filter = 1
+
+[node name="SubViewportContainer" parent="." unique_id=121716437 instance=ExtResource("30_fv21b")]
+visible = false
+offset_left = -631.8426
+offset_top = 79.06976
+offset_right = 227.15741
+offset_bottom = 260.06946
+mouse_target = true
+	target_path = NodePath("../%Player")
+fall_speed = 0.028
+paint_interval = 8.38
+
+[connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
+[connection signal="pressed" from="Control/upgrade_wall" to="Control" method="_on_upgrade_wall_pressed"]
+[connection signal="pressed" from="Control/upgrade_wall" to="Control" method="_on_upgrades_pressed"]
+[connection signal="pressed" from="Control/repair" to="Control" method="_on_repair_pressed"]
+[connection signal="pressed" from="Control/buy_arrow" to="Control" method="_on_buy_arrow_pressed"]
+[connection signal="pressed" from="Control/upgrade_tower" to="Control" method="_on_upgrade_tower_pressed"]
+
+[editable path="player"]
+[editable path="death"]

@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://bx7q8c2m3n4p5"]
+
+[ext_resource type="Script" uid="uid://bgkm4sol5uwag" path="res://scripts/main_menu.gd" id="1_menu"]
+[ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_default"]
+bg_color = Color(0.2, 0.18, 0.15, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.6, 0.55, 0.45, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.15, 0.12, 0.1, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.6, 0.55, 0.45, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.35, 0.3, 0.25, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.75, 0.55, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenu" type="Control" unique_id=1789346836]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="." unique_id=783964681]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.06, 0.04, 1)
+
+[node name="Title" type="Label" parent="." unique_id=145250040]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 120.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 72
+text = "OBSIDIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1563707861]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -642.0
+offset_right = 100.0
+offset_bottom = -342.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="VBox" unique_id=1627392922]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_default")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "START"
+
+[node name="OptionsButton" type="Button" parent="VBox" unique_id=812361571]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_default")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="VBox" unique_id=405615704]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_default")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "QUIT"
+
+[node name="OptionsContainer" type="VBoxContainer" parent="." unique_id=953371911]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = -51.0
+offset_right = 202.0
+offset_bottom = 229.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="MasterVolumeContainer" type="HBoxContainer" parent="OptionsContainer" unique_id=1863554829]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsContainer/MasterVolumeContainer" unique_id=1719290390]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "Master"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="OptionsContainer/MasterVolumeContainer" unique_id=33009955]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="OptionsContainer" unique_id=903212178]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsContainer/MusicVolumeContainer" unique_id=1177939445]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "Music"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="OptionsContainer/MusicVolumeContainer" unique_id=716366095]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 0.8
+
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="OptionsContainer" unique_id=1264177246]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsContainer/SFXVolumeContainer" unique_id=842455294]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "SFX"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="OptionsContainer/SFXVolumeContainer" unique_id=1558991467]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="BackButton" type="Button" parent="OptionsContainer" unique_id=1221449584]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_default")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "BACK"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cybb6uvi7p4ya"
+
+[deps]
+
+files=["res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.signals.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.complexity.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.key.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.required.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.suggested.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.web.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.special.translation"]
+
+source_file="res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.csv"
+dest_files=["res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.signals.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.complexity.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.key.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.required.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.suggested.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.web.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/domain-complexity.special.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

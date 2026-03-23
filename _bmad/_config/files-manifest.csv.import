@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d14c7jmhvw7ac"
+
+[deps]
+
+files=["res://_bmad/_config/files-manifest.name.translation", "res://_bmad/_config/files-manifest.module.translation", "res://_bmad/_config/files-manifest.path.translation", "res://_bmad/_config/files-manifest.hash.translation"]
+
+source_file="res://_bmad/_config/files-manifest.csv"
+dest_files=["res://_bmad/_config/files-manifest.name.translation", "res://_bmad/_config/files-manifest.module.translation", "res://_bmad/_config/files-manifest.path.translation", "res://_bmad/_config/files-manifest.hash.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

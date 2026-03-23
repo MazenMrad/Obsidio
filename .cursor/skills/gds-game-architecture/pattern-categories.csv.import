@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bmdyie5mtv0tq"
+
+[deps]
+
+files=["res://_bmad/gds/workflows/3-technical/gds-game-architecture/pattern-categories.when.translation", "res://_bmad/gds/workflows/3-technical/gds-game-architecture/pattern-categories.what.translation", "res://_bmad/gds/workflows/3-technical/gds-game-architecture/pattern-categories.why.translation"]
+
+source_file="res://_bmad/gds/workflows/3-technical/gds-game-architecture/pattern-categories.csv"
+dest_files=["res://_bmad/gds/workflows/3-technical/gds-game-architecture/pattern-categories.when.translation", "res://_bmad/gds/workflows/3-technical/gds-game-architecture/pattern-categories.what.translation", "res://_bmad/gds/workflows/3-technical/gds-game-architecture/pattern-categories.why.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

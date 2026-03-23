@@ -1,18 +1,28 @@
 extends Control
-@onready var player: CharacterBody2D = $"../player"
-@onready var tower: StaticBody2D = $"../tower"
-@onready var flag: Sprite2D = $"../Flag"
+
+var _player: CharacterBody2D
+var _tower: StaticBody2D
+var _flag: Sprite2D
 
 func _ready() -> void:
-	$wave.text="waves survived "+ str(global_var.waves) 
-	$enemy.text="enemies killed "+ str(global_var.enemy_killed)
+	_player = get_node_or_null("../player")
+	_tower = get_node_or_null("../tower")
+	_flag = get_node_or_null("../Flag")
 	
-############RESTART SCENE BUTTON ##############
+	var wave_label := get_node_or_null("wave")
+	var enemy_label := get_node_or_null("enemy")
+	if wave_label:
+		wave_label.text = "waves survived %d" % global_var.waves
+	if enemy_label:
+		enemy_label.text = "enemies killed %d" % global_var.enemy_killed
+
 func _on_restart_pressed() -> void:
 	print("restarting")
 	global_var.reset()
 	get_tree().reload_current_scene()
-	pass # Replace with function body.
-	
 
-############MAIN MENU ##############
+func _on_restart_button_up() -> void:
+	pass
+
+func _on_button_pressed() -> void:
+	pass

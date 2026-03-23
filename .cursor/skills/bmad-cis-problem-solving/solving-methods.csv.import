@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bhu783pdrcvui"
+
+[deps]
+
+files=["res://_bmad/cis/skills/bmad-cis-problem-solving/solving-methods.method.translation", "res://_bmad/cis/skills/bmad-cis-problem-solving/solving-methods.description.translation", "res://_bmad/cis/skills/bmad-cis-problem-solving/solving-methods.facilitation.translation"]
+
+source_file="res://_bmad/cis/skills/bmad-cis-problem-solving/solving-methods.csv"
+dest_files=["res://_bmad/cis/skills/bmad-cis-problem-solving/solving-methods.method.translation", "res://_bmad/cis/skills/bmad-cis-problem-solving/solving-methods.description.translation", "res://_bmad/cis/skills/bmad-cis-problem-solving/solving-methods.facilitation.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,0 +1,15 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://bus_layout_001"]
+
+[sub_resource type="AudioEffect" id="AudioEffect_placeholder"]
+
+[resource]
+bus/0/name = &"Master"
+bus/0/volume_db = 0.0
+bus/0/send = &""
+bus/0/effect/0 = SubResource("AudioEffect_placeholder")
+bus/1/name = &"Music"
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/2/name = &"SFX"
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"

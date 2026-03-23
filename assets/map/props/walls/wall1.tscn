@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3xdcp3nxm60p"]
+[gd_scene format=3 uid="uid://c3xdcp3nxm60p"]
 
 [ext_resource type="Script" uid="uid://5ftjbu53xik0" path="res://scripts/wall.gd" id="1_orj7f"]
 [ext_resource type="Texture2D" uid="uid://8pgxrfhe57s7" path="res://assets/map/wall.png" id="2_gtigl"]
@@ -11,9 +11,9 @@ height = 38.4615
 radius = 7.6923
 height = 38.4615
 
-[node name="wall" type="StaticBody2D" groups=["walls"]]
+[node name="wall" type="StaticBody2D" unique_id=1503732086 groups=["walls"]]
 texture_filter = 1
-scale = Vector2(0.26, 0.26)
+scale = Vector2(0.435, 0.435)
 collision_layer = 8
 script = ExtResource("1_orj7f")
 metadata/_aseprite_wizard_interface_config_ = {
@@ -36,25 +36,25 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "869ff8a812503c79c8ecf5c4c94e6591"
 
-[node name="Wall" type="Sprite2D" parent="."]
+[node name="Wall" type="Sprite2D" parent="." unique_id=2113562343]
 position = Vector2(0, 3.84615)
 scale = Vector2(1.015, 1.015)
 texture = ExtResource("2_gtigl")
 
-[node name="wallarea" type="Area2D" parent="."]
+[node name="wallarea" type="Area2D" parent="." unique_id=563070003]
 collision_layer = 9
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wallarea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallarea" unique_id=1225528316]
 position = Vector2(-3.84615, 0)
 shape = SubResource("CapsuleShape2D_73fws")
 debug_color = Color(0.815619, 0.37329, 0.436052, 0.42)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=724912522]
 position = Vector2(-3.84615, 0)
 shape = SubResource("CapsuleShape2D_id02q")
 
-[node name="build_sound" type="AudioStreamPlayer2D" parent="."]
+[node name="build_sound" type="AudioStreamPlayer2D" parent="." unique_id=369846060]
 stream = ExtResource("3_73fws")
 
 [connection signal="area_entered" from="wallarea" to="." method="_on_wallarea_area_entered"]

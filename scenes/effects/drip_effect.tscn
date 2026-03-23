@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dkwhjr7ubfsvy"]
+
+[ext_resource type="Shader" uid="uid://c4fdo5f21d4bg" path="res://scenes/shaders/drip.gdshader" id="1_drip"]
+[ext_resource type="Script" uid="uid://w3af54e8n73s" path="res://scenes/effects/drip_effect.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://deo3myodl4iq1" path="res://assets/textures/noise.png" id="2_noise"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drip"]
+resource_local_to_scene = true
+shader = ExtResource("1_drip")
+shader_parameter/noise_texture = ExtResource("2_noise")
+shader_parameter/water_color = Color(1, 1, 1, 1)
+shader_parameter/advance = 0.0
+shader_parameter/shrink = 0.3
+shader_parameter/texture_size = Vector2(859, 181)
+shader_parameter/brush_size = 20.0
+shader_parameter/brush_position = Vector2(0.5, 0.5)
+
+[node name="SubViewportContainer" type="SubViewportContainer" unique_id=1225960314]
+stretch = true
+script = ExtResource("1_script")
+stretch_shader_local_to_viewport = false
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=863930853]
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(859, 181)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="SubViewport" unique_id=1112948311]
+copy_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=242546769]
+material = SubResource("ShaderMaterial_drip")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

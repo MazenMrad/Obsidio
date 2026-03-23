@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bnw5bjklkndwg"
+
+[deps]
+
+files=["res://_bmad/core/module-help.phase.translation", "res://_bmad/core/module-help.name.translation", "res://_bmad/core/module-help.code.translation", "res://_bmad/core/module-help.en.translation", "res://_bmad/core/module-help.workflow.translation", "res://_bmad/core/module-help.command.translation", "res://_bmad/core/module-help.required.translation", "res://_bmad/core/module-help.agent.translation", "res://_bmad/core/module-help.en.translation", "res://_bmad/core/module-help.description.translation", "res://_bmad/core/module-help.output.translation", "res://_bmad/core/module-help.outputs.translation"]
+
+source_file="res://_bmad/core/module-help.csv"
+dest_files=["res://_bmad/core/module-help.phase.translation", "res://_bmad/core/module-help.name.translation", "res://_bmad/core/module-help.code.translation", "res://_bmad/core/module-help.en.translation", "res://_bmad/core/module-help.workflow.translation", "res://_bmad/core/module-help.command.translation", "res://_bmad/core/module-help.required.translation", "res://_bmad/core/module-help.agent.translation", "res://_bmad/core/module-help.en.translation", "res://_bmad/core/module-help.description.translation", "res://_bmad/core/module-help.output.translation", "res://_bmad/core/module-help.outputs.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
