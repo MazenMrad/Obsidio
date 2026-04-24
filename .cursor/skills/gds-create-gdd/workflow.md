@@ -1,7 +1,7 @@
 ---
-name: create-gdd
+name: gds-create-gdd
 description: 'Comprehensive game design document creator through collaborative discovery. Use when the user says "lets create a game design document" or "I want to create a comprehensive GDD"'
-main_config: '{project-root}/_bmad/gds/config.yaml'
+main_config: '{module_config}'
 web_bundle: true
 ---
 
@@ -58,4 +58,4 @@ Load and read full config from {main_config} and resolve:
 
 ### 2. First Step EXECUTION
 
-Load, read the full file and then execute `steps/step-01-init.md` to begin the workflow.
+Load, read the full file and then execute `steps-c/step-01-init.md` to begin the workflow.

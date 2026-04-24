@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnfxp5fd5jpdn"]
+[gd_scene format=3 uid="uid://dnfxp5fd5jpdn"]
 
 [ext_resource type="Script" uid="uid://5ftjbu53xik0" path="res://scripts/wall.gd" id="1_46ot6"]
-[ext_resource type="Texture2D" uid="uid://62vogkhj3brp" path="res://assets/map/wall5.png" id="2_46ot6"]
+[ext_resource type="Texture2D" uid="uid://0m6ejyo312kc" path="res://assets/map/wall4.png" id="2_m7oqo"]
 [ext_resource type="AudioStream" uid="uid://crolftxhuwuw8" path="res://music/build_sound.wav" id="3_m7oqo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hgf42"]
-size = Vector2(34.6154, 61.5385)
+size = Vector2(50, 50.000015)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0rtn"]
-size = Vector2(34.6154, 57.6923)
+size = Vector2(53.846153, 46.153843)
 
-[node name="wall" type="StaticBody2D" groups=["walls"]]
+[node name="wall" type="StaticBody2D" unique_id=1481127647 groups=["walls"]]
 texture_filter = 1
 scale = Vector2(0.26, 0.26)
 collision_layer = 8
@@ -37,25 +37,25 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "869ff8a812503c79c8ecf5c4c94e6591"
 
-[node name="Wall" type="Sprite2D" parent="."]
+[node name="Wall" type="Sprite2D" parent="." unique_id=1459405755]
 position = Vector2(-0.575384, -2.78615)
-scale = Vector2(1.4926, 1.30945)
-texture = ExtResource("2_46ot6")
+scale = Vector2(1.625, 1.625)
+texture = ExtResource("2_m7oqo")
 
-[node name="wallarea" type="Area2D" parent="."]
+[node name="wallarea" type="Area2D" parent="." unique_id=728232908]
 collision_layer = 9
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wallarea"]
-position = Vector2(1.92308, 3.84616)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallarea" unique_id=1968260128]
+position = Vector2(1.9230767, -1.9230844)
 shape = SubResource("RectangleShape2D_hgf42")
 debug_color = Color(0.815619, 0.37329, 0.436052, 0.42)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.92308, 5.76923)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1586769394]
+position = Vector2(3.846154, 2.2924864e-06)
 shape = SubResource("RectangleShape2D_x0rtn")
 
-[node name="build_sound" type="AudioStreamPlayer2D" parent="."]
+[node name="build_sound" type="AudioStreamPlayer2D" parent="." unique_id=1384257417]
 stream = ExtResource("3_m7oqo")
 
 [connection signal="area_entered" from="wallarea" to="." method="_on_wallarea_area_entered"]

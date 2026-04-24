@@ -3,7 +3,7 @@ name: 'step-01-init'
 description: 'Initialize the game brainstorming workflow and validate readiness'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/gds/workflows/1-preproduction/gds-brainstorm-game'
+workflow_path: '{installed_path}'
 
 # File References
 thisStepFile: './step-01-init.md'

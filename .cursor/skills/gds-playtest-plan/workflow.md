@@ -1,7 +1,7 @@
 ---
 name: gametest-playtest-plan
 description: 'Playtest session planner. Use when the user says "lets create a playtest plan" or "I want to schedule gameplay testing"'
-main_config: '{project-root}/_bmad/gds/config.yaml'
+main_config: '{module_config}'
 tags:
   - qa
   - playtesting
@@ -48,7 +48,7 @@ This workflow produces a complete playtesting plan including session structure, 
 
 ## INITIALIZATION
 
-Load and resolve configuration from `_bmad/gds/config.yaml`:
+Load and resolve configuration from `{module_config}`:
 
 ```yaml
 output_folder: {from config}

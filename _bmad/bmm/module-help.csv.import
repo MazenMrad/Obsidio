@@ -6,10 +6,10 @@ uid="uid://bvhy3br2530la"
 
 [deps]
 
-files=["res://_bmad/bmm/module-help.phase.translation", "res://_bmad/bmm/module-help.name.translation", "res://_bmad/bmm/module-help.code.translation", "res://_bmad/bmm/module-help.sequence.translation", "res://_bmad/bmm/module-help.workflow.translation", "res://_bmad/bmm/module-help.command.translation", "res://_bmad/bmm/module-help.required.translation", "res://_bmad/bmm/module-help.agent.translation", "res://_bmad/bmm/module-help.options.translation", "res://_bmad/bmm/module-help.description.translation", "res://_bmad/bmm/module-help.output.translation", "res://_bmad/bmm/module-help.outputs.translation"]
+files=["res://_bmad/bmm/module-help.skill.translation", "res://_bmad/bmm/module-help.display.translation", "res://_bmad/bmm/module-help.menu.translation", "res://_bmad/bmm/module-help.description.translation", "res://_bmad/bmm/module-help.action.translation", "res://_bmad/bmm/module-help.args.translation", "res://_bmad/bmm/module-help.phase.translation", "res://_bmad/bmm/module-help.after.translation", "res://_bmad/bmm/module-help.before.translation", "res://_bmad/bmm/module-help.required.translation", "res://_bmad/bmm/module-help.output.translation", "res://_bmad/bmm/module-help.outputs.translation"]
 
 source_file="res://_bmad/bmm/module-help.csv"
-dest_files=["res://_bmad/bmm/module-help.phase.translation", "res://_bmad/bmm/module-help.name.translation", "res://_bmad/bmm/module-help.code.translation", "res://_bmad/bmm/module-help.sequence.translation", "res://_bmad/bmm/module-help.workflow.translation", "res://_bmad/bmm/module-help.command.translation", "res://_bmad/bmm/module-help.required.translation", "res://_bmad/bmm/module-help.agent.translation", "res://_bmad/bmm/module-help.options.translation", "res://_bmad/bmm/module-help.description.translation", "res://_bmad/bmm/module-help.output.translation", "res://_bmad/bmm/module-help.outputs.translation"]
+dest_files=["res://_bmad/bmm/module-help.skill.translation", "res://_bmad/bmm/module-help.display.translation", "res://_bmad/bmm/module-help.menu.translation", "res://_bmad/bmm/module-help.description.translation", "res://_bmad/bmm/module-help.action.translation", "res://_bmad/bmm/module-help.args.translation", "res://_bmad/bmm/module-help.phase.translation", "res://_bmad/bmm/module-help.after.translation", "res://_bmad/bmm/module-help.before.translation", "res://_bmad/bmm/module-help.required.translation", "res://_bmad/bmm/module-help.output.translation", "res://_bmad/bmm/module-help.outputs.translation"]
 
 [params]
 

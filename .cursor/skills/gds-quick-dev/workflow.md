@@ -1,52 +1,76 @@
 ---
-name: gds-quick-dev
-description: 'Flexible development workflow - execute tech-specs OR direct instructions with optional planning. Use when the user says "lets implement this feature" or "execute these development tasks"'
+main_config: '{module_config}'
 ---
 
-# Quick Dev Workflow
+# Quick Dev New Preview Workflow
 
-**Goal:** Execute implementation tasks efficiently, either from a tech-spec or direct user instructions.
+**Goal:** Turn user intent into a hardened, reviewable artifact.
 
-**Your Role:** You are an elite full-stack developer executing tasks autonomously. Follow patterns, ship code, run tests. Every response moves the project forward.
+**CRITICAL:** If a step says "read fully and follow step-XX", you read and follow step-XX. No exceptions.
 
----
+
+## READY FOR DEVELOPMENT STANDARD
+
+A specification is "Ready for Development" when:
+
+- **Actionable**: Every task has a file path and specific action.
+- **Logical**: Tasks ordered by dependency.
+- **Testable**: All ACs use Given/When/Then.
+- **Complete**: No placeholders or TBDs.
+
+
+## SCOPE STANDARD
+
+A specification should target a **single user-facing goal** within **900–1600 tokens**:
+
+- **Single goal**: One cohesive feature, even if it spans multiple layers/files. Multi-goal means >=2 **top-level independent shippable deliverables** — each could be reviewed, tested, and merged as a separate PR without breaking the others. Never count surface verbs, "and" conjunctions, or noun phrases. Never split cross-layer implementation details inside one user goal.
+  - Split: "add dark mode toggle AND refactor auth to JWT AND build admin dashboard"
+  - Don't split: "add validation and display errors" / "support drag-and-drop AND paste AND retry"
+- **900–1600 tokens**: Optimal range for LLM consumption. Below 900 risks ambiguity; above 1600 risks context-rot in implementation agents.
+- **Neither limit is a gate.** Both are proposals with user override.
+
 
 ## WORKFLOW ARCHITECTURE
 
-This uses **step-file architecture** for focused execution:
+This uses **step-file architecture** for disciplined execution:
 
-- Each step loads fresh to combat "lost in the middle"
-- State persists via variables: `{baseline_commit}`, `{execution_mode}`, `{tech_spec_path}`
-- Sequential progression through implementation phases
+- **Micro-file Design**: Each step is self-contained and followed exactly
+- **Just-In-Time Loading**: Only load the current step file
+- **Sequential Enforcement**: Complete steps in order, no skipping
+- **State Tracking**: Persist progress via spec frontmatter and in-memory variables
+- **Append-Only Building**: Build artifacts incrementally
 
----
+### Step Processing Rules
 
-## INITIALIZATION
+1. **READ COMPLETELY**: Read the entire step file before acting
+2. **FOLLOW SEQUENCE**: Execute sections in order
+3. **WAIT FOR INPUT**: Halt at checkpoints and wait for human
+4. **LOAD NEXT**: When directed, read fully and follow the next step file
 
-### Configuration Loading
+### Critical Rules (NO EXCEPTIONS)
 
-Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
+- **NEVER** load multiple step files simultaneously
+- **ALWAYS** read entire step file before execution
+- **NEVER** skip steps or optimize the sequence
+- **ALWAYS** follow the exact instructions in the step file
+- **ALWAYS** halt at checkpoints and wait for human input
 
-- `user_name`, `communication_language`, `game_dev_experience`
-- `output_folder`, `planning_artifacts`,  `implementation_artifacts`
+
+## INITIALIZATION SEQUENCE
+
+### 1. Configuration Loading
+
+Load and read full config from `{main_config}` and resolve:
+
+- `project_name`, `planning_artifacts`, `implementation_artifacts`, `user_name`
+- `communication_language`, `document_output_language`, `game_dev_experience`
 - `date` as system-generated current datetime
-- ✅ YOU MUST ALWAYS SPEAK OUTPUT In your Agent communication style with the config `{communication_language}`
-
-### Paths
-
-- `installed_path` = `{project-root}/_bmad/gds/workflows/gds-quick-flow/gds-quick-dev`
+- `sprint_status` = `{implementation_artifacts}/sprint-status.yaml`
 - `project_context` = `**/project-context.md` (load if exists)
-- `project_levels` = `{project-root}/_bmad/gds/workflows/workflow-status/project-levels.yaml`
+- CLAUDE.md / memory files (load if exist)
 
-### Related Workflows
+YOU MUST ALWAYS SPEAK OUTPUT in your Agent communication style with the config `{communication_language}`.
 
-- `quick_spec_workflow` = `{project-root}/_bmad/gds/workflows/bmad-quick-flow/quick-spec/workflow.md`
-- `workflow_init` = `{project-root}/_bmad/gds/workflows/workflow-status/init/workflow.yaml`
-- `party_mode_exec` = `{project-root}/_bmad/core/workflows/party-mode/workflow.md`
-- `advanced_elicitation` = `{project-root}/_bmad/core/workflows/advanced-elicitation/workflow.xml`
+### 2. First Step Execution
 
----
-
-## EXECUTION
-
-Load and execute `steps/step-01-mode-detection.md` to begin the workflow.
+Read fully and follow: `./step-01-clarify-and-route.md` to begin the workflow.

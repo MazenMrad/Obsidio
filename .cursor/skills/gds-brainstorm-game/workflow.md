@@ -1,7 +1,7 @@
 ---
 name: brainstorm-game
 description: 'Facilitate game brainstorming sessions with game-specific context and techniques. Use when the user says "lets create game design ideas" or "I want to brainstorm game concepts"'
-main_config: '{project-root}/_bmad/gds/config.yaml'
+main_config: '{module_config}'
 web_bundle: true
 ---
 

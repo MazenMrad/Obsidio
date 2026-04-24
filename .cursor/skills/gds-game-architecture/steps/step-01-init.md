@@ -3,7 +3,7 @@ name: 'step-01-init'
 description: 'Initialize the architecture workflow, validate readiness, and discover input documents'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/gds/workflows/3-technical/gds-game-architecture'
+workflow_path: '{installed_path}'
 
 # File References
 thisStepFile: './step-01-init.md'

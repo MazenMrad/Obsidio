@@ -2,14 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://c121gsofxyrxb"
+uid="uid://b2x6vyyctoj7p"
 
 [deps]
 
-files=["res://_bmad/core/tasks/bmad-create-prd/data/project-types.detection.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.key.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.required.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.skip.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.web.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.innovation.translation"]
+files=["res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.detection.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.key.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.required.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.skip.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.web.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.innovation.translation"]
 
-source_file="res://_bmad/core/tasks/bmad-create-prd/data/project-types.csv"
-dest_files=["res://_bmad/core/tasks/bmad-create-prd/data/project-types.detection.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.key.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.required.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.skip.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.web.translation", "res://_bmad/core/tasks/bmad-create-prd/data/project-types.innovation.translation"]
+source_file="res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.csv"
+dest_files=["res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.detection.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.key.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.required.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.skip.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.web.translation", "res://_bmad/bmm/2-plan-workflows/bmad-create-prd/data/project-types.innovation.translation"]
 
 [params]
 

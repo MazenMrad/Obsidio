@@ -3,7 +3,7 @@ name: 'step-11-complete'
 description: 'Complete the narrative workflow with final summary, visualizations, and handoff'
 
 # Path Definitions
-workflow_path: '{project-root}/_bmad/gds/workflows/2-design/gds-create-narrative'
+workflow_path: '{installed_path}'
 
 # File References
 thisStepFile: './step-11-complete.md'
@@ -11,7 +11,7 @@ workflowFile: '{workflow_path}/workflow.md'
 outputFile: '{output_folder}/narrative-design.md'
 
 # Handoff References
-architectureWorkflow: '{project-root}/_bmad/gds/workflows/3-technical/gds-game-architecture/workflow.yaml'
+architectureWorkflow: 'skill:gds-game-architecture'
 ---
 
 # Step 11: Complete

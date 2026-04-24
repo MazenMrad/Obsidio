@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cukrbabk6j73d"]
 
-[ext_resource type="Script" uid="uid://7lp6gohsm3ph" path="res://scripts/enemy_1.gd" id="1_y821r"]
+[ext_resource type="Script" path="res://scripts/enemy2.gd" id="1_y821r"]
 [ext_resource type="PackedScene" uid="uid://c1bhdvhoj1gt1" path="res://scenes/props/coin.tscn" id="2_hvpr5"]
 [ext_resource type="Shader" uid="uid://bwug8s2ocwp2t" path="res://scenes/shaders/hit flash.gdshader" id="3_hpql6"]
 [ext_resource type="Texture2D" uid="uid://ckf3b31fmlrv" path="res://assets/characters/animation/enemy3/The-armored-knight-reaches-across-his-body-to-draw-a-sword-f.png" id="4_3xn8e"]
@@ -152,7 +152,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2liu"]
-radius = 3.9473696
+radius = 3.9473681
 height = 15.7894745
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ird33"]
@@ -202,6 +202,7 @@ scale = Vector2(0.76, 0.76)
 collision_mask = 12
 script = ExtResource("1_y821r")
 coin_scene = ExtResource("2_hvpr5")
+move_speed = 95.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1670366706]
 texture_filter = 1
@@ -232,16 +233,16 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "cc1f0ba53460145ab8e3a48d91e43ffc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=406488182]
-position = Vector2(-2.63158, -1.31579)
+position = Vector2(-1.3157893, 1.3157896)
 shape = SubResource("CapsuleShape2D_h2liu")
 debug_color = Color(0.712277, 0.394929, 0.729381, 0.42)
 
 [node name="enemy1" type="Area2D" parent="." unique_id=1770395327]
 collision_layer = 2
-collision_mask = 15
+collision_mask = 23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy1" unique_id=2045696253]
-position = Vector2(-2.631579, 1.3157895)
+position = Vector2(-1.3157895, 1.3157895)
 shape = SubResource("CapsuleShape2D_ird33")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1890907947]

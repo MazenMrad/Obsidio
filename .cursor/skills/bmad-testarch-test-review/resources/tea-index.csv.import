@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dlc11aalkni3m"
+
+[deps]
+
+files=["res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.name.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.description.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.tags.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.tier.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.fragment.translation"]
+
+source_file="res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.csv"
+dest_files=["res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.name.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.description.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.tags.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.tier.translation", "res://_bmad/tea/workflows/testarch/bmad-testarch-test-review/resources/tea-index.fragment.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,7 +1,7 @@
 ---
 name: gametest-test-review
 description: 'Game test coverage reviewer. Use when the user says "lets review game tests" or "I want to evaluate test coverage"'
-main_config: '{project-root}/_bmad/gds/config.yaml'
+main_config: '{module_config}'
 tags:
   - qa
   - review
@@ -47,7 +47,7 @@ This workflow analyzes the existing test suite and produces a comprehensive revi
 
 ## INITIALIZATION
 
-Load and resolve configuration from `_bmad/gds/config.yaml`:
+Load and resolve configuration from `{module_config}`:
 
 ```yaml
 output_folder: {from config}

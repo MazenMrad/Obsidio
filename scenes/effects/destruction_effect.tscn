@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dtq4ya8ij1wrl"]
+
+[ext_resource type="Script" uid="uid://bja3a7t8yqjxg" path="res://scripts/effects/destruction_effect.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://dnculu4u1e84q" path="res://scenes/shaders/destruction_effect.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("2_shader")
+shader_parameter/strength = 0.0
+shader_parameter/seed = 0.5
+shader_parameter/direction = Vector2(-0.5, 0)
+shader_parameter/mask_vignette_strength = 0.5
+shader_parameter/mask_vignette_center = Vector2(0.5, 0.3)
+shader_parameter/time = 0.0
+
+[node name="DestructionEffect" type="Node2D" unique_id=1637488]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=527919941]
+material = SubResource("ShaderMaterial_1")
+scale = Vector2(0.725, 0.725)

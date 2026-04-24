@@ -34,6 +34,8 @@ physics_material_override = SubResource("PhysicsMaterial_umosx")
 sleeping = true
 contact_monitor = true
 max_contacts_reported = 3
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_ik6fu")
 damage = 17
 speed = 100
@@ -80,8 +82,13 @@ sharp_limit = 3.005
 round_precision = 32
 antialiased = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_23jat")
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 1)
@@ -91,4 +98,6 @@ debug_color = Color(0.811975, 0.37986, 0.418769, 0.42)
 [node name="enemy_hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_p2d0s")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

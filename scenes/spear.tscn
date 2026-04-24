@@ -24,10 +24,10 @@ point_count = 2
 colors = PackedColorArray(1, 1, 1, 1, 0.5, 0.5, 0.5, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp1ea"]
-size = Vector2(5, 25)
+size = Vector2(2.4652064, 25.499954)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_area_sp1ea"]
-size = Vector2(4, 24)
+size = Vector2(2.999999, 24)
 
 [node name="spear" type="RigidBody2D" unique_id=1556969261]
 collision_layer = 2
@@ -47,14 +47,15 @@ ground_embed_distance = 4.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1811195511]
 texture_filter = 1
+rotation = 0.8022734
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_sp1ea")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1695646986]
 top_level = true
 material = SubResource("ShaderMaterial_sp1ea")
-position = Vector2(-30, 0)
-points = PackedVector2Array(0, 0, 15, 0, 25, 0)
+position = Vector2(-33, 1)
+points = PackedVector2Array(0, 0, 13.299432, 0, 15, 0, 25, 0)
 width = 3.0
 width_curve = SubResource("Curve_sp1ea")
 gradient = SubResource("Gradient_sp1ea")
@@ -64,14 +65,17 @@ end_cap_mode = 2
 antialiased = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1185210801]
+position = Vector2(0.25336784, 1.2667233)
+rotation = 1.5681199
 shape = SubResource("RectangleShape2D_sp1ea")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=363948579]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=504409536]
-position = Vector2(4, -3)
-rotation = 0.8071526
+position = Vector2(1, 0.99999994)
+rotation = 1.5722868
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_area_sp1ea")
 
 [node name="enemy_hit" type="AudioStreamPlayer2D" parent="." unique_id=78964145]

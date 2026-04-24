@@ -1,7 +1,7 @@
 ---
 name: gametest-automate
 description: 'Automated test scenario generator. Use when the user says "I want to create automated game tests" or "Generate test scenarios for Unity Unreal or Godot"'
-main_config: '{project-root}/_bmad/gds/config.yaml'
+main_config: '{module_config}'
 ---
 
 # Game Test Automation Workflow
@@ -37,7 +37,7 @@ If any preflight requirement is not met, HALT and guide the user.
 
 ### Configuration Loading
 
-Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
+Load config from `{module_config}` and resolve:
 
 - `project_name`, `output_folder`, `user_name`
 - `communication_language`, `document_output_language`, `game_dev_experience`
@@ -46,7 +46,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 ### Paths
 
-- `installed_path` = `{project-root}/_bmad/gds/workflows/gametest/gds-test-automate`
+- `installed_path` = `{skill_root}`
 - `validation` = `{installed_path}/checklist.md`
 - `test_dir` = `{project-root}/tests`
 - `source_dir` = `{project-root}/src`

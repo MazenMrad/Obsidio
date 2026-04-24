@@ -2,7 +2,7 @@
 
 **Goal:** Manage significant changes during sprint execution by analyzing impact across all project artifacts and producing a structured Sprint Change Proposal.
 
-**Your Role:** You are a Scrum Master navigating change management. Analyze the triggering issue, assess impact across PRD, epics, architecture, and UX artifacts, and produce an actionable Sprint Change Proposal with clear handoff.
+**Your Role:** You are a Developer navigating change management. Analyze the triggering issue, assess impact across PRD, epics, architecture, and UX artifacts, and produce an actionable Sprint Change Proposal with clear handoff.
 
 ---
 
@@ -36,7 +36,7 @@ Load config from `{project-root}/_bmad/bmm/config.yaml` and resolve:
 | Epics | `{planning_artifacts}/*epic*.md` (whole) or `{planning_artifacts}/*epic*/*.md` (sharded) | FULL_LOAD |
 | Architecture | `{planning_artifacts}/*architecture*.md` (whole) or `{planning_artifacts}/*architecture*/*.md` (sharded) | FULL_LOAD |
 | UX Design | `{planning_artifacts}/*ux*.md` (whole) or `{planning_artifacts}/*ux*/*.md` (sharded) | FULL_LOAD |
-| Tech Spec | `{planning_artifacts}/*tech-spec*.md` (whole) | FULL_LOAD |
+| Spec | `{planning_artifacts}/*spec-*.md` (whole) | FULL_LOAD |
 | Document Project | `{project_knowledge}/index.md` (sharded) | INDEX_GUIDED |
 
 ### Context
@@ -51,9 +51,9 @@ Load config from `{project-root}/_bmad/bmm/config.yaml` and resolve:
 
 **Strategy**: Course correction needs broad project context to assess change impact accurately. Load all available planning artifacts.
 
-**Discovery Process for FULL_LOAD documents (PRD, Epics, Architecture, UX Design, Tech Spec):**
+**Discovery Process for FULL_LOAD documents (PRD, Epics, Architecture, UX Design, Spec):**
 
-1. **Search for whole document first** - Look for files matching the whole-document pattern (e.g., `*prd*.md`, `*epic*.md`, `*architecture*.md`, `*ux*.md`, `*tech-spec*.md`)
+1. **Search for whole document first** - Look for files matching the whole-document pattern (e.g., `*prd*.md`, `*epic*.md`, `*architecture*.md`, `*ux*.md`, `*spec-*.md`)
 2. **Check for sharded version** - If whole document not found, look for a directory with `index.md` (e.g., `prd/index.md`, `epics/index.md`)
 3. **If sharded version found**:
    - Read `index.md` to understand the document structure
@@ -70,7 +70,7 @@ Load config from `{project-root}/_bmad/bmm/config.yaml` and resolve:
 
 **Fuzzy matching**: Be flexible with document names — users may use variations like `prd.md`, `bmm-prd.md`, `product-requirements.md`, etc.
 
-**Missing documents**: Not all documents may exist. PRD and Epics are essential; Architecture, UX Design, Tech Spec, and Document Project are loaded if available. HALT if PRD or Epics cannot be found.
+**Missing documents**: Not all documents may exist. PRD and Epics are essential; Architecture, UX Design, Spec, and Document Project are loaded if available. HALT if PRD or Epics cannot be found.
 
 <workflow>
 
@@ -192,8 +192,8 @@ Load config from `{project-root}/_bmad/bmm/config.yaml` and resolve:
 <action>Section 5: Implementation Handoff</action>
 
 - Categorize change scope:
-  - Minor: Direct implementation by dev team
-  - Moderate: Backlog reorganization needed (PO/SM)
+  - Minor: Direct implementation by Developer agent
+  - Moderate: Backlog reorganization needed (PO/DEV)
   - Major: Fundamental replan required (PM/Architect)
 - Specify handoff recipients and their responsibilities
 - Define success criteria for implementation
@@ -219,8 +219,8 @@ Load config from `{project-root}/_bmad/bmm/config.yaml` and resolve:
   <action>Finalize Sprint Change Proposal document</action>
   <action>Determine change scope classification:</action>
 
-- **Minor**: Can be implemented directly by development team
-- **Moderate**: Requires backlog reorganization and PO/SM coordination
+- **Minor**: Can be implemented directly by Developer agent
+- **Moderate**: Requires backlog reorganization and PO/DEV coordination
 - **Major**: Needs fundamental replan with PM/Architect involvement
 
 <action>Provide appropriate handoff based on scope:</action>
@@ -228,12 +228,12 @@ Load config from `{project-root}/_bmad/bmm/config.yaml` and resolve:
 </check>
 
 <check if="Minor scope">
-  <action>Route to: Development team for direct implementation</action>
+  <action>Route to: Developer agent for direct implementation</action>
   <action>Deliverables: Finalized edit proposals and implementation tasks</action>
 </check>
 
 <check if="Moderate scope">
-  <action>Route to: Product Owner / Scrum Master agents</action>
+  <action>Route to: Product Owner / Developer agents</action>
   <action>Deliverables: Sprint Change Proposal + backlog reorganization plan</action>
 </check>
 
@@ -261,7 +261,7 @@ Load config from `{project-root}/_bmad/bmm/config.yaml` and resolve:
 - Implementation handoff plan
 
 <action>Report workflow completion to user with personalized message: "Correct Course workflow complete, {user_name}!"</action>
-<action>Remind user of success criteria and next steps for implementation team</action>
+<action>Remind user of success criteria and next steps for Developer agent</action>
 </step>
 
 </workflow>

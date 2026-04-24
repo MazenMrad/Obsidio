@@ -1,5 +1,8 @@
 extends StaticBody2D
 
+const DESTRUCTION_EFFECT_SCENE: PackedScene = preload("res://scenes/effects/destruction_effect.tscn")
+const HEALTH_BAR_SCENE: PackedScene = preload("res://scenes/ui/health_bar.tscn")
+
 @export var max_hp: int = 100
 @export var damage_per_second: int = 20
 @export var enable_destruction_particles: bool = false
@@ -10,6 +13,7 @@ var current_hp: int = 100
 var enemy_nearby: bool = false
 var damage_timer: float = 0.0
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var _health_bar: Node2D = null
 
 @onready var wall_sprite: Sprite2D = $Wall
 var hit_material: ShaderMaterial
@@ -19,6 +23,7 @@ func _ready() -> void:
 	rng.randomize()
 	current_hp = max_hp
 	setup_hit_shader()
+	_setup_health_bar()
 
 func setup_hit_shader() -> void:
 	hit_material = ShaderMaterial.new()
@@ -35,17 +40,15 @@ func setup_hit_shader() -> void:
 	
 	wall_sprite.material = hit_material
 
-func _process(delta: float) -> void:
-	if enemy_nearby:
-		damage_timer += delta
-		if damage_timer >= 1.0:
-			take_damage(damage_per_second)
-			damage_timer = 0.0
+func _process(_delta: float) -> void:
+	pass
 
 func take_damage(damage: int) -> void:
 	current_hp -= damage
 	print("Wall HP: %d" % current_hp)
 	trigger_hit_effect()
+	_shake_camera(8.0, 0.18)
+	_update_health_bar()
 
 	if current_hp <= 0:
 		destroy_wall()
@@ -105,6 +108,9 @@ func destroy_wall() -> void:
 	global_var.set_wall_destroyed()
 	print("Wall destroyed!")
 	
+	# Play destruction shader effect
+	_spawn_destruction_effect()
+	
 	if hit_material:
 		hit_material.set_shader_parameter("crack_intensity", 1.0)
 		hit_material.set_shader_parameter("hit_intensity", 0.8)
@@ -115,19 +121,33 @@ func destroy_wall() -> void:
 	
 	queue_free()
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		enemy_touching = true
-		damage_timer = 0.0
-		take_damage(damage_per_second)
+
+func _spawn_destruction_effect() -> void:
+	var wall_texture: Texture2D = null
+	if wall_sprite:
+		wall_texture = wall_sprite.texture
+	
+	if DESTRUCTION_EFFECT_SCENE and wall_texture:
+		var effect := DESTRUCTION_EFFECT_SCENE.instantiate()
+		effect.texture = wall_texture
+		effect.global_position = global_position
+		effect.start_scale = wall_sprite.scale if wall_sprite else Vector2.ONE
+		effect.duration = 0.8
+		effect.use_particles = enable_destruction_particles
+		get_tree().root.add_child(effect)
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	pass
 
 func _on_wallarea_area_entered(area: Area2D) -> void:
-	if area.name == "enemy1":
+	# Check parent body — all enemies are in the "enemies" group
+	var parent_body: Node2D = area.get_parent()
+	if parent_body and parent_body.is_in_group("enemies"):
 		enemy_nearby = true
-		take_damage(damage_per_second)
 
 func _on_wallarea_area_exited(area: Area2D) -> void:
-	if area.name == "enemy1":
+	var parent_body: Node2D = area.get_parent()
+	if parent_body and parent_body.is_in_group("enemies"):
 		enemy_nearby = false
 
 func _on_repair_pressed() -> void:
@@ -141,9 +161,33 @@ func _on_repair_pressed() -> void:
 			var build_sound := get_node_or_null("build_sound")
 			if build_sound:
 				build_sound.play()
-			if current_hp > max_hp:
-				current_hp = max_hp
+	if current_hp > max_hp:
+		current_hp = max_hp
+	_update_health_bar()
 			
-			if hit_material:
-				var crack_level: float = 1.0 - (float(current_hp) / float(max_hp))
-				hit_material.set_shader_parameter("crack_intensity", crack_level * 0.5)
+	if hit_material:
+		var crack_level: float = 1.0 - (float(current_hp) / float(max_hp))
+		hit_material.set_shader_parameter("crack_intensity", crack_level * 0.5)
+
+
+func _shake_camera(amount: float, duration: float) -> void:
+	var camera: Camera2D = get_parent().get_node_or_null("Camera2D") as Camera2D
+	if camera and camera.has_method("shake"):
+		camera.shake(amount, duration)
+
+
+func _setup_health_bar() -> void:
+	_health_bar = HEALTH_BAR_SCENE.instantiate()
+	add_child(_health_bar)
+	# Position above the wall sprite
+	if wall_sprite:
+		var wall_size: Vector2 = wall_sprite.texture.get_size() * wall_sprite.scale
+		_health_bar.position = Vector2(0, -wall_size.y - 16).round()
+	else:
+		_health_bar.position = Vector2(0, -80).round()
+	_health_bar.update_hp(current_hp, max_hp)
+
+
+func _update_health_bar() -> void:
+	if _health_bar:
+		_health_bar.update_hp(current_hp, max_hp)

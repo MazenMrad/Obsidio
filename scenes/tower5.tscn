@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://yh6s4pm8q4uq"]
+
+[ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="1_swtkr"]
+[ext_resource type="Script" uid="uid://cirtbyps0hi6e" path="res://scripts/tower.gd" id="2_0prob"]
+[ext_resource type="Texture2D" uid="uid://c3ycdx4gwvqdv" path="res://assets/map/props/towers/towers/lvl5.png" id="3_swtkr"]
+[ext_resource type="Shader" uid="uid://ba1j71pjqk6lv" path="res://scenes/shaders/flag.gdshader" id="5_m0b8o"]
+[ext_resource type="Texture2D" uid="uid://d1nu0bf1m8twj" path="res://assets/map/props/flag.png" id="6_1uvpw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrbg1"]
+shader = ExtResource("1_swtkr")
+shader_parameter/sensitivity = 0.5
+shader_parameter/material_type = 0
+shader_parameter/import_new_color = Vector3(0, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6ri25"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay4al"]
+shader = ExtResource("1_swtkr")
+shader_parameter/sensitivity = 0.5
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_6ri25")
+shader_parameter/material_type = 5
+shader_parameter/import_new_color = Vector3(0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay4al"]
+size = Vector2(44.720497, 58.240562)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxwe"]
+size = Vector2(38, 44.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ro5q5"]
+shader = ExtResource("5_m0b8o")
+shader_parameter/amplitude = 5.0
+shader_parameter/frequency = 3.135
+shader_parameter/speed = 2.642
+shader_parameter/pole_side = 0
+shader_parameter/fixed_edge_range = 0.2
+
+[node name="tower2" type="StaticBody2D" unique_id=1851937463]
+material = SubResource("ShaderMaterial_qrbg1")
+collision_layer = 8
+script = ExtResource("2_0prob")
+max_hp = 780
+damage_per_second = 54
+upgrade_cost = 260
+
+[node name="Tower" type="Sprite2D" parent="." unique_id=1573482961]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ay4al")
+scale = Vector2(0.805, 0.755487)
+texture = ExtResource("3_swtkr")
+
+[node name="tower" type="Area2D" parent="." unique_id=1802255561]
+position = Vector2(-7, 25)
+collision_layer = 9
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tower" unique_id=880366120]
+position = Vector2(8.000001, -22.000008)
+scale = Vector2(0.805, 0.755487)
+shape = SubResource("RectangleShape2D_ay4al")
+debug_color = Color(0.731728, 0.436052, 0.492082, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=629215654]
+position = Vector2(0, 3.25)
+shape = SubResource("RectangleShape2D_ktxwe")
+
+[node name="PlayerMount" type="Marker2D" parent="." unique_id=81100235]
+position = Vector2(0, -29)
+
+[node name="Flag" type="Sprite2D" parent="." unique_id=597890942]
+material = SubResource("ShaderMaterial_ro5q5")
+position = Vector2(-0.9999995, 9)
+rotation = 0.00637269
+scale = Vector2(0.483874, 0.47537)
+texture = ExtResource("6_1uvpw")
+
+[connection signal="area_entered" from="tower" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="tower" to="." method="_on_area_2d_area_exited"]

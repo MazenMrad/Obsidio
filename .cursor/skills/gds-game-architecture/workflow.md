@@ -27,7 +27,7 @@ This uses **micro-file architecture** for disciplined execution:
 
 ### Configuration Loading
 
-Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
+Load config from `{module_config}` and resolve:
 
 - `project_name`, `output_folder`, `planning_artifacts`, `user_name`
 - `communication_language`, `document_output_language`, `game_dev_experience`
@@ -36,7 +36,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 ### Paths
 
-- `installed_path` = `{project-root}/_bmad/gds/workflows/3-technical/gds-game-architecture`
+- `installed_path` = `{skill_root}`
 - `template_path` = `{installed_path}/templates/architecture-template.md`
 - `data_files_path` = `{installed_path}/`
 
@@ -60,6 +60,6 @@ Load ONLY the fragment matching the engine selected during execution. These comp
 
 ## EXECUTION
 
-Read fully and follow: `{project-root}/_bmad/gds/workflows/3-technical/gds-game-architecture/steps/step-01-init.md` to begin the workflow.
+Read fully and follow: `{installed_path}/steps/step-01-init.md` to begin the workflow.
 
 **Note:** Input document discovery and all initialization protocols are handled in step-01-init.md.

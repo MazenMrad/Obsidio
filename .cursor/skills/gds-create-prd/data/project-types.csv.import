@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cxxiug2h3bmgk"
+
+[deps]
+
+files=["res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.detection.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.key.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.required.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.skip.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.web.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.innovation.translation"]
+
+source_file="res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.csv"
+dest_files=["res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.detection.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.key.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.required.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.skip.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.web.translation", "res://_bmad/gds/workflows/2-design/gds-create-prd/data/project-types.innovation.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

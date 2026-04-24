@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cadxu0ep2sds"
+
+[deps]
+
+files=["res://_bmad/bmb/bmad-bmb-setup/assets/module-help.skill.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.display.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.menu.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.description.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.action.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.args.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.phase.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.after.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.before.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.required.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.output.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.outputs.translation"]
+
+source_file="res://_bmad/bmb/bmad-bmb-setup/assets/module-help.csv"
+dest_files=["res://_bmad/bmb/bmad-bmb-setup/assets/module-help.skill.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.display.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.menu.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.description.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.action.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.args.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.phase.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.after.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.before.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.required.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.output.translation", "res://_bmad/bmb/bmad-bmb-setup/assets/module-help.outputs.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

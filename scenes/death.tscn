@@ -32,7 +32,7 @@ shader_parameter/outline_thickness = 1.0
 shader_parameter/chromatic_aberration = false
 shader_parameter/aberration_strength = 5.0
 
-[node name="Control" type="Control" unique_id=1199817279]
+[node name="death" type="Control" unique_id=1199817279]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,74 +58,83 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -124.0
-offset_right = -2.0
-offset_bottom = -124.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CenterContainer" unique_id=995336035]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=995336035]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=995336036]
 texture_filter = 1
 material = SubResource("ShaderMaterial_q1r8t")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_tjai8")
 theme_override_font_sizes/font_size = 60
 text = "You died"
+horizontal_alignment = 1
 
-[node name="Restart" type="Button" parent="." unique_id=211962249]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = 48.0
-offset_right = 80.0
-offset_bottom = 92.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="StatsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=995336037]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="wave" type="Label" parent="CenterContainer/VBoxContainer/StatsContainer" unique_id=431197125]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="enemy" type="Label" parent="CenterContainer/VBoxContainer/StatsContainer" unique_id=280328337]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="coins" type="Label" parent="CenterContainer/VBoxContainer/StatsContainer" unique_id=280338338]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="BestStatsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=995336038]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="best_wave" type="Label" parent="CenterContainer/VBoxContainer/BestStatsContainer" unique_id=995336039]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+modulate = Color(0.7, 0.7, 0.7, 1.0)
+
+[node name="best_kills" type="Label" parent="CenterContainer/VBoxContainer/BestStatsContainer" unique_id=995336040]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+modulate = Color(0.7, 0.7, 0.7, 1.0)
+
+[node name="best_coins" type="Label" parent="CenterContainer/VBoxContainer/BestStatsContainer" unique_id=995336041]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tjai8")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+modulate = Color(0.7, 0.7, 0.7, 1.0)
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=995336042]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Restart" type="Button" parent="CenterContainer/VBoxContainer/ButtonsContainer" unique_id=211962249]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/icon_hover_color = Color(0.458405, 0.458405, 0.458405, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.370364, 0.370364, 0.370364, 1)
 theme_override_fonts/font = ExtResource("3_tjai8")
 theme_override_font_sizes/font_size = 18
 text = "Restart"
 
-[node name="wave" type="Label" parent="." unique_id=431197125]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = -24.0
-offset_right = 180.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_tjai8")
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
-
-[node name="enemy" type="Label" parent="." unique_id=280328337]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = 8.0
-offset_right = 180.0
-offset_bottom = 36.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_tjai8")
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
-
-[connection signal="button_up" from="Restart" to="." method="_on_restart_button_up"]
-[connection signal="pressed" from="Restart" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="button_up" from="CenterContainer/VBoxContainer/ButtonsContainer/Restart" to="." method="_on_restart_button_up"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsContainer/Restart" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsContainer/Restart" to="." method="_on_restart_pressed"]

@@ -2,14 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://bmd1n8ls5sb15"
+uid="uid://7ggtrhy5omow"
 
 [deps]
 
-files=["res://_bmad/core/skills/bmad-advanced-elicitation/methods.category.translation", "res://_bmad/core/skills/bmad-advanced-elicitation/methods.method.translation", "res://_bmad/core/skills/bmad-advanced-elicitation/methods.description.translation", "res://_bmad/core/skills/bmad-advanced-elicitation/methods.output.translation"]
+files=["res://_bmad/core/bmad-advanced-elicitation/methods.category.translation", "res://_bmad/core/bmad-advanced-elicitation/methods.method.translation", "res://_bmad/core/bmad-advanced-elicitation/methods.description.translation", "res://_bmad/core/bmad-advanced-elicitation/methods.output.translation"]
 
-source_file="res://_bmad/core/skills/bmad-advanced-elicitation/methods.csv"
-dest_files=["res://_bmad/core/skills/bmad-advanced-elicitation/methods.category.translation", "res://_bmad/core/skills/bmad-advanced-elicitation/methods.method.translation", "res://_bmad/core/skills/bmad-advanced-elicitation/methods.description.translation", "res://_bmad/core/skills/bmad-advanced-elicitation/methods.output.translation"]
+source_file="res://_bmad/core/bmad-advanced-elicitation/methods.csv"
+dest_files=["res://_bmad/core/bmad-advanced-elicitation/methods.category.translation", "res://_bmad/core/bmad-advanced-elicitation/methods.method.translation", "res://_bmad/core/bmad-advanced-elicitation/methods.description.translation", "res://_bmad/core/bmad-advanced-elicitation/methods.output.translation"]
 
 [params]
 

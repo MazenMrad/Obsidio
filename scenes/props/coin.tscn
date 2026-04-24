@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c1bhdvhoj1gt1"]
+[gd_scene load_steps=10 format=4 uid="uid://c1bhdvhoj1gt1"]
 
 [ext_resource type="Script" uid="uid://cg7wvr564cl1m" path="res://scripts/coin.gd" id="1_xxn87"]
 [ext_resource type="AudioStream" uid="uid://bkjksof3gimwx" path="res://music/coin_sound.wav" id="2_uxxfr"]
@@ -84,8 +84,6 @@ metadata/_aseprite_wizard_source_file_hash_ = "81b4efc892f9baad18338bbbafffe997"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qoco0")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="coin_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_uxxfr")

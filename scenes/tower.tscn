@@ -1,53 +1,60 @@
-[gd_scene load_steps=8 format=3 uid="uid://cak27vwe2rprj"]
+[gd_scene format=3 uid="uid://cak27vwe2rprj"]
 
-[ext_resource type="Texture2D" uid="uid://b6r1gn5by8i6q" path="res://assets/map/props/towers/tower.png" id="1_2x682"]
 [ext_resource type="Script" uid="uid://cirtbyps0hi6e" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="1_ktxwe"]
+[ext_resource type="Texture2D" uid="uid://bmk8ctbk2woqm" path="res://assets/map/props/towers/towers/lvl1.png" id="3_ktxwe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrbg1"]
-shader = ExtResource("1_ktxwe")
-shader_parameter/progress = 0.0
-shader_parameter/noiseForce = 0.2
-shader_parameter/burnColor = Color(0.926087, 0.653807, 0.566368, 1)
-shader_parameter/borderWidth = 0.0
-shader_parameter/direction = 180.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ktxwe"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qrbg1"]
+noise = SubResource("FastNoiseLite_ktxwe")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ay4al"]
+shader = ExtResource("1_ktxwe")
+shader_parameter/sensitivity = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_qrbg1")
+shader_parameter/material_type = 5
+shader_parameter/import_new_color = Vector3(3.145, 3.955, 6.92)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay4al"]
-size = Vector2(27.3292, 124.423)
+size = Vector2(43.478264, 41.033104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktxwe"]
-size = Vector2(22, 88)
+size = Vector2(35, 31)
 
-[node name="tower" type="StaticBody2D"]
+[node name="tower2" type="StaticBody2D" unique_id=1222338373]
 material = SubResource("ShaderMaterial_qrbg1")
 collision_layer = 8
 script = ExtResource("1_ay4al")
-damage_per_second = 25
 
-[node name="Tower" type="Sprite2D" parent="."]
+[node name="Tower" type="Sprite2D" parent="." unique_id=1230882888]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ay4al")
-position = Vector2(11, -48)
+position = Vector2(0, -1.000001)
 scale = Vector2(0.805, 0.755487)
-texture = ExtResource("1_2x682")
+texture = ExtResource("3_ktxwe")
 
-[node name="tower" type="Area2D" parent="."]
+[node name="tower" type="Area2D" parent="." unique_id=1869781965]
+position = Vector2(-1, 1)
 collision_layer = 9
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tower"]
-visible = false
-position = Vector2(11, -47)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tower" unique_id=711721782]
+position = Vector2(-1.5000019, 1.4999866)
 scale = Vector2(0.805, 0.755487)
 shape = SubResource("RectangleShape2D_ay4al")
 debug_color = Color(0.731728, 0.436052, 0.492082, 0.42)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(11, -45)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=639513894]
+position = Vector2(-2.5, 2.5)
 shape = SubResource("RectangleShape2D_ktxwe")
+
+[node name="PlayerMount" type="Marker2D" parent="." unique_id=81100231]
+position = Vector2(-1, -20)
 
 [connection signal="area_entered" from="tower" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="tower" to="." method="_on_area_2d_area_exited"]

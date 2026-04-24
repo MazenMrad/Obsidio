@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://bxv1ct2k7m8np"]
+
+[ext_resource type="Script" path="res://scripts/victory_GUI.gd" id="1_victory"]
+[ext_resource type="Shader" uid="uid://dnvvydy7wqv7l" path="res://scenes/shaders/text.gdshader" id="2_shader"]
+[ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="3_font"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_victory"]
+shader = ExtResource("2_shader")
+shader_parameter/jitter_strength = 2.0
+shader_parameter/jitter_speed = 8.0
+shader_parameter/jitter_frequency = 12.0
+shader_parameter/separate_xy = true
+shader_parameter/time_offset = 0.0
+shader_parameter/enable_rotation = true
+shader_parameter/rotation_strength = 5.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/rotation_frequency = 4.0
+shader_parameter/enable_scaling = true
+shader_parameter/scale_strength = 0.1
+shader_parameter/scale_speed = 0.831
+shader_parameter/scale_frequency = 0.1
+shader_parameter/base_scale = 0.983
+shader_parameter/text_color = Color(1.0, 0.85, 0.3, 1.0)
+shader_parameter/use_custom_color = true
+shader_parameter/shake_intensity = 0.41
+shader_parameter/enable_pixelation = true
+shader_parameter/pixel_size = 1.0
+shader_parameter/adaptive_pixels = true
+shader_parameter/enable_outline = true
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+shader_parameter/chromatic_aberration = false
+shader_parameter/aberration_strength = 5.0
+
+[node name="victory" type="Control" unique_id=995336000]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+visible = false
+script = ExtResource("1_victory")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=995336001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08, 0.06, 0.01, 0.72)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=995336002]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=995336003]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=995336004]
+texture_filter = 1
+material = SubResource("ShaderMaterial_victory")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 60
+text = "VICTORY"
+horizontal_alignment = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=995336005]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="wave" type="Label" parent="CenterContainer/VBoxContainer/StatsContainer" unique_id=995336006]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="enemy" type="Label" parent="CenterContainer/VBoxContainer/StatsContainer" unique_id=995336007]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=995336008]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PlayAgain" type="Button" parent="CenterContainer/VBoxContainer/ButtonsContainer" unique_id=995336009]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+text = "Play Again"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonsContainer/PlayAgain" to="." method="_on_play_again_pressed"]

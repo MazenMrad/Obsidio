@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://byap2ioblcyb4"]
+[gd_scene format=3 uid="uid://byap2ioblcyb4"]
 
-[ext_resource type="Script" uid="uid://cwtxjs1fxujj7" path="res://scripts/knife.gd" id="1_rhlpq"]
+[ext_resource type="Script" uid="uid://cwtxjs1fxujj7" path="res://scripts/arrow.gd" id="1_rhlpq"]
 [ext_resource type="Texture2D" uid="uid://dga085s6n0qk0" path="res://assets/map/props/knife.png" id="2_rhlpq"]
 [ext_resource type="Shader" uid="uid://dgotot0pby2u0" path="res://scenes/shaders/trail.gdshader" id="3_5w0et"]
 [ext_resource type="AudioStream" uid="uid://cqg1j1d43fpde" path="res://music/enemy_got_hit.wav" id="4_7a2es"]
@@ -21,16 +21,15 @@ _data = [Vector2(0, 0.2), 0.0, 2.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_kn1fe"]
-offsets = PackedFloat32Array(0, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.5, 0.5, 0.5, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kn1fe"]
-size = Vector2(18, 6)
+size = Vector2(14, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_area_kn1fe"]
-size = Vector2(20, 8)
+size = Vector2(10, 3)
 
-[node name="knife" type="RigidBody2D"]
+[node name="knife" type="RigidBody2D" unique_id=544136688]
 collision_layer = 2
 mass = 1.5
 physics_material_override = SubResource("PhysicsMaterial_kn1fe")
@@ -50,37 +49,37 @@ stick_lifetime = 2.0
 ground_embed_distance = 2.0
 ground_stick_time = 0.06
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1752256439]
 texture_filter = 1
-scale = Vector2(0.8, 0.8)
+rotation = 0.46948567
+scale = Vector2(0.41, 0.41)
 texture = ExtResource("2_rhlpq")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." unique_id=1271077343]
 top_level = true
 material = SubResource("ShaderMaterial_kn1fe")
-position = Vector2(-15, 0)
+position = Vector2(-26, 0)
 points = PackedVector2Array(0, 0, 10, 0, 20, 0)
 width = 2.5
 width_curve = SubResource("Curve_kn1fe")
-default_color = Color(1, 1, 1, 1)
 gradient = SubResource("Gradient_kn1fe")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588899035]
+position = Vector2(-2, 0.5)
 shape = SubResource("RectangleShape2D_kn1fe")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=2072467365]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1855162389]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_area_kn1fe")
 
-[node name="enemy_hit" type="AudioStreamPlayer2D" parent="."]
+[node name="enemy_hit" type="AudioStreamPlayer2D" parent="." unique_id=999487454]
 stream = ExtResource("4_7a2es")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

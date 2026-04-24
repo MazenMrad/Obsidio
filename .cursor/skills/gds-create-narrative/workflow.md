@@ -1,7 +1,7 @@
 ---
 name: create-narrative
 description: 'Comprehensive narrative design for story-driven games. Use when the user says "lets create a narrative design document" or "I want to design the narrative for my game"'
-main_config: '{project-root}/_bmad/gds/config.yaml'
+main_config: '{module_config}'
 web_bundle: true
 ---
 

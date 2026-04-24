@@ -1,7 +1,7 @@
 ---
 name: gametest-test-design
 description: 'Game test scenario creator. Use when the user says "lets create game test scenarios"'
-main_config: '{project-root}/_bmad/gds/config.yaml'
+main_config: '{module_config}'
 tags:
   - qa
   - planning
@@ -51,7 +51,7 @@ This workflow analyzes the game project and produces a complete test design docu
 
 ## INITIALIZATION
 
-Load and resolve configuration from `_bmad/gds/config.yaml`:
+Load and resolve configuration from `{module_config}`:
 
 ```yaml
 output_folder: {from config}

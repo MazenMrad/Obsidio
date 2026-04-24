@@ -1,13 +1,8 @@
----
-name: correct-course
-description: 'Manage significant changes during sprint execution. Use when the user says "correct course" or "propose sprint change"'
----
-
 # Correct Course - Sprint Change Management Workflow
 
 **Goal:** Manage significant changes during sprint execution by analyzing impact across all project artifacts and producing a structured Sprint Change Proposal.
 
-**Your Role:** You are a Scrum Master navigating change management. Analyze the triggering issue, assess impact across GDD, epics, architecture, and UX artifacts, and produce an actionable Sprint Change Proposal with clear handoff.
+**Your Role:** You are a Developer navigating change management. Analyze the triggering issue, assess impact across GDD, epics, architecture, and UX artifacts, and produce an actionable Sprint Change Proposal with clear handoff.
 
 ---
 
@@ -15,7 +10,7 @@ description: 'Manage significant changes during sprint execution. Use when the u
 
 ### Configuration Loading
 
-Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
+Load config from `{module_config}` and resolve:
 
 - `project_name`, `user_name`
 - `communication_language`, `document_output_language`
@@ -31,8 +26,6 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 ### Paths
 
-- `installed_path` = `{project-root}/_bmad/gds/workflows/4-production/gds-correct-course`
-- `checklist` = `{installed_path}/checklist.md`
 - `default_output_file` = `{planning_artifacts}/sprint-change-proposal-{date}.md`
 
 ### Input Files
@@ -44,12 +37,12 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 | Epics | `{planning_artifacts}/*epic*.md` (whole) or `{planning_artifacts}/*epic*/*.md` (sharded) | FULL_LOAD |
 | Architecture | `{planning_artifacts}/*architecture*.md` (whole) or `{planning_artifacts}/*architecture*/*.md` (sharded) | FULL_LOAD |
 | UX Design | `{planning_artifacts}/*ux*.md` (whole) or `{planning_artifacts}/*ux*/*.md` (sharded) | FULL_LOAD |
-| Tech Spec | `{planning_artifacts}/*tech-spec*.md` (whole) | FULL_LOAD |
+| Tech Spec | `{planning_artifacts}/*tech-spec*.md` (whole) or `{planning_artifacts}/*spec-*.md` (whole) | FULL_LOAD |
 | Document Project | `{project_knowledge}/index.md` (sharded) | INDEX_GUIDED |
 
 ### Context
 
-- `project_context` = `**/project-context.md` (load if exists)
+- Load `**/project-context.md` if it exists
 
 ---
 
@@ -83,7 +76,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 <workflow>
 
 <step n="1" goal="Initialize Change Navigation">
-  <action>Load {project_context} for coding standards and project-wide patterns (if exists)</action>
+  <action>Load **/project-context.md for coding standards and project-wide patterns (if exists)</action>
   <action>Confirm change trigger and gather user description of the issue</action>
   <action>Ask: "What specific issue or change has been identified that requires navigation?"</action>
   <action>Verify access to required project documents:</action>
@@ -103,7 +96,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 </step>
 
 <step n="2" goal="Execute Change Analysis Checklist">
-  <action>Read fully and follow the systematic analysis from: {checklist}</action>
+  <action>Read fully and follow the systematic analysis from: checklist.md</action>
   <action>Work through each checklist section interactively with the user</action>
   <action>Record status for each checklist item:</action>
     - [x] Done - Item completed successfully
@@ -207,8 +200,8 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 <action>Section 5: Implementation Handoff</action>
 
 - Categorize change scope:
-  - Minor: Direct implementation by dev team
-  - Moderate: Backlog reorganization needed (PO/SM)
+  - Minor: Direct implementation by Developer agent
+  - Moderate: Backlog reorganization needed (PO/DEV)
   - Major: Fundamental replan required (PM/Architect)
 - Specify handoff recipients and their responsibilities
 - Define success criteria for implementation
@@ -234,8 +227,8 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
   <action>Finalize Sprint Change Proposal document</action>
   <action>Determine change scope classification:</action>
 
-- **Minor**: Can be implemented directly by development team
-- **Moderate**: Requires backlog reorganization and PO/SM coordination
+- **Minor**: Can be implemented directly by Developer agent
+- **Moderate**: Requires backlog reorganization and PO/DEV coordination
 - **Major**: Needs fundamental replan with PM/Architect involvement
 
 <action>Provide appropriate handoff based on scope:</action>
@@ -243,12 +236,12 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 </check>
 
 <check if="Minor scope">
-  <action>Route to: Development team for direct implementation</action>
+  <action>Route to: Developer agent for direct implementation</action>
   <action>Deliverables: Finalized edit proposals and implementation tasks</action>
 </check>
 
 <check if="Moderate scope">
-  <action>Route to: Product Owner / Scrum Master agents</action>
+  <action>Route to: Product Owner / Developer agents</action>
   <action>Deliverables: Sprint Change Proposal + backlog reorganization plan</action>
 </check>
 
@@ -276,7 +269,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 - Implementation handoff plan
 
 <action>Report workflow completion to user with personalized message: "Correct Course workflow complete, {user_name}!"</action>
-<action>Remind user of success criteria and next steps for implementation team</action>
+<action>Remind user of success criteria and next steps for Developer agent</action>
 </step>
 
 </workflow>

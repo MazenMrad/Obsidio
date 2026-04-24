@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://ddmx0gvpdmab3"]
 
 [ext_resource type="Script" uid="uid://c3fhvgqdn26ho" path="res://scripts/upgrade_map.gd" id="1_nlkxo"]
-[ext_resource type="Texture2D" uid="uid://hqmhv063xr0l" path="res://assets/GUI/axe_ui.png" id="2_bqggy"]
 [ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="2_ip4pc"]
-[ext_resource type="Texture2D" uid="uid://dc2233gra5fej" path="res://assets/GUI/spear_ui.png" id="3_ip4pc"]
 [ext_resource type="Texture2D" uid="uid://bd4oyj538m33e" path="res://assets/GUI/rock_ui.png" id="4_tdpk7"]
+[ext_resource type="Texture2D" uid="uid://bo0pobm5bx4no" path="res://assets/GUI/paper_ui.png" id="5_tdpk7"]
 [ext_resource type="Texture2D" uid="uid://bms4plg38185a" path="res://assets/GUI/bow_ui.png" id="5_xx7xu"]
-[ext_resource type="Texture2D" uid="uid://ct3pbmt23lcnv" path="res://assets/GUI/knife_ui.png" id="6_govu1"]
+[ext_resource type="Shader" uid="uid://dhkyhor1a3w5u" path="res://scenes/shaders/dottetsilhoutte.gdshader" id="6_xx7xu"]
+[ext_resource type="Texture2D" uid="uid://piueej7up8dv" path="res://assets/GUI/spear.png" id="7_govu1"]
+[ext_resource type="Texture2D" uid="uid://b44rpyd2caad5" path="res://assets/GUI/axe.png" id="8_buwu2"]
+[ext_resource type="Texture2D" uid="uid://didt3fxwccmgq" path="res://assets/GUI/knife.png" id="9_t6sd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.08, 0.06, 0.04, 0.98)
@@ -31,6 +33,27 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1fjp"]
+shader = ExtResource("6_xx7xu")
+shader_parameter/rotation_speed = 0.3
+shader_parameter/stripes = 16.0
+shader_parameter/stripe_width = 0.5
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7b3t"]
+shader = ExtResource("6_xx7xu")
+shader_parameter/rotation_speed = 0.7360002249599997
+shader_parameter/stripes = 19.0
+shader_parameter/stripe_width = 0.35200001672
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ky3jt"]
+shader = ExtResource("6_xx7xu")
+shader_parameter/rotation_speed = -0.4269998302825
+shader_parameter/stripes = 16.0
+shader_parameter/stripe_width = 0.5
+shader_parameter/outline_color = Color(1, 1, 1, 1)
 
 [node name="upgrade_map" type="Control" unique_id=806189093]
 layout_mode = 3
@@ -102,14 +125,15 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_close")
 text = "X"
 
 [node name="Canvas" type="Control" parent="Panel/Margin/VBox" unique_id=976356871]
+clip_contents = true
 custom_minimum_size = Vector2(620, 360)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-clip_contents = true
 
 [node name="LineCanvas" type="Control" parent="Panel/Margin/VBox/Canvas" unique_id=527731326]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +141,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-clip_contents = true
 
 [node name="WeaponContainer" type="Node2D" parent="Panel/Margin/VBox/Canvas" unique_id=857618623]
 
@@ -140,17 +163,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
-
-[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/rock_weapon" unique_id=705760576]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.2, 0.8, 0.2, 0.5)
 
 [node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/rock_weapon" unique_id=1070291811]
 layout_mode = 1
@@ -202,17 +214,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/bow_weapon" unique_id=1802623589]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.2, 0.8, 0.2, 0.5)
-
 [node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/bow_weapon" unique_id=1125618916]
 layout_mode = 1
 anchors_preset = 7
@@ -249,7 +250,7 @@ offset_left = 150.0
 offset_top = 5.0
 offset_right = 195.0
 offset_bottom = 50.0
-texture = ExtResource("3_ip4pc")
+texture = ExtResource("5_tdpk7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -262,17 +263,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
-
-[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/spear_weapon" unique_id=1637047014]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.2, 0.8, 0.2, 0.5)
 
 [node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/spear_weapon" unique_id=129469212]
 layout_mode = 1
@@ -304,13 +294,22 @@ theme_override_font_sizes/font_size = 28
 text = "Spear"
 horizontal_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/spear_weapon" unique_id=788147451]
+material = SubResource("ShaderMaterial_c1fjp")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 36.0
+texture = ExtResource("7_govu1")
+
 [node name="axe_weapon" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer" unique_id=767348092]
 custom_minimum_size = Vector2(45, 45)
 offset_left = 150.0
 offset_top = 70.0
 offset_right = 195.0
 offset_bottom = 115.0
-texture = ExtResource("2_bqggy")
+texture = ExtResource("5_tdpk7")
 expand_mode = 1
 stretch_mode = 5
 
@@ -323,17 +322,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
-
-[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/axe_weapon" unique_id=84460342]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.2, 0.8, 0.2, 0.5)
 
 [node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/axe_weapon" unique_id=1267453145]
 layout_mode = 1
@@ -365,14 +353,29 @@ theme_override_font_sizes/font_size = 28
 text = "Axe"
 horizontal_alignment = 1
 
+[node name="TextureRect" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/axe_weapon" unique_id=1304218957]
+material = SubResource("ShaderMaterial_y7b3t")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.133
+anchor_top = 0.156
+anchor_right = 0.822
+anchor_bottom = 0.84400004
+offset_left = 0.0149998665
+offset_top = -0.01999998
+offset_right = -1.9900017
+offset_bottom = -1.9800034
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_buwu2")
+
 [node name="knife_weapon" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer" unique_id=952080523]
 custom_minimum_size = Vector2(45, 45)
 offset_left = 150.0
 offset_top = 120.0
 offset_right = 195.0
 offset_bottom = 165.0
-texture = ExtResource("6_govu1")
-expand_mode = 1
+texture = ExtResource("5_tdpk7")
 stretch_mode = 5
 
 [node name="grey_layer" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=77686485]
@@ -384,17 +387,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
-
-[node name="highlight" type="ColorRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=589741443]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.2, 0.8, 0.2, 0.5)
 
 [node name="price" type="Label" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=1773937898]
 layout_mode = 1
@@ -425,6 +417,15 @@ theme_override_fonts/font = ExtResource("2_ip4pc")
 theme_override_font_sizes/font_size = 28
 text = "Knife"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Margin/VBox/Canvas/WeaponContainer/knife_weapon" unique_id=172004627]
+material = SubResource("ShaderMaterial_ky3jt")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.000011
+offset_right = 36.0
+offset_bottom = 37.076935
+texture = ExtResource("9_t6sd3")
 
 [node name="Instructions" type="Label" parent="Panel/Margin/VBox" unique_id=446535630]
 layout_mode = 2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dxuh2gcywa5wj"
+
+[deps]
+
+files=["res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.name.translation", "res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.description.translation", "res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.tags.translation", "res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.fragment.translation"]
+
+source_file="res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.csv"
+dest_files=["res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.name.translation", "res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.description.translation", "res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.tags.translation", "res://_bmad/gds/agents/gds-agent-game-dev/gametest/qa-index.fragment.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

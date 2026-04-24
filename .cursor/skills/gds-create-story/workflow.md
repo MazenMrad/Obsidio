@@ -1,14 +1,10 @@
----
-name: gds-create-story
-description: 'Creates a dedicated story file with all the context the agent will need to implement it later. Use when the user says "create the next story" or "create story [story identifier]"'
----
-
 # Create Story Workflow
 
 **Goal:** Create a comprehensive story file that gives the dev agent everything needed for flawless implementation.
 
 **Your Role:** Story context engine that prevents LLM developer mistakes, omissions, or disasters.
-- Communicate all responses in {communication_language} and generate all documents in {document_output_language}
+- Communicate all responses in {communication_language} and language MUST be tailored to {game_dev_experience}
+- Generate all documents in {document_output_language}
 - Your purpose is NOT to copy from epics - it's to create a comprehensive, optimized story file that gives the DEV agent EVERYTHING needed for flawless implementation
 - COMMON LLM MISTAKES TO PREVENT: reinventing wheels, wrong libraries, wrong file locations, breaking regressions, ignoring UX, vague implementations, lying about completion, not learning from past work
 - EXHAUSTIVE ANALYSIS REQUIRED: You must thoroughly analyze ALL artifacts to extract critical context - do NOT be lazy or skim! This is the most important function in the entire development process!
@@ -22,7 +18,7 @@ description: 'Creates a dedicated story file with all the context the agent will
 
 ### Configuration Loading
 
-Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
+Load config from `{module_config}` and resolve:
 
 - `project_name`, `user_name`
 - `communication_language`, `document_output_language`
@@ -32,9 +28,6 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 ### Paths
 
-- `installed_path` = `.`
-- `template` = `./template.md`
-- `validation` = `./checklist.md`
 - `sprint_status` = `{implementation_artifacts}/sprint-status.yaml`
 - `epics_file` = `{planning_artifacts}/epics.md`
 - `gdd_file` = `{planning_artifacts}/gdd.md`
@@ -52,6 +45,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 | architecture | Architecture (fallback - epics file should have relevant sections) | whole: `{planning_artifacts}/*architecture*.md`, sharded: `{planning_artifacts}/*architecture*/*.md` | SELECTIVE_LOAD |
 | ux | UX design (fallback - epics file should have relevant sections) | whole: `{planning_artifacts}/*ux*.md`, sharded: `{planning_artifacts}/*ux*/*.md` | SELECTIVE_LOAD |
 | epics | Enhanced epics+stories file with BDD and source hints | whole: `{planning_artifacts}/*epic*.md`, sharded: `{planning_artifacts}/*epic*/*.md` | SELECTIVE_LOAD |
+| project_context | Project-wide rules, conventions, MCP configs, and third-party framework requirements | `**/project-context.md` | FULL_LOAD |
 
 ---
 
@@ -217,10 +211,10 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 </step>
 
 <step n="2" goal="Load and analyze core artifacts">
-  <critical>🔬 EXHAUSTIVE ARTIFACT ANALYSIS - This is where you prevent future developer fuckups!</critical>
+  <critical>🔬 EXHAUSTIVE ARTIFACT ANALYSIS - This is where you prevent future developer mistakes!</critical>
 
   <!-- Load all available content through discovery protocol -->
-  <action>Read fully and follow `{installed_path}/discover-inputs.md` to load all input files</action>
+  <action>Read fully and follow `./discover-inputs.md` to load all input files</action>
   <note>Available content: {epics_content}, {gdd_content}, {architecture_content}, {ux_content},
   {project_context}</note>
 
@@ -238,6 +232,18 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
   Dev notes and learnings from previous story - Review feedback and corrections needed - Files that were created/modified and their
   patterns - Testing approaches that worked/didn't work - Problems encountered and solutions found - Code patterns established <action>Extract
   all learnings that could impact current story implementation</action>
+  </check>
+
+  <!-- Project context analysis (game-dev extension for project-context.md extraction) -->
+  <check if="{project_context} was loaded and is not empty">
+    <action>Analyze {project_context} for story-relevant rules and constraints:</action>
+    **PROJECT CONTEXT EXTRACTION:**
+    - Third-party frameworks and libraries required by the project
+    - MCP server configurations and integrations to use
+    - Coding conventions and patterns to follow
+    - Project-wide constraints (e.g., specific APIs, deployment targets)
+    - Any rules that apply to this story's implementation domain
+    <action>Store extracted project rules as {{project_rules}} for embedding in the story file</action>
   </check>
 
   <!-- Git intelligence for previous work patterns -->
@@ -337,9 +343,15 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
     <template-output file="{default_output_file}">latest_tech_information</template-output>
   </check>
 
-  <!-- Project context reference -->
-  <template-output
-    file="{default_output_file}">project_context_reference</template-output>
+  <!-- Project context rules - embed extracted rules from project-context.md (game-dev extension) -->
+  <check if="{{project_rules}} is not empty">
+    <template-output file="{default_output_file}">project_context_reference</template-output>
+    <action>Populate the Project Context Rules section with ALL extracted {{project_rules}} including:
+      - Required third-party frameworks and how they apply to this story
+      - MCP integrations the developer must use
+      - Project-wide conventions and constraints
+      - Any domain-specific rules relevant to this story's tasks</action>
+  </check>
 
   <!-- Final status update -->
   <template-output file="{default_output_file}">
@@ -352,7 +364,7 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 </step>
 
 <step n="6" goal="Update sprint status and finalize">
-  <action>Validate the newly created story file {story_file} against {installed_path}/checklist.md and apply any required fixes before finalizing</action>
+  <action>Validate the newly created story file {default_output_file} against `./checklist.md` and apply any required fixes before finalizing</action>
   <action>Save story document unconditionally</action>
 
   <!-- Update sprint status -->

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://di0sgj86wf0o3"
+
+[deps]
+
+files=["res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.signals.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.complexity.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.key.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.required.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.suggested.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.special.translation"]
+
+source_file="res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.csv"
+dest_files=["res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.signals.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.complexity.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.key.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.required.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.suggested.translation", "res://_bmad/gds/workflows/2-design/gds-validate-gdd/data/genre-complexity.special.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

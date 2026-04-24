@@ -16,7 +16,7 @@ description: 'Exhaustive deep-dive documentation of specific project areas'
 
 ### Configuration Loading
 
-Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
+Load config from `{module_config}` and resolve:
 
 - `project_knowledge`
 - `user_name`
@@ -24,10 +24,10 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 ### Paths
 
-- `installed_path` = `{project-root}/_bmad/gds/workflows/gds-document-project/workflows`
+- `installed_path` = `../workflows`
 - `instructions` = `{installed_path}/deep-dive-instructions.md`
-- `validation` = `{project-root}/_bmad/gds/workflows/gds-document-project/checklist.md`
-- `deep_dive_template` = `{project-root}/_bmad/gds/workflows/gds-document-project/templates/deep-dive-template.md`
+- `validation` = `../checklist.md`
+- `deep_dive_template` = `../templates/deep-dive-template.md`
 
 ### Runtime Inputs
 

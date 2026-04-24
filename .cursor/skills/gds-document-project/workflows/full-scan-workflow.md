@@ -15,7 +15,7 @@ description: 'Complete project documentation workflow (initial scan or full resc
 
 ### Configuration Loading
 
-Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
+Load config from `{module_config}` and resolve:
 
 - `project_knowledge`
 - `user_name`
@@ -23,10 +23,10 @@ Load config from `{project-root}/_bmad/gds/config.yaml` and resolve:
 
 ### Paths
 
-- `installed_path` = `{project-root}/_bmad/gds/workflows/gds-document-project/workflows`
+- `installed_path` = `../workflows`
 - `instructions` = `{installed_path}/full-scan-instructions.md`
-- `validation` = `{project-root}/_bmad/gds/workflows/gds-document-project/checklist.md`
-- `documentation_requirements_csv` = `{project-root}/_bmad/gds/workflows/gds-document-project/documentation-requirements.csv`
+- `validation` = `../checklist.md`
+- `documentation_requirements_csv` = `../documentation-requirements.csv`
 
 ### Runtime Inputs
 

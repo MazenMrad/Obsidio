@@ -240,6 +240,26 @@ main.gd                                   wall.gd
 
 ---
 
+## Recent System Changes
+
+### Wave Progress Bar Architecture
+- **Type**: Changed from `TextureRect` to `TextureProgressBar` for proper fill behavior
+- **Progress tracking**: Boss wave progress (0-100%) vs. per-wave enemy kill count
+- **Update pattern**: Only increments on wave completion via `_update_wave_boss_progress()`
+- **Bug fix**: Removed erroneous reset in `start_wave()` that was breaking progress during armored waves
+
+### Health Bar System
+- **Scene**: `scenes/ui/health_bar.tscn` now uses `TextureProgressBar` instead of ColorRect fills
+- **Textures**: Uses `healthbar_allied_empty.png` and `healthbar_allied_full.png` for allied units (tower/wall)
+- **Script**: `scripts/ui/health_bar.gd` updated to set `progress_bar.value` (0-100) instead of manual fill sizing
+- **Fade behavior**: 60% opacity at full HP, 95% when damaged (was 30%/90%)
+
+### Knight Enemy System
+- **Scene**: `scenes/characters/knight.tscn` - removed position offset, added proper sprite scale
+- **Scale**: 0.7 (vs 0.555 for basic enemies) - visually larger
+- **Positioning**: Y-offset of -8 on sprite to keep feet aligned with collision shape
+- **Debug**: Spawn button in sidebar connects to `_on_debug_spawn_knight_pressed()` in `buttons.gd`
+
 ## Remaining Known Issues
 
 | Priority | Issue | Status |

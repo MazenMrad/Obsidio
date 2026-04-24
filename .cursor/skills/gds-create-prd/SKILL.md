@@ -1,6 +1,6 @@
 ---
 name: gds-create-prd
-description: (Optional) Create a PRD for use with external tools like bmad-assist. Uses the GDD as a base if available, otherwise creates from scratch. Use when the user says "create a PRD" or "generate PRD from GDD"
+description: 'Create a PRD from a GDD or from scratch, for use with external tools like bmad-assist. Use when the user says "create a PRD" or "I want to create a new product requirements document".'
 ---
 
-IT IS CRITICAL THAT YOU FOLLOW THIS COMMAND: LOAD the FULL {project-root}/_bmad/gds/workflows/2-design/create-prd/workflow-create-prd.md, READ its entire contents and follow its directions exactly!
+Follow the instructions in ./workflow.md.

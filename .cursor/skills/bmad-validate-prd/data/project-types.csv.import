@@ -2,14 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://dllwbv2l7p60"
+uid="uid://c2vnam31scdwb"
 
 [deps]
 
-files=["res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.detection.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.key.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.required.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.skip.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.web.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.innovation.translation"]
+files=["res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.detection.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.key.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.required.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.skip.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.web.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.innovation.translation"]
 
-source_file="res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.csv"
-dest_files=["res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.detection.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.key.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.required.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.skip.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.web.translation", "res://_bmad/bmm/workflows/2-plan-workflows/bmad-validate-prd/data/project-types.innovation.translation"]
+source_file="res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.csv"
+dest_files=["res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.detection.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.key.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.required.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.skip.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.web.translation", "res://_bmad/bmm/2-plan-workflows/bmad-validate-prd/data/project-types.innovation.translation"]
 
 [params]
 
