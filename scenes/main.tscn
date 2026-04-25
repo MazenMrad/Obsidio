@@ -16,10 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://cak27vwe2rprj" path="res://scenes/tower.tscn" id="14_a8y0u"]
 [ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="14_jbj1t"]
 [ext_resource type="AudioStream" uid="uid://ds2q6b75520mt" path="res://music/lost.wav" id="15_vxglm"]
-[ext_resource type="Shader" uid="uid://ba1j71pjqk6lv" path="res://scenes/shaders/flag.gdshader" id="17_dp3eg"]
-[ext_resource type="AudioStream" uid="uid://cdwyph304eqmp" path="res://music/ambience4.mp3" id="17_gqmmt"]
+[ext_resource type="AudioStream" uid="uid://cipbsnxh336t6" path="res://music/prewave.mp3" id="17_gqmmt"]
 [ext_resource type="Shader" uid="uid://ds2wh6j2bymp8" path="res://scenes/shaders/dissolve.gdshader" id="17_yc10j"]
-[ext_resource type="Texture2D" uid="uid://d1nu0bf1m8twj" path="res://assets/map/props/flag.png" id="18_0ld40"]
 [ext_resource type="Script" uid="uid://cw3gtmc5fu34w" path="res://scripts/buttons.gd" id="19_0ld40"]
 [ext_resource type="Script" uid="uid://cxcmv7n6ole07" path="res://scripts/camera_zoom.gd" id="19_0n7gx"]
 [ext_resource type="AudioStream" uid="uid://df700qoo3wep3" path="res://music/buy_sound.wav" id="20_y6deb"]
@@ -178,18 +176,97 @@ shader_parameter/import_new_color = Vector3(0, 0, 0)
 shader_parameter/hit_tint = Color(1, 0.2, 0.2, 1)
 shader_parameter/hit_strength = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqmmt"]
-shader = ExtResource("17_dp3eg")
-shader_parameter/amplitude = 5.0
-shader_parameter/frequency = 3.135
-shader_parameter/speed = 2.642
-shader_parameter/pole_side = 0
-shader_parameter/fixed_edge_range = 0.2
+[sub_resource type="Gradient" id="Gradient_0loja"]
+offsets = PackedFloat32Array(0, 0.73913044, 1)
+colors = PackedColorArray(0.34901962, 0, 0, 1, 0.64018977, 0.37207085, 0.34012842, 1, 0.74295574, 0.50338995, 0.46017373, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ids8r"]
+gradient = SubResource("Gradient_0loja")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hit"]
 emission_shape = 1
-emission_sphere_radius = 8.0
-gravity = Vector3(0, -40, 0)
+emission_sphere_radius = 12.0
+angle_min = -250.4
+angle_max = 109.60001
+initial_velocity_min = 80.0
+initial_velocity_max = 150.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.9499999
+scale_max = 1.9499999
+color = Color(1, 0.08235294, 0.3019608, 1)
+color_ramp = SubResource("GradientTexture1D_ids8r")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="Gradient" id="Gradient_wind_sprite"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wind_sprite"]
+gradient = SubResource("Gradient_wind_sprite")
+width = 1
+fill = 1
+
+[sub_resource type="Curve" id="Curve_j2jfr"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bjg73"]
+curve = SubResource("Curve_j2jfr")
+
+[sub_resource type="Gradient" id="Gradient_wind_initial"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0.25, 1, 1, 1, 0.5, 1, 1, 1, 0.85)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wind_initial"]
+gradient = SubResource("Gradient_wind_initial")
+
+[sub_resource type="Gradient" id="Gradient_wind"]
+offsets = PackedFloat32Array(0, 0.08, 0.45, 0.82, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.94, 0.98, 1, 0.28, 0.92, 0.97, 1, 0.18, 0.92, 0.97, 1, 0.03, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wind"]
+gradient = SubResource("Gradient_wind")
+
+[sub_resource type="Curve" id="Curve_bu4jf"]
+_limits = [0.0, 11.039551, 0.0, 1.0]
+_data = [Vector2(0.016042776, 0.25090027), 0.0, 0.0, 0, 0, Vector2(0.32085562, 3.8452368), 0.0, 0.0, 0, 0, Vector2(0.5347593, 0), 0.0, 0.0, 0, 0, Vector2(0.8288769, 3.5971575), 0.0, 0.0, 0, 0, Vector2(1, 0.3721199), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_o7ddy"]
+curve = SubResource("Curve_bu4jf")
+
+[sub_resource type="Curve" id="Curve_wind_tangent"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 0.9), 0.0, 0.0, 0, 0, Vector2(0.5187166, -0.123595476), 0.0, 0.0, 0, 0, Vector2(0.8, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_wind_tangent"]
+width = 133
+curve = SubResource("Curve_wind_tangent")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wind"]
+lifetime_randomness = 0.13
+emission_shape = 3
+emission_box_extents = Vector3(900, 320, 1)
+angle_curve = SubResource("CurveTexture_bjg73")
+direction = Vector3(-1, 0, 0)
+spread = 8.0
+initial_velocity_min = 120.0
+initial_velocity_max = 180.0
+gravity = Vector3(220, 80, 0)
+radial_accel_curve = SubResource("CurveTexture_o7ddy")
+tangential_accel_max = 6.0
+tangential_accel_curve = SubResource("CurveTexture_wind_tangent")
+damping_max = 100.0
+scale_min = 2.0
+scale_max = 2.8
+color = Color(0.95, 0.98, 1, 0.85)
+color_ramp = SubResource("GradientTexture1D_wind")
+color_initial_ramp = SubResource("GradientTexture1D_wind_initial")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_panel"]
 bg_color = Color(0.1, 0.08, 0.06, 0.98)
@@ -248,7 +325,6 @@ script = ExtResource("1_eb6dy")
 
 [node name="Timer" type="Timer" parent="Enemy spawner" unique_id=126133196]
 wait_time = 10.0
-autostart = true
 
 [node name="enemy_spawn_audio" type="AudioStreamPlayer2D" parent="Enemy spawner" unique_id=14212206]
 stream = ExtResource("2_gqmmt")
@@ -545,13 +621,6 @@ stream = ExtResource("17_gqmmt")
 volume_db = -80.0
 autoplay = true
 
-[node name="Flag" type="Sprite2D" parent="." unique_id=2126782280]
-material = SubResource("ShaderMaterial_gqmmt")
-position = Vector2(45.000015, 249)
-rotation = 0.00637269
-scale = Vector2(0.483874, 0.47537)
-texture = ExtResource("18_0ld40")
-
 [node name="Audio" type="Node" parent="." unique_id=1197022520]
 
 [node name="buy_sound" type="AudioStreamPlayer2D" parent="Audio" unique_id=603540235]
@@ -588,11 +657,27 @@ stream = ExtResource("59_victory")
 stream = ExtResource("60_go")
 
 [node name="hit_effect" type="GPUParticles2D" parent="." unique_id=736898332]
-visible = false
 emitting = false
+amount = 20
+lifetime = 0.28
+one_shot = true
+explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_hit")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=516986949]
+
+[node name="wind_trails" type="GPUParticles2D" parent="CanvasLayer" unique_id=1743259911]
+position = Vector2(640, 280)
+amount = 24
+texture = SubResource("GradientTexture2D_wind_sprite")
+lifetime = 5.0
+preprocess = 2.0
+explosiveness = 0.92
+randomness = 1.0
+visibility_rect = Rect2(-1200, -600, 2400, 1200)
+trail_enabled = true
+trail_lifetime = 2.6
+process_material = SubResource("ParticleProcessMaterial_wind")
 
 [node name="SubViewportContainer" parent="CanvasLayer" unique_id=121716437 instance=ExtResource("30_fv21b")]
 visible = false
@@ -640,6 +725,17 @@ offset_bottom = 75.72
 texture = ExtResource("21_yq6so")
 stretch_mode = 5
 
+[node name="coin_label" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1581822160]
+layout_mode = 1
+offset_left = 37.0
+offset_top = 35.0
+offset_right = 46.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("14_jbj1t")
+theme_override_font_sizes/font_size = 24
+text = "8"
+vertical_alignment = 1
+
 [node name="arrows" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1764986526]
 layout_mode = 1
 offset_left = 152.0
@@ -679,56 +775,17 @@ custom_minimum_size = Vector2(140, 45)
 layout_mode = 2
 texture_normal = ExtResource("23_kmb1v")
 
-[node name="label" type="Label" parent="CanvasLayer/Control/sidebar/actions/upgrade_wall" unique_id=716934201]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 14
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="repair" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=1236663339]
 custom_minimum_size = Vector2(140, 45)
 layout_mode = 2
 texture_normal = ExtResource("24_fuf3a")
 stretch_mode = 5
 
-[node name="label" type="Label" parent="CanvasLayer/Control/sidebar/actions/repair" unique_id=534287131]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 14
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="buy_arrow" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=1996930549]
 custom_minimum_size = Vector2(140, 45)
 layout_mode = 2
 texture_normal = ExtResource("25_pibwh")
 stretch_mode = 5
-
-[node name="label" type="Label" parent="CanvasLayer/Control/sidebar/actions/buy_arrow" unique_id=693818006]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 14
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="upgrade_tower" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=755998986]
 layout_mode = 2
@@ -908,6 +965,7 @@ text = "Master"
 
 [node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MasterVolumeContainer" unique_id=772645025]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -924,6 +982,7 @@ text = "Music"
 
 [node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MusicVolumeContainer" unique_id=326723265]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.8
@@ -940,6 +999,7 @@ text = "SFX"
 
 [node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/SFXVolumeContainer" unique_id=1637506308]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -1079,7 +1139,6 @@ visible = false
 [node name="wall" parent="." unique_id=1282492984 instance=ExtResource("5_tbgi4")]
 position = Vector2(237, 307)
 
-[connection signal="timeout" from="Enemy spawner/Timer" to="Enemy spawner" method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/upgrade_wall" to="CanvasLayer/Control" method="_on_upgrade_wall_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/repair" to="CanvasLayer/Control" method="_on_repair_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/buy_arrow" to="CanvasLayer/Control" method="_on_buy_arrow_pressed"]
