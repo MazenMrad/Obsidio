@@ -6,8 +6,11 @@ extends Control
 @onready var line_canvas: Control = $Panel/Margin/VBox/Canvas/LineCanvas
 @onready var coin_label: Label = $Panel/Margin/VBox/Header/CoinLabel
 @onready var close_btn: Button = $Panel/Margin/VBox/Header/CloseBtn
+@onready var background: ColorRect = $Background
 
 var weapon_nodes: Dictionary = {}
+var _map_tween: Tween = null
+var _is_animating: bool = false
 var _link_visual_nodes: Array[CanvasItem] = []
 
 var upgrade_tree: Dictionary = {
@@ -84,15 +87,64 @@ func setup_close_button() -> void:
 
 
 func _on_close_pressed() -> void:
-	visible = false
+	_close_with_animation()
+
+
+func _open_with_animation() -> void:
+	if _is_animating and _map_tween:
+		_map_tween.kill()
+	
+	_is_animating = true
+	
+	# Set initial state for animation
+	background.modulate.a = 0.0
+	panel.modulate.a = 0.0
+	panel.scale = Vector2(0.85, 0.85)
+	visible = true
+	
+	# Populate map data
+	_update_coins()
+	_refresh_all()
+	_arrange_weapons()
+	_update_lines()
+	
+	# Animate in
+	_map_tween = create_tween()
+	_map_tween.set_parallel(true)
+	_map_tween.set_ease(Tween.EASE_OUT)
+	_map_tween.set_trans(Tween.TRANS_BACK)
+	_map_tween.tween_property(background, "modulate:a", 1.0, 0.25)
+	_map_tween.tween_property(panel, "modulate:a", 1.0, 0.25)
+	_map_tween.tween_property(panel, "scale", Vector2.ONE, 0.3)
+	_map_tween.set_parallel(false)
+	_map_tween.tween_callback(func(): _is_animating = false)
+
+
+func _close_with_animation() -> void:
+	if _is_animating and _map_tween:
+		_map_tween.kill()
+	
+	_is_animating = true
+	
+	# Animate out
+	_map_tween = create_tween()
+	_map_tween.set_parallel(true)
+	_map_tween.set_ease(Tween.EASE_IN)
+	_map_tween.set_trans(Tween.TRANS_QUAD)
+	_map_tween.tween_property(background, "modulate:a", 0.0, 0.15)
+	_map_tween.tween_property(panel, "modulate:a", 0.0, 0.15)
+	_map_tween.tween_property(panel, "scale", Vector2(0.85, 0.85), 0.15)
+	_map_tween.set_parallel(false)
+	_map_tween.tween_callback(func():
+		visible = false
+		_is_animating = false
+	)
 
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_VISIBILITY_CHANGED and visible:
-		_update_coins()
-		_refresh_all()
-		_arrange_weapons()
-		_update_lines()
+	if what == NOTIFICATION_VISIBILITY_CHANGED:
+		if visible and not _is_animating:
+			_open_with_animation()
 
 
 func _gui_input(event: InputEvent) -> void:

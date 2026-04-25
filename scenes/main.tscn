@@ -35,48 +35,19 @@
 [ext_resource type="Texture2D" uid="uid://dc72yjfhklrxt" path="res://assets/GUI/home_button.png" id="27_kmb1v"]
 [ext_resource type="PackedScene" uid="uid://ddmx0gvpdmab3" path="res://scenes/upgrade_map.tscn" id="28_2f3dj"]
 [ext_resource type="Texture2D" uid="uid://bxng4mmtfppil" path="res://assets/GUI/home_button_pressed.png" id="28_fuf3a"]
-[ext_resource type="Shader" uid="uid://cxhg88a15of7m" path="res://scenes/shaders/vignette.gdshader" id="29_yq6so"]
 [ext_resource type="PackedScene" uid="uid://dkwhjr7ubfsvy" path="res://scenes/effects/drip_effect.tscn" id="30_fv21b"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vxglm"]
-frequency = 0.0049
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2f3dj"]
-noise = SubResource("FastNoiseLite_vxglm")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
-noise_type = 2
-frequency = 0.0678
-fractal_type = 3
-fractal_octaves = 10
-fractal_weighted_strength = 1.0
-fractal_ping_pong_strength = 2.97
-cellular_distance_function = 1
-domain_warp_enabled = true
-domain_warp_type = 1
-domain_warp_fractal_octaves = 10
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jkv2x"]
-noise = SubResource("FastNoiseLite_eb6dy")
-seamless_blend_skirt = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
 shader = ExtResource("6_tefeu")
-shader_parameter/offSet = 0.0
-shader_parameter/YDistortion = 1.0
-shader_parameter/waterNoise = SubResource("NoiseTexture2D_jkv2x")
-shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_2f3dj")
-shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
-shader_parameter/colorCorection = 0.35
-shader_parameter/distortionForce = 0.01
-shader_parameter/WDBrightness = 1.5
-shader_parameter/WDFreq = 0.55
-shader_parameter/WDSize = 0.95
-shader_parameter/WDSpeed = 2.5
-shader_parameter/tiling = Vector2(1, 1)
-shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
-shader_parameter/backGroundDirX = 0.01
-shader_parameter/backGroundDirY = 0.01
+shader_parameter/level = 0.5
+shader_parameter/water_albedo = Color(0.26, 0.23, 0.73, 1)
+shader_parameter/water_opacity = 0.35
+shader_parameter/water_speed = 0.05
+shader_parameter/wave_distortion = 0.2
+shader_parameter/wave_multiplyer = 7
+shader_parameter/water_texture_on = true
+shader_parameter/reflection_X_offset = 0.0
+shader_parameter/reflection_Y_offset = 0.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ya4ey"]
 frequency = 0.032
@@ -151,11 +122,11 @@ size = Vector2(3041.484, 28.6884)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ld40"]
 shader = ExtResource("17_yc10j")
-shader_parameter/progress = 0.0
-shader_parameter/noiseForce = 0.2
-shader_parameter/burnColor = Color(0, 0, 0, 1)
-shader_parameter/borderWidth = 0.0
-shader_parameter/direction = 180.0
+shader_parameter/sensitivity = 0.5
+shader_parameter/material_type = 0
+shader_parameter/import_new_color = Vector3(0, 0, 0)
+shader_parameter/hit_tint = Color(1, 0.2, 0.2, 1)
+shader_parameter/hit_strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqmmt"]
 shader = ExtResource("17_dp3eg")
@@ -164,28 +135,6 @@ shader_parameter/frequency = 3.135
 shader_parameter/speed = 2.642
 shader_parameter/pole_side = 0
 shader_parameter/fixed_edge_range = 0.2
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fv21b"]
-shader = ExtResource("29_yq6so")
-shader_parameter/active = true
-shader_parameter/invert_side = false
-shader_parameter/convex_mode = false
-shader_parameter/progress = 0.06500005058749991
-shader_parameter/softness = 0.250000011875
-shader_parameter/curvature = 0.8
-shader_parameter/intensity = 0.630000029925
-shader_parameter/vignette_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yq6so"]
-shader = ExtResource("29_yq6so")
-shader_parameter/active = true
-shader_parameter/invert_side = true
-shader_parameter/convex_mode = false
-shader_parameter/progress = 0.21500005771249997
-shader_parameter/softness = 0.3450000163875
-shader_parameter/curvature = 0.810000038475
-shader_parameter/intensity = 0.210000009975
-shader_parameter/vignette_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1951375339]
 position = Vector2(355, 36)
@@ -215,10 +164,10 @@ offset_bottom = -389.0
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=118500080]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -367.0
-offset_top = 323.66827
-offset_right = 1117.0
-offset_bottom = 620.0
+offset_left = -370.0
+offset_top = 182.0
+offset_right = 1114.0
+offset_bottom = 478.33173
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357349262]
 position = Vector2(350, 268)
@@ -486,7 +435,6 @@ shape = SubResource("RectangleShape2D_ground")
 [node name="tower" parent="." unique_id=170994177 instance=ExtResource("14_a8y0u")]
 material = SubResource("ShaderMaterial_0ld40")
 position = Vector2(34.431015, 317.22827)
-damage_per_second = 15
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2109370516]
 stream = ExtResource("17_gqmmt")
@@ -507,6 +455,11 @@ stream = ExtResource("20_y6deb")
 
 [node name="equip" type="AudioStreamPlayer2D" parent="Audio" unique_id=261797673]
 stream = ExtResource("22_2wyq8")
+
+[node name="ui_click" type="AudioStreamPlayer" parent="Audio" unique_id=820265023]
+stream = ExtResource("49_uiclick")
+volume_db = -10.0
+bus = &"SFX"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=516986949]
 
@@ -714,32 +667,6 @@ stream = ExtResource("15_vxglm")
 
 [node name="upgrade_map" parent="CanvasLayer" unique_id=1064765267 instance=ExtResource("28_2f3dj")]
 visible = false
-
-[node name="vignette" type="ColorRect" parent="CanvasLayer" unique_id=701250391]
-visible = false
-material = SubResource("ShaderMaterial_fv21b")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 38.0
-offset_top = -7.0
-offset_right = 34.0
-offset_bottom = -13.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="vignette2" type="ColorRect" parent="CanvasLayer" unique_id=1446728549]
-material = SubResource("ShaderMaterial_yq6so")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -13.0
-offset_right = 6.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="wall" parent="." unique_id=1282492984 instance=ExtResource("5_tbgi4")]
 position = Vector2(237, 307)
