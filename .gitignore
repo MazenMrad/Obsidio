@@ -1,3 +1,21 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Large binary files
+*.obj
+*.fbx
+*.gltf
+*.glb
+*.bin
+*.zip
+*.tar.gz
+*.rar
+
+# Audio files (keep imports but ignore raw)
+*.mp3
+*.wav
+*.ogg
+
+# Exported models
+exported_model_*

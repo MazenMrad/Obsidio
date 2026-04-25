@@ -1,5 +1,5 @@
 ---
-stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 inputDocuments:
   - PROJECT_STATUS.md
   - ARCHITECTURE.md
@@ -9,7 +9,7 @@ documentCounts:
   brainstorming: 0
   projectDocs: 2
 workflowType: gdd
-lastStep: 11
+lastStep: 13
 project_name: obsidioo
 user_name: Mr123
 date: 2026-04-24
@@ -641,9 +641,22 @@ Clean, detailed pixel art with atmospheric lighting and rich color palette. Styl
 
 ## Development Epics
 
-### Epic Structure
+### Epic Overview
 
-{{epics}}
+| # | Epic Name | Status | Focus |
+|---|-----------|--------|-------|
+| 1 | Core Combat & Movement | ✅ Complete | Drag-to-aim, weapons, shooting |
+| 2 | Enemy System & Waves | ✅ Complete | 3 enemy types, wave spawning, AI |
+| 3 | Upgrade & Economy | ✅ Complete | Coins, upgrades, weapon unlocks |
+| 4 | UI & Game Flow | ✅ Complete | Menus, settings, victory/death screens |
+| 5 | Phase 3 Polish | 📋 Planned | Object pooling, audio polish, juice |
+| 6 | Level Framework | 📋 Future | Multiple levels, world map |
+| 7 | Content Expansion | 📋 Future | New enemies, weapons, bosses |
+| 8 | Feature Complete | 📋 Future | Difficulty, gamepad, save system |
+
+### Vertical Slice
+
+**Completed:** Core gameplay loop functional with all essential systems. Demo ready with single level, 15 waves, upgrade system, and polished UI.
 
 ---
 
@@ -651,11 +664,35 @@ Clean, detailed pixel art with atmospheric lighting and rich color palette. Styl
 
 ### Technical Metrics
 
-{{technical_metrics}}
+| Metric | Target | Measurement Method |
+| ------ | ------ | ------------------ |
+| Frame Rate | 60fps stable | In-engine monitoring |
+| Console Errors | 0 errors | Godot output panel |
+| Memory Usage | <500MB | Godot profiler |
+| Load Time | <5 seconds | Stopwatch test |
 
 ### Gameplay Metrics
 
-{{gameplay_metrics}}
+| Metric | Target | Measurement Method |
+| ------ | ------ | ------------------ |
+| Wave 5 Completion | 70% of players | Analytics |
+| Full Game Completion | 30% of players | Analytics |
+| Avg Session Length | 20 minutes | Analytics |
+| Weapon Variety Used | 3+ weapons | Analytics |
+
+### Qualitative Success Criteria
+
+- Players describe game as "fun" and "engaging"
+- Positive feedback on progression system
+- Players want to replay after death
+- Interest in additional content/levels
+- Reviews mention satisfying skill-based combat
+
+### Metric Review Cadence
+
+- **Development:** Per build testing
+- **Demo Release:** Post-launch analytics review
+- **Future Updates:** Monthly metric review
 
 ---
 
