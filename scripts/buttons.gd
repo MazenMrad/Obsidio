@@ -25,7 +25,7 @@ const SETTINGS_PATH: String = "user://settings.cfg"
 @export var repair_cost: int = 0
 
 # === Onready ===
-@onready var sidebar: Control = $sidebar
+@onready var sidebar: TextureRect = $sidebar
 @onready var actions: Control = $sidebar/actions
 @onready var upgrade_wall_btn: TextureButton = $sidebar/actions/upgrade_wall
 @onready var buy_arrow_btn: TextureButton = $sidebar/actions/buy_arrow
@@ -33,7 +33,7 @@ const SETTINGS_PATH: String = "user://settings.cfg"
 @onready var upgrade_wall_label: Label = $sidebar/actions/upgrade_wall/label
 @onready var buy_arrow_label: Label = $sidebar/actions/buy_arrow/label
 @onready var repair_label: Label = $sidebar/actions/repair/label
-@onready var open_upgrade_map_btn: TextureButton = $open_upgrade_map
+@onready var open_upgrade_map_btn: TextureButton = $upgrade_map_btn
 @onready var upgrade_tower_btn: TextureButton = $sidebar/actions/upgrade_tower
 @onready var debug_spawn_knight_btn: TextureButton = $sidebar/actions/debug_spawn_knight
 @onready var options_btn: TextureButton = $options_button
@@ -309,14 +309,15 @@ func _connect_pause_signals() -> void:
 
 
 func _configure_pause_ui() -> void:
-	pause_overlay.process_mode = Node.PROCESS_MODE_ALWAYS
-	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
-	pause_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
-	pause_menu.mouse_filter = Control.MOUSE_FILTER_STOP
-	# Set initial state for animation
-	pause_overlay.modulate.a = 0.0
-	pause_menu.modulate.a = 0.0
-	pause_menu.scale = Vector2(0.9, 0.9)
+	if pause_overlay != null:
+		pause_overlay.process_mode = Node.PROCESS_MODE_ALWAYS
+		pause_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+		pause_overlay.modulate.a = 0.0
+	if pause_menu != null:
+		pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
+		pause_menu.mouse_filter = Control.MOUSE_FILTER_STOP
+		pause_menu.modulate.a = 0.0
+		pause_menu.scale = Vector2(0.9, 0.9)
 	_hide_pause_ui()
 
 
@@ -514,6 +515,9 @@ func _pause_game(show_options: bool) -> void:
 		return
 	if _is_animating_pause:
 		return
+	if pause_overlay == null or pause_menu == null:
+		push_warning("[buttons] Pause UI nodes missing — cannot pause")
+		return
 	if upgrade_map != null:
 		upgrade_map.visible = false
 	if get_tree() != null:
@@ -556,6 +560,10 @@ func _resume_game() -> void:
 	_save_settings()
 	if _is_animating_pause:
 		return
+	if pause_overlay == null or pause_menu == null:
+		if get_tree() != null:
+			get_tree().paused = false
+		return
 
 	# Kill any existing tween
 	if _pause_tween:
@@ -580,53 +588,79 @@ func _resume_game() -> void:
 
 
 func _show_pause_menu_no_animate() -> void:
-	pause_title.text = "PAUSED"
-	pause_buttons.visible = true
-	options_container.visible = false
+	if pause_title != null:
+		pause_title.text = "PAUSED"
+	if pause_buttons != null:
+		pause_buttons.visible = true
+	if options_container != null:
+		options_container.visible = false
 
 
 func _show_pause_menu() -> void:
-	pause_overlay.visible = true
-	pause_menu.visible = true
-	pause_title.text = "PAUSED"
-	pause_buttons.visible = true
-	options_container.visible = false
-	resume_button.grab_focus()
+	if pause_overlay != null:
+		pause_overlay.visible = true
+	if pause_menu != null:
+		pause_menu.visible = true
+	if pause_title != null:
+		pause_title.text = "PAUSED"
+	if pause_buttons != null:
+		pause_buttons.visible = true
+	if options_container != null:
+		options_container.visible = false
+	if resume_button != null:
+		resume_button.grab_focus()
 
 
 func _show_options_menu_no_animate() -> void:
-	pause_title.text = "OPTIONS"
-	pause_buttons.visible = false
-	options_container.visible = true
+	if pause_title != null:
+		pause_title.text = "OPTIONS"
+	if pause_buttons != null:
+		pause_buttons.visible = false
+	if options_container != null:
+		options_container.visible = true
 
 
 func _show_options_menu() -> void:
-	pause_overlay.visible = true
-	pause_menu.visible = true
-	pause_title.text = "OPTIONS"
-	pause_buttons.visible = false
-	options_container.visible = true
-	back_button.grab_focus()
+	if pause_overlay != null:
+		pause_overlay.visible = true
+	if pause_menu != null:
+		pause_menu.visible = true
+	if pause_title != null:
+		pause_title.text = "OPTIONS"
+	if pause_buttons != null:
+		pause_buttons.visible = false
+	if options_container != null:
+		options_container.visible = true
+	if back_button != null:
+		back_button.grab_focus()
 
 
 func _hide_pause_ui() -> void:
-	pause_title.text = "PAUSED"
-	pause_buttons.visible = true
-	options_container.visible = false
-	pause_overlay.visible = false
-	pause_menu.visible = false
-	# Reset animation state
-	pause_overlay.modulate.a = 0.0
-	pause_menu.modulate.a = 0.0
-	pause_menu.scale = Vector2(0.9, 0.9)
+	if pause_title != null:
+		pause_title.text = "PAUSED"
+	if pause_buttons != null:
+		pause_buttons.visible = true
+	if options_container != null:
+		options_container.visible = false
+	if pause_overlay != null:
+		pause_overlay.visible = false
+		pause_overlay.modulate.a = 0.0
+	if pause_menu != null:
+		pause_menu.visible = false
+		pause_menu.modulate.a = 0.0
+		pause_menu.scale = Vector2(0.9, 0.9)
 
 
 func _is_pause_visible() -> bool:
-	return pause_overlay.visible or pause_menu.visible
+	if pause_overlay == null and pause_menu == null:
+		return false
+	return (pause_overlay != null and pause_overlay.visible) or (pause_menu != null and pause_menu.visible)
 
 
 func _load_settings() -> void:
 	var settings_file := ConfigFile.new()
+	if master_slider == null or music_slider == null or sfx_slider == null:
+		return
 	if settings_file.load(SETTINGS_PATH) == OK:
 		master_slider.value = float(settings_file.get_value("audio", "master", 1.0))
 		music_slider.value = float(settings_file.get_value("audio", "music", 0.8))

@@ -39,7 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://dhh580hdqbcgy" path="res://music/ui-click.wav" id="49_uiclick"]
 [ext_resource type="AudioStream" uid="uid://eu33b0f7fint" path="res://music/tower_upgrade.mp3" id="50_towerup"]
 [ext_resource type="Texture2D" uid="uid://cf3ipspieuvu" path="res://assets/GUI/sidebar.png" id="51_sidebar"]
-[ext_resource type="PackedScene" uid="uid://crtvlcggnaorc" path="res://scenes/input_remapping.tscn" id="52_remap"]
+[ext_resource type="PackedScene" path="res://scenes/input_remapping.tscn" id="52_remap"]
 [ext_resource type="Texture2D" uid="uid://c54l8ougt03ti" path="res://assets/GUI/upgradeslist.png" id="53_upglist"]
 [ext_resource type="Texture2D" uid="uid://boq6ujs7eioua" path="res://assets/GUI/towerupgrade.png" id="54_twupg"]
 [ext_resource type="AudioStream" uid="uid://dsmqi03rgqslv" path="res://music/death_sound1.wav" id="55_d1"]
@@ -55,20 +55,17 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_water1"]
 frequency = 0.032
-fractal/type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_water1"]
-seamless = true
 noise = SubResource("FastNoiseLite_water1")
+seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_water2"]
 frequency = 0.008
-fractal/type = 2
-fractal/lacunarity = 2.5
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_water2"]
-seamless = true
 noise = SubResource("FastNoiseLite_water2")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
 shader = ExtResource("6_tefeu")
@@ -84,7 +81,11 @@ shader_parameter/reflection_Y_offset = 0.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_water1")
 shader_parameter/noise_texture2 = SubResource("NoiseTexture2D_water2")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_foliage"]
+frequency = 0.032
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eb6dy"]
+noise = SubResource("FastNoiseLite_foliage")
 seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
@@ -97,8 +98,12 @@ shader_parameter/noise_scale = 0.001
 shader_parameter/rotation_strength = 1.0
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_foliage2"]
+frequency = 0.032
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ya4ey"]
 seamless = true
+noise = SubResource("FastNoiseLite_foliage2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trceg"]
 shader = ExtResource("4_ya4ey")
@@ -111,6 +116,8 @@ shader_parameter/rotation_strength = 1.0
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_trceg"]
+seamless = true
+noise = SubResource("FastNoiseLite_foliage2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8y0u"]
 shader = ExtResource("4_ya4ey")
@@ -123,6 +130,8 @@ shader_parameter/rotation_strength = 1.0
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8y0u"]
+seamless = true
+noise = SubResource("FastNoiseLite_foliage2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jkv2x"]
 shader = ExtResource("4_ya4ey")
@@ -171,11 +180,7 @@ shader_parameter/fixed_edge_range = 0.2
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hit"]
 emission_shape = 1
 emission_sphere_radius = 8.0
-particle_flag/disable_velocity = true
 gravity = Vector3(0, -40, 0)
-
-[sub_resource type="QuadMesh" id="QuadMesh_hit"]
-size = Vector2(4, 4)
 
 [node name="Node2D" type="Node2D" unique_id=1951375339]
 position = Vector2(355, 36)
@@ -205,10 +210,10 @@ offset_bottom = -389.0
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=118500080]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -370.0
-offset_top = 182.0
-offset_right = 1114.0
-offset_bottom = 478.33173
+offset_left = -340.0
+offset_top = 326.0
+offset_right = 1144.0
+offset_bottom = 622.3317
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357349262]
 position = Vector2(350, 268)
@@ -502,34 +507,32 @@ stream = ExtResource("49_uiclick")
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="tower_upgrade" type="AudioStreamPlayer" parent="Audio"]
+[node name="tower_upgrade" type="AudioStreamPlayer" parent="Audio" unique_id=2101963729]
 stream = ExtResource("50_towerup")
 bus = &"SFX"
 
-[node name="death1" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="death1" type="AudioStreamPlayer2D" parent="Audio" unique_id=2076573346]
 stream = ExtResource("55_d1")
 
-[node name="death2" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="death2" type="AudioStreamPlayer2D" parent="Audio" unique_id=229653743]
 stream = ExtResource("56_d2")
 
-[node name="death3" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="death3" type="AudioStreamPlayer2D" parent="Audio" unique_id=169318338]
 stream = ExtResource("57_d3")
 
-[node name="battle" type="AudioStreamPlayer" parent="Audio"]
+[node name="battle" type="AudioStreamPlayer" parent="Audio" unique_id=1927498068]
 stream = ExtResource("58_battle")
 
-[node name="victory" type="AudioStreamPlayer" parent="Audio"]
+[node name="victory" type="AudioStreamPlayer" parent="Audio" unique_id=187693741]
 stream = ExtResource("59_victory")
 
-[node name="game_over" type="AudioStreamPlayer" parent="Audio"]
+[node name="game_over" type="AudioStreamPlayer" parent="Audio" unique_id=855244560]
 stream = ExtResource("60_go")
 
-[node name="hit_effect" type="GPUParticles2D" parent="."]
+[node name="hit_effect" type="GPUParticles2D" parent="." unique_id=736898332]
 visible = false
 emitting = false
-amount = 8
 process_material = SubResource("ParticleProcessMaterial_hit")
-draw_pass_1 = SubResource("QuadMesh_hit")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=516986949]
 
@@ -617,29 +620,32 @@ theme_override_font_sizes/font_size = 24
 text = "3"
 vertical_alignment = 1
 
-[node name="sidebar" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="sidebar" type="TextureRect" parent="CanvasLayer/Control" unique_id=1648922674]
 layout_mode = 1
-anchors_preset = 0
 offset_left = -31.000004
 offset_top = 97.0
 offset_right = 189.0
 offset_bottom = 623.0
 texture = ExtResource("51_sidebar")
-stretch_mode = 0
 
-[node name="actions" type="VBoxContainer" parent="CanvasLayer/Control/sidebar"]
+[node name="actions" type="VBoxContainer" parent="CanvasLayer/Control/sidebar" unique_id=1711642399]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 35.0
+offset_right = -25.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 69
+theme_override_constants/separation = 12
 
 [node name="upgrade_wall" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=358020678]
-custom_minimum_size = Vector2(18.825, 0)
+custom_minimum_size = Vector2(140, 45)
 layout_mode = 2
 texture_normal = ExtResource("23_kmb1v")
+stretch_mode = 5
 
 [node name="label" type="Label" parent="CanvasLayer/Control/sidebar/actions/upgrade_wall" unique_id=716934201]
 visible = false
@@ -655,8 +661,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="repair" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=1236663339]
+custom_minimum_size = Vector2(140, 45)
 layout_mode = 2
 texture_normal = ExtResource("24_fuf3a")
+stretch_mode = 5
 
 [node name="label" type="Label" parent="CanvasLayer/Control/sidebar/actions/repair" unique_id=534287131]
 visible = false
@@ -672,9 +680,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="buy_arrow" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=1996930549]
-custom_minimum_size = Vector2(220, 40)
+custom_minimum_size = Vector2(140, 45)
 layout_mode = 2
 texture_normal = ExtResource("25_pibwh")
+stretch_mode = 5
 
 [node name="label" type="Label" parent="CanvasLayer/Control/sidebar/actions/buy_arrow" unique_id=693818006]
 visible = false
@@ -689,10 +698,7 @@ theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="open_upgrade_map" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=92587886]
-layout_mode = 2
-texture_normal = ExtResource("53_upglist")
-stretch_mode = 0
+
 
 [node name="upgrade_tower" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=755998986]
 visible = false
@@ -700,11 +706,27 @@ layout_mode = 2
 texture_normal = ExtResource("54_twupg")
 stretch_mode = 0
 
-[node name="debug_spawn_knight" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions"]
+[node name="debug_spawn_knight" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=105147771]
 visible = false
 layout_mode = 2
 texture_normal = ExtResource("23_kmb1v")
 stretch_mode = 0
+
+[node name="upgrade_map_btn" type="TextureButton" parent="CanvasLayer/Control" unique_id=92587886]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -110.0
+offset_right = -25.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("53_upglist")
+stretch_mode = 5
 
 [node name="weapon_ui" type="TextureRect" parent="CanvasLayer/Control" unique_id=790043457]
 layout_mode = 1
@@ -747,7 +769,7 @@ visible = false
 [node name="lost" type="AudioStreamPlayer2D" parent="CanvasLayer/death" unique_id=618248033]
 stream = ExtResource("15_vxglm")
 
-[node name="PauseOverlay" type="ColorRect" parent="CanvasLayer"]
+[node name="PauseOverlay" type="ColorRect" parent="CanvasLayer" unique_id=617648812]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -757,7 +779,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="PauseMenu" type="CenterContainer" parent="CanvasLayer"]
+[node name="PauseMenu" type="CenterContainer" parent="CanvasLayer" unique_id=1793204510]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -766,128 +788,125 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 
-[node name="PausePanel" type="PanelContainer" parent="CanvasLayer/PauseMenu"]
+[node name="PausePanel" type="PanelContainer" parent="CanvasLayer/PauseMenu" unique_id=832891308]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu/PausePanel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu/PausePanel" unique_id=1732939489]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer" unique_id=1013687864]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="PauseTitle" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox"]
+[node name="PauseTitle" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox" unique_id=1246994677]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 32
 text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="PauseButtons" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox"]
+[node name="PauseButtons" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox" unique_id=1826228196]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons"]
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=1332229395]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 20
 text = "Resume"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons"]
+[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=2065545364]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 20
 text = "Settings"
 
-[node name="TutorialButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons"]
+[node name="TutorialButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=412523348]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 20
 text = "How to Play"
 
-[node name="HomeButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons"]
+[node name="HomeButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=1343857848]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 20
 text = "Main Menu"
 
-[node name="OptionsContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox"]
+[node name="OptionsContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox" unique_id=124119723]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="MasterVolumeContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer"]
+[node name="MasterVolumeContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer" unique_id=125864874]
 layout_mode = 2
 
-[node name="MasterVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MasterVolumeContainer"]
+[node name="MasterVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MasterVolumeContainer" unique_id=1535752400]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "Master"
-custom_minimum_size = Vector2(80, 0)
 
-[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MasterVolumeContainer"]
+[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MasterVolumeContainer" unique_id=772645025]
 layout_mode = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="MusicVolumeContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer"]
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer" unique_id=1331918162]
 layout_mode = 2
 
-[node name="MusicVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MusicVolumeContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MusicVolumeContainer" unique_id=1958469473]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "Music"
-custom_minimum_size = Vector2(80, 0)
 
-[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MusicVolumeContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/MusicVolumeContainer" unique_id=326723265]
 layout_mode = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.01
 value = 0.8
 
-[node name="SFXVolumeContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer"]
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer" unique_id=1625048890]
 layout_mode = 2
 
-[node name="SFXVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/SFXVolumeContainer"]
+[node name="SFXVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/SFXVolumeContainer" unique_id=20624725]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 16
 text = "SFX"
-custom_minimum_size = Vector2(80, 0)
 
-[node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/SFXVolumeContainer"]
+[node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer/SFXVolumeContainer" unique_id=1637506308]
 layout_mode = 2
-min_value = 0.0
 max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="ControlsButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer"]
+[node name="ControlsButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer" unique_id=1771553322]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 18
 text = "Controls"
 
-[node name="BackButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer"]
+[node name="BackButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer" unique_id=157309100]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 18
 text = "Back"
 
-[node name="input_remapping" parent="CanvasLayer" instance=ExtResource("52_remap")]
+[node name="input_remapping" parent="CanvasLayer" unique_id=335451325 instance=ExtResource("52_remap")]
 visible = false
 
-[node name="wave_progress_panel" type="TextureRect" parent="CanvasLayer"]
+[node name="wave_progress_panel" type="TextureRect" parent="CanvasLayer" unique_id=681409775]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -903,18 +922,17 @@ grow_vertical = 2
 texture = ExtResource("62_wpp")
 stretch_mode = 5
 
-[node name="wave_progress_bar" type="TextureProgressBar" parent="CanvasLayer/wave_progress_panel"]
-anchors_preset = 15
+[node name="wave_progress_bar" type="TextureProgressBar" parent="CanvasLayer/wave_progress_panel" unique_id=1525798065]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-value = 0.0
 texture_under = ExtResource("63_wpbe")
 texture_progress = ExtResource("64_wpbc")
 
-[node name="wave_label" type="Label" parent="CanvasLayer/wave_progress_panel"]
-anchors_preset = 8
+[node name="wave_label" type="Label" parent="CanvasLayer/wave_progress_panel" unique_id=1523991925]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -931,9 +949,9 @@ text = "Wave 1 / 15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="wave_start_text" type="Label" parent="CanvasLayer"]
+[node name="wave_start_text" type="Label" parent="CanvasLayer" unique_id=445325804]
 visible = false
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.3
 anchor_right = 0.5
@@ -950,9 +968,9 @@ text = "WAVE 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="wave_complete_text" type="Label" parent="CanvasLayer"]
+[node name="wave_complete_text" type="Label" parent="CanvasLayer" unique_id=530966457]
 visible = false
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.3
 anchor_right = 0.5
@@ -969,9 +987,9 @@ text = "WAVE COMPLETE!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="wave_event_banner" type="Label" parent="CanvasLayer"]
+[node name="wave_event_banner" type="Label" parent="CanvasLayer" unique_id=2014235194]
 visible = false
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.4
 anchor_right = 0.5
@@ -984,12 +1002,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
 theme_override_font_sizes/font_size = 28
-text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="victory" parent="CanvasLayer" instance=ExtResource("61_victory")]
-visible = false
+[node name="victory" parent="CanvasLayer" unique_id=1473281438 instance=ExtResource("61_victory")]
 
 [node name="upgrade_map" parent="CanvasLayer" unique_id=1064765267 instance=ExtResource("28_2f3dj")]
 visible = false
@@ -1001,7 +1017,7 @@ position = Vector2(237, 307)
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/upgrade_wall" to="CanvasLayer/Control" method="_on_upgrade_wall_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/repair" to="CanvasLayer/Control" method="_on_repair_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/buy_arrow" to="CanvasLayer/Control" method="_on_buy_arrow_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/open_upgrade_map" to="CanvasLayer/Control" method="_on_upgrades_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/upgrade_map_btn" to="CanvasLayer/Control" method="_on_upgrades_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/upgrade_tower" to="CanvasLayer/Control" method="_on_upgrade_tower_pressed"]
 
 [editable path="CanvasLayer/death"]
