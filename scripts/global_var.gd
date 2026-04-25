@@ -32,8 +32,8 @@ func _ready() -> void:
 
 func reset() -> void:
 	state = Weapon.ROCK
-	coins = 5
-	arrows = 10 + persistent_bonus_arrows
+	coins = 8
+	arrows = 15 + persistent_bonus_arrows
 	wall_1_standing = true
 	unlocked_weapons = ["rock", "bow"]
 	waves = 0

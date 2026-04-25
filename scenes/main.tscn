@@ -53,18 +53,27 @@
 [ext_resource type="Texture2D" uid="uid://hu4fp4an5ieb" path="res://assets/GUI/wave_progress_bar_empty.png" id="63_wpbe"]
 [ext_resource type="Texture2D" uid="uid://b8k1juph5b5te" path="res://assets/GUI/wave_progress_bar_complete.png" id="64_wpbc"]
 
+[sub_resource type="Gradient" id="Gradient_bu4jf"]
+offsets = PackedFloat32Array(0, 0.76878613)
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_water1"]
 frequency = 0.032
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_water1"]
 noise = SubResource("FastNoiseLite_water1")
+color_ramp = SubResource("Gradient_bu4jf")
 seamless = true
+
+[sub_resource type="Gradient" id="Gradient_o7ddy"]
+offsets = PackedFloat32Array(0, 0.31213874, 0.82080925)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_water2"]
 frequency = 0.008
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_water2"]
 noise = SubResource("FastNoiseLite_water2")
+color_ramp = SubResource("Gradient_o7ddy")
 seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ya4ey"]
@@ -258,9 +267,9 @@ offset_bottom = -389.0
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=118500080]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -339.0
+offset_left = -338.0
 offset_top = 324.0
-offset_right = 1125.0
+offset_right = 1126.0
 offset_bottom = 620.3317
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357349262]
@@ -602,9 +611,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 68.0
-offset_right = -561.0
-offset_bottom = -418.0
+offset_left = 69.0
+offset_top = -9.0
+offset_right = -560.0
+offset_bottom = -427.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -629,8 +639,6 @@ offset_right = 208.71852
 offset_bottom = 75.72
 texture = ExtResource("21_yq6so")
 stretch_mode = 5
-
-
 
 [node name="arrows" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1764986526]
 layout_mode = 1
@@ -964,9 +972,7 @@ visible = false
 [node name="wave_progress_panel" type="TextureRect" parent="CanvasLayer" unique_id=681409775]
 anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.0
 anchor_right = 0.5
-anchor_bottom = 0.0
 offset_left = -190.0
 offset_top = 20.0
 offset_right = 190.0
@@ -977,24 +983,30 @@ texture = ExtResource("62_wpp")
 stretch_mode = 5
 
 [node name="wave_progress_bar" type="TextureProgressBar" parent="CanvasLayer/wave_progress_panel" unique_id=1525798065]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = 37.0
+offset_right = -84.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_under = ExtResource("63_wpbe")
 texture_progress = ExtResource("64_wpbc")
 
 [node name="wave_label" type="Label" parent="CanvasLayer/wave_progress_panel" unique_id=1523991925]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -100.0
-offset_top = -12.0
+offset_top = -26.0
 offset_right = 100.0
-offset_bottom = 12.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")

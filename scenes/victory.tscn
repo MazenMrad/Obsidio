@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxv1ct2k7m8np"]
 
-[ext_resource type="Script" path="res://scripts/victory_GUI.gd" id="1_victory"]
+[ext_resource type="Script" uid="uid://c0qkg2amtfleq" path="res://scripts/victory_GUI.gd" id="1_victory"]
 [ext_resource type="Shader" uid="uid://dnvvydy7wqv7l" path="res://scenes/shaders/text.gdshader" id="2_shader"]
 [ext_resource type="FontFile" uid="uid://df6pyqwwgt8aq" path="res://fonts/Fool.ttf" id="3_font"]
 
@@ -20,7 +20,7 @@ shader_parameter/scale_strength = 0.1
 shader_parameter/scale_speed = 0.831
 shader_parameter/scale_frequency = 0.1
 shader_parameter/base_scale = 0.983
-shader_parameter/text_color = Color(1.0, 0.85, 0.3, 1.0)
+shader_parameter/text_color = Color(1, 0.85, 0.3, 1)
 shader_parameter/use_custom_color = true
 shader_parameter/shake_intensity = 0.41
 shader_parameter/enable_pixelation = true
@@ -33,6 +33,7 @@ shader_parameter/chromatic_aberration = false
 shader_parameter/aberration_strength = 5.0
 
 [node name="victory" type="Control" unique_id=995336000]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +41,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-visible = false
 script = ExtResource("1_victory")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=995336001]

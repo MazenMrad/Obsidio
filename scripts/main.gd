@@ -16,7 +16,6 @@ const WAVE_WIN: int = 15  # Victory at wave 15 completion
 @onready var game_over_music: AudioStreamPlayer = $"../Audio/game_over"
 var spawner_pos: Vector2
 
-var spawn_text: Label
 var coin_label: Label
 var arrows_label: Label
 var wave_progress_panel: TextureRect
@@ -51,7 +50,6 @@ var _prev_coins: int = -1
 
 
 func _ready() -> void:
-	spawn_text = $"../CanvasLayer/Control/indicators/spawn_text"
 	coin_label = $"../CanvasLayer/Control/indicators/coin_label"
 	arrows_label = $"../CanvasLayer/Control/indicators/arrows"
 	wave_progress_panel = $"../CanvasLayer/wave_progress_panel"

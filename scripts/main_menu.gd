@@ -1,5 +1,7 @@
 extends Control
 
+const DISCLAIMER_SCENE: PackedScene = preload("res://scenes/disclaimer_popup.tscn")
+
 @onready var start_button: Button = $VBox/StartButton
 @onready var options_button: Button = $VBox/OptionsButton
 @onready var quit_button: Button = $VBox/QuitButton
@@ -35,6 +37,17 @@ func _show_main_menu() -> void:
 
 func _on_start_pressed() -> void:
 	_save_settings()
+	_show_disclaimer_popup()
+
+func _show_disclaimer_popup() -> void:
+	if DISCLAIMER_SCENE:
+		var disclaimer := DISCLAIMER_SCENE.instantiate()
+		add_child(disclaimer)
+		# Connect to play_pressed signal to start the game
+		disclaimer.play_pressed.connect(_on_disclaimer_play_pressed)
+
+func _on_disclaimer_play_pressed() -> void:
+	# Start the game after disclaimer is closed
 	PersistentScene.change_scene("res://scenes/main.tscn")
 
 

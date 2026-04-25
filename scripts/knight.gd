@@ -20,6 +20,27 @@ func _ready() -> void:
 	# Remove from enemy1 group and add to knight group
 	remove_from_group("enemy1")
 	add_to_group("knight")
+	# Reconnect the enemy1 Area2D signals to THIS script (parent _ready connects to parent methods)
+	_reconnect_area_signals()
+
+## Reconnect enemy1 Area2D signals so wall detection works through inheritance
+func _reconnect_area_signals() -> void:
+	var area: Area2D = get_node_or_null("enemy1")
+	if area == null:
+		return
+	# Disconnect existing connections (from parent _ready)
+	if area.area_entered.is_connected(_on_area_2d_area_entered):
+		area.area_entered.disconnect(_on_area_2d_area_entered)
+	if area.area_exited.is_connected(_on_area_2d_area_exited):
+		area.area_exited.disconnect(_on_area_2d_area_exited)
+	if area.body_entered.is_connected(_on_area_2d_body_entered):
+		area.body_entered.disconnect(_on_area_2d_body_entered)
+
+	# Reconnect to self (these will resolve to the enemy_1.gd methods via super)
+	area.area_entered.connect(_on_area_2d_area_entered)
+	area.area_exited.connect(_on_area_2d_area_exited)
+	area.body_entered.connect(_on_area_2d_body_entered)
+
 
 ## Override coin drop to spawn multiple coins (knights give bonus coins)
 func spawn_coin() -> void:

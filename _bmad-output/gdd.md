@@ -1,5 +1,5 @@
 ---
-stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+stepsCompleted: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 inputDocuments:
   - PROJECT_STATUS.md
   - ARCHITECTURE.md
@@ -9,12 +9,13 @@ documentCounts:
   brainstorming: 0
   projectDocs: 2
 workflowType: gdd
-lastStep: 13
+lastStep: 14
 project_name: obsidioo
 user_name: Mr123
 date: 2026-04-24
 game_type: 'tower-defense'
 game_name: 'OBSIDIO'
+status: complete
 ---
 
 # OBSIDIO - Game Design Document
@@ -698,10 +699,45 @@ Clean, detailed pixel art with atmospheric lighting and rich color palette. Styl
 
 ## Out of Scope
 
-{{out_of_scope}}
+### Explicitly NOT in v1.0 (Demo)
+
+- **VR Support** - Not planned
+- **Console Ports** - PlayStation, Xbox, Switch not in scope
+
+### Deferred to Post-Launch
+
+- Multiple levels with world map
+- Additional enemy types beyond 3
+- More weapons beyond 5
+- Difficulty settings (Easy/Normal/Hard)
+- Gamepad/controller support
+- Object pooling optimization
+- Persistent high score system
 
 ---
 
 ## Assumptions and Dependencies
 
-{{assumptions_and_dependencies}}
+### Key Assumptions
+
+- Godot 4.6 engine remains stable and supported
+- Players have mouse + keyboard (PC) or touch (Mobile)
+- WebGL support in modern browsers
+- Solo developer capacity sufficient for current scope
+- Tower defense genre maintains player interest
+
+### External Dependencies
+
+| Dependency | Purpose |
+|-------------|---------|
+| Godot 4.6 | Game engine |
+| Godot Export Templates | Web, PC, Mobile builds |
+| itch.io | Initial distribution platform |
+| Steam | Future distribution platform |
+
+### Risk Factors
+
+- Web export compatibility across browsers
+- Asset creation time and quality
+- Scope creep beyond demo boundaries
+- Performance on lower-end devices
