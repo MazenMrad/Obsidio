@@ -102,8 +102,8 @@ shader_parameter/rotation_pivot = Vector2(0.5, 1)
 frequency = 0.032
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ya4ey"]
-seamless = true
 noise = SubResource("FastNoiseLite_foliage2")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trceg"]
 shader = ExtResource("4_ya4ey")
@@ -116,8 +116,8 @@ shader_parameter/rotation_strength = 1.0
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_trceg"]
-seamless = true
 noise = SubResource("FastNoiseLite_foliage2")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8y0u"]
 shader = ExtResource("4_ya4ey")
@@ -130,8 +130,8 @@ shader_parameter/rotation_strength = 1.0
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a8y0u"]
-seamless = true
 noise = SubResource("FastNoiseLite_foliage2")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jkv2x"]
 shader = ExtResource("4_ya4ey")
@@ -182,6 +182,54 @@ emission_shape = 1
 emission_sphere_radius = 8.0
 gravity = Vector3(0, -40, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_panel"]
+bg_color = Color(0.1, 0.08, 0.06, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6, 0.55, 0.45, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_btn_normal"]
+bg_color = Color(0.25, 0.2, 0.15, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.55, 0.45, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_btn_pressed"]
+bg_color = Color(0.15, 0.12, 0.1, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.45, 0.35, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_btn_hover"]
+bg_color = Color(0.4, 0.35, 0.25, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.75, 0.55, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="Node2D" type="Node2D" unique_id=1951375339]
 position = Vector2(355, 36)
 
@@ -210,10 +258,10 @@ offset_bottom = -389.0
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=118500080]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ya4ey")
-offset_left = -340.0
-offset_top = 326.0
-offset_right = 1144.0
-offset_bottom = 622.3317
+offset_left = -339.0
+offset_top = 324.0
+offset_right = 1125.0
+offset_bottom = 620.3317
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357349262]
 position = Vector2(350, 268)
@@ -474,13 +522,14 @@ position = Vector2(73.78702, 317.94373)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundCollision" unique_id=505645549]
+visible = false
 position = Vector2(309.65317, 5.1680603)
 scale = Vector2(0.485, 0.485)
 shape = SubResource("RectangleShape2D_ground")
 
 [node name="tower" parent="." unique_id=170994177 instance=ExtResource("14_a8y0u")]
 material = SubResource("ShaderMaterial_0ld40")
-position = Vector2(34.431015, 317.22827)
+position = Vector2(33.999985, 300)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2109370516]
 stream = ExtResource("17_gqmmt")
@@ -553,8 +602,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 64.0
-offset_right = -565.0
+offset_left = 68.0
+offset_right = -561.0
 offset_bottom = -418.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -581,33 +630,7 @@ offset_bottom = 75.72
 texture = ExtResource("21_yq6so")
 stretch_mode = 5
 
-[node name="spawn_text" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1418223253]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.39200002
-anchor_top = 0.063
-anchor_right = 0.60800004
-anchor_bottom = 0.063
-offset_left = 808.32
-offset_top = 35.48
-offset_right = 889.68
-offset_bottom = 51.48
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 18
-text = "Wave 1 in 10s"
-horizontal_alignment = 1
 
-[node name="coin_label" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1581822160]
-layout_mode = 1
-offset_left = 37.0
-offset_top = 35.0
-offset_right = 46.0
-offset_bottom = 64.0
-theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 24
-text = "5"
-vertical_alignment = 1
 
 [node name="arrows" type="Label" parent="CanvasLayer/Control/indicators" unique_id=1764986526]
 layout_mode = 1
@@ -622,30 +645,31 @@ vertical_alignment = 1
 
 [node name="sidebar" type="TextureRect" parent="CanvasLayer/Control" unique_id=1648922674]
 layout_mode = 1
-offset_left = -31.000004
-offset_top = 97.0
-offset_right = 189.0
-offset_bottom = 623.0
+offset_left = -64.0
+offset_top = 150.0
+offset_right = 40.0
+offset_bottom = 486.0
 texture = ExtResource("51_sidebar")
 
 [node name="actions" type="VBoxContainer" parent="CanvasLayer/Control/sidebar" unique_id=1711642399]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 35.0
-offset_right = -25.0
-offset_bottom = -35.0
+offset_left = 2.0
+offset_top = 66.0
+offset_right = 68.0
+offset_bottom = 538.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+scale = Vector2(0.295, 0.295)
+theme_override_constants/separation = 63
 
 [node name="upgrade_wall" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=358020678]
 custom_minimum_size = Vector2(140, 45)
 layout_mode = 2
 texture_normal = ExtResource("23_kmb1v")
-stretch_mode = 5
 
 [node name="label" type="Label" parent="CanvasLayer/Control/sidebar/actions/upgrade_wall" unique_id=716934201]
 visible = false
@@ -698,10 +722,7 @@ theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 vertical_alignment = 1
 
-
-
 [node name="upgrade_tower" type="TextureButton" parent="CanvasLayer/Control/sidebar/actions" unique_id=755998986]
-visible = false
 layout_mode = 2
 texture_normal = ExtResource("54_twupg")
 stretch_mode = 0
@@ -719,10 +740,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -145.0
-offset_top = -110.0
-offset_right = -25.0
-offset_bottom = -30.0
+offset_left = 386.0
+offset_top = 311.0
+offset_right = 506.0
+offset_bottom = 391.0
 grow_horizontal = 0
 grow_vertical = 0
 texture_normal = ExtResource("53_upglist")
@@ -777,7 +798,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.6)
+color = Color(0.02, 0.02, 0.02, 0.85)
 
 [node name="PauseMenu" type="CenterContainer" parent="CanvasLayer" unique_id=1793204510]
 visible = false
@@ -791,51 +812,75 @@ mouse_filter = 0
 [node name="PausePanel" type="PanelContainer" parent="CanvasLayer/PauseMenu" unique_id=832891308]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pause_panel")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu/PausePanel" unique_id=1732939489]
 layout_mode = 2
-theme_override_constants/margin_left = 24
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
+theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 24
 
 [node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer" unique_id=1013687864]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 18
 
 [node name="PauseTitle" type="Label" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox" unique_id=1246994677]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 36
 text = "PAUSED"
 horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox" unique_id=872910344]
+layout_mode = 2
 
 [node name="PauseButtons" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox" unique_id=1826228196]
 layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=1332229395]
+custom_minimum_size = Vector2(180, 45)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pause_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_btn_hover")
 text = "Resume"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=2065545364]
+custom_minimum_size = Vector2(180, 45)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pause_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_btn_hover")
 text = "Settings"
 
 [node name="TutorialButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=412523348]
+custom_minimum_size = Vector2(180, 45)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pause_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_btn_hover")
 text = "How to Play"
 
 [node name="HomeButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/PauseButtons" unique_id=1343857848]
+custom_minimum_size = Vector2(180, 45)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pause_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_btn_hover")
 text = "Main Menu"
 
 [node name="OptionsContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox" unique_id=124119723]
@@ -892,33 +937,42 @@ step = 0.01
 value = 1.0
 
 [node name="ControlsButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer" unique_id=1771553322]
+custom_minimum_size = Vector2(180, 45)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pause_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_btn_hover")
 text = "Controls"
 
 [node name="BackButton" type="Button" parent="CanvasLayer/PauseMenu/PausePanel/MarginContainer/VBox/OptionsContainer" unique_id=157309100]
+custom_minimum_size = Vector2(180, 45)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("14_jbj1t")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pause_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_btn_hover")
 text = "Back"
 
 [node name="input_remapping" parent="CanvasLayer" unique_id=335451325 instance=ExtResource("52_remap")]
 visible = false
 
 [node name="wave_progress_panel" type="TextureRect" parent="CanvasLayer" unique_id=681409775]
-visible = false
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -30.0
-offset_right = 120.0
-offset_bottom = 30.0
+anchor_bottom = 0.0
+offset_left = -190.0
+offset_top = 20.0
+offset_right = 190.0
+offset_bottom = 80.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 texture = ExtResource("62_wpp")
 stretch_mode = 5
 
@@ -1017,7 +1071,7 @@ position = Vector2(237, 307)
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/upgrade_wall" to="CanvasLayer/Control" method="_on_upgrade_wall_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/repair" to="CanvasLayer/Control" method="_on_repair_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/buy_arrow" to="CanvasLayer/Control" method="_on_buy_arrow_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/upgrade_map_btn" to="CanvasLayer/Control" method="_on_upgrades_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/sidebar/actions/upgrade_tower" to="CanvasLayer/Control" method="_on_upgrade_tower_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/upgrade_map_btn" to="CanvasLayer/Control" method="_on_upgrades_pressed"]
 
 [editable path="CanvasLayer/death"]
